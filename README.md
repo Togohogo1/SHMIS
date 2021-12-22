@@ -1,2 +1,2 @@
 # SHMIS
-Stands for Simple Healthcare Management Interface for Specialists
+Simple Healthcare Management Interface for Specialists

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import com.company.classes.Appointment;
 import com.company.utilities.ReadWrite;
 
+import org.json.simple.JSONObject;
+
 public class App {
     public static void main(String[] args) {
         boolean[] xray = {true, true, true, true, true, true, true};
@@ -32,13 +34,8 @@ public class App {
         // p1.addAppointment(app);
         // System.out.println(p1.toJSONObject());
         // System.out.println(p2.toJSONObject());
-        HashMap<String, Appointment> a = ReadWrite.readAppointments();
-
-        System.out.println(a.get("app_1").getID());
-        System.out.println(a.get("app_2").getID());
-        System.out.println(a.get("app_3").getID());
-        System.out.println(a.get("app_4").getID());
-
+        JSONObject a = ReadWrite.readFile("appointments.json");
+        System.out.println(a);
         // ReadWrite.writeFile(app.toJSONObject(), "appointments.json");
     }
 }

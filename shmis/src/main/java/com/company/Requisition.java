@@ -1,5 +1,8 @@
 package com.company;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 public class Requisition {
     // X-Ray
     // 0 = Abdomen
@@ -27,5 +30,25 @@ public class Requisition {
         this.ultrasound = ultrasound;
         this.referralDoctor = referralDoctor;
         this.notes = notes;
+    }
+
+    public JSONObject toJSONObject() {
+        JSONObject obj = new JSONObject();
+        JSONArray xRay = new JSONArray(), ultrasound = new JSONArray();
+
+        for (boolean i : this.xRay) {
+            xRay.add(i);
+        }
+
+        for (boolean i : this.ultrasound) {
+            ultrasound.add(i);
+        }
+
+        obj.put("xRay", xRay);
+        obj.put("ultrasound", ultrasound);
+        obj.put("referralDoctor", referralDoctor);
+        obj.put("notes", notes);
+
+        return obj;
     }
 }

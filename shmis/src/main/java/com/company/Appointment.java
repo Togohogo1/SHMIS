@@ -1,5 +1,7 @@
 package com.company;
 
+import org.json.simple.JSONObject;
+
 public class Appointment {
     private int start;
     private int end;
@@ -18,5 +20,23 @@ public class Appointment {
         this.id = id;
         this.patient = patient;
         this.requisition = requisition;
+    }
+
+    public JSONObject toJSONObject() {
+        JSONObject obj = new JSONObject();
+
+        obj.put("start", start);
+        obj.put("end", end);
+        obj.put("date", date);
+        obj.put("status", status);
+        obj.put("id", id);  // Key
+        obj.put("patient", patient);
+        obj.put("requisition", requisition.toJSONObject());
+
+        return obj;
+    }
+
+    public String getID() {
+        return id;
     }
 }

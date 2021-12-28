@@ -23,7 +23,7 @@ public class MergeSort {
         for (int k = 0; k < result.size(); k++) {
             if (i < left.size() && j < right.size()) {
                 boolean cmp;
-                Patient p1 = left.get(i), p2 = right.get(i);
+                Patient p1 = left.get(i), p2 = right.get(j);
 
                 if (mergeBy.equals("firstName"))
                     cmp = p1.lessEqualsFirstName(p2);

@@ -66,17 +66,17 @@ public class Patient extends Person {
         return obj;
     }
 
-    // public String getFirstName() {
-    //     return firstName;
-    // }
+    public String getFirstName() {
+        return firstName;
+    }
 
-    // public String getLastName() {
-    //     return lastName;
-    // }
+    public String getLastName() {
+        return lastName;
+    }
 
-    // public String getEmail() {
-    //     return email;
-    // }
+    public String getEmail() {
+        return email;
+    }
 
     public boolean lessEqualsFirstName(Patient other) {
         return this.firstName.compareTo(other.firstName) <= 0;

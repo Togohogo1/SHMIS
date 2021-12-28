@@ -10,6 +10,7 @@ public class Patient extends Person {
     protected String email;
     protected String birthdate;
     protected String telephone;
+    protected String designation = "Patient";
 
     ArrayList<Appointment> appointments;
 
@@ -23,7 +24,7 @@ public class Patient extends Person {
     }
 
     public JSONObject toJSONObject() {
-        JSONObject outer = new JSONObject(), inner = new JSONObject();
+        JSONObject obj = new JSONObject();
         JSONArray appointments = new JSONArray();
 
         // Only need appointment id
@@ -32,22 +33,22 @@ public class Patient extends Person {
         }
 
         // From Person class
-        inner.put("age", age);
-        inner.put("firstName", firstName);
-        inner.put("lastName", lastName);
-        inner.put("gender", gender);
-        inner.put("id", id);
-        inner.put("password", password);
+        obj.put("age", age);
+        obj.put("firstName", firstName);
+        obj.put("lastName", lastName);
+        obj.put("gender", gender);
+        obj.put("id", id);
+        obj.put("password", password);
 
         // From Patient class
-        inner.put("address", address);
-        inner.put("email", email);  // Key
-        inner.put("birthdate", birthdate);
-        inner.put("telephone", telephone);
-        inner.put("appointments", appointments);
+        obj.put("address", address);
+        obj.put("email", email);  // Key
+        obj.put("birthdate", birthdate);
+        obj.put("telephone", telephone);
+        obj.put("designation", designation);
+        obj.put("appointments", appointments);
 
-        outer.put(email, inner);
-        return outer;
+        return obj;
     }
 
     public void addAppointment(Appointment appointment) {

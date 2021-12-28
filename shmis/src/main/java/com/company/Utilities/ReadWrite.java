@@ -21,35 +21,49 @@ public class ReadWrite {
     public static BufferedWriter bufferWrite;
     public static JSONParser parser;
 
-    public static ArrayList<Patient> readPatients() {
-        return null;
+    public static HashMap<String, Patient> readPatients() {
+        HashMap<String, Patient> mp = new HashMap<String, Patient>();
+        JSONObject obj = fileToJSONObject("patients.json");
+
+        for (Object entry : obj.entrySet()) {
+            String key = ((HashMap.Entry<String, JSONObject>)entry).getKey();
+            JSONObject value = ((HashMap.Entry<String, JSONObject>)entry).getValue();
+            mp.put(key, Patient.fromJSONObject(value));
+        }
+
+        return mp;
     }
 
-    // note pure JSON hashmap since I may need to create patient objects
+    // not pure JSON hashmap since I may need to create patient objects
     public static HashMap<String, Appointment> readAppointments() {
         HashMap<String, Appointment> mp = new HashMap<String, Appointment>();
+        JSONObject obj = fileToJSONObject("appointments.json");
+
+        for (Object entry : obj.entrySet()) {
+            String key = ((HashMap.Entry<String, JSONObject>)entry).getKey();
+            JSONObject value = ((HashMap.Entry<String, JSONObject>)entry).getValue();
+            mp.put(key, Appointment.fromJSONObject(value));
+        }
+
+        return mp;
+    }
+
+    public static JSONObject fileToJSONObject(String fileName) {
+        JSONObject obj = new JSONObject();
 
         try {
-            fileRead = new FileReader("appointments.json", Charset.forName("UTF8"));
+            fileRead = new FileReader(fileName, Charset.forName("UTF8"));
             bufferRead = new BufferedReader(fileRead);
             parser = new JSONParser();
 
             String input = bufferRead.readLine();
-            JSONObject obj = (JSONObject) parser.parse(input);
-
-            for (Object elem : obj.entrySet()) {
-                HashMap.Entry<String, JSONObject> entry = (HashMap.Entry<String, JSONObject>) elem;
-                String key = entry.getKey();
-                JSONObject value = entry.getValue();
-                System.out.println(value.get("xRay").getClass());
-                mp.put(key, Appointment.fromJSONObject(value));
-            }
+            obj = (JSONObject) parser.parse(input);
         } catch (Exception e) {
             e.printStackTrace();
-            //System.out.println(e); // TODO create file if it doesn't exist
+            return null;
         }
 
-        return mp;
+        return obj;
     }
 
     // Writes whole patient or appointment json file

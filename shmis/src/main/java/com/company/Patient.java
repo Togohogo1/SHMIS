@@ -23,13 +23,28 @@ public class Patient extends Person {
         appointments = new ArrayList<>();
     }
 
+    public static Patient fromJSONObject(JSONObject obj) {
+        return new Patient(
+            (int) obj.get("age"),
+            (String) obj.get("firstName"),
+            (String) obj.get("lastName"),
+            (String) obj.get("gender"),
+            (String) obj.get("id"),
+            (String) obj.get("password"),
+            (String) obj.get("address"),
+            (String) obj.get("email"),
+            (String) obj.get("birthdate"),
+            (String) obj.get("telephone")
+        );
+    }
+
     public JSONObject toJSONObject() {
         JSONObject obj = new JSONObject();
         JSONArray appointments = new JSONArray();
 
         // Only need appointment id
-        for (Appointment i : this.appointments) {
-            appointments.add(i.getID());
+        for (Appointment app : this.appointments) {
+            appointments.add(app.getID());
         }
 
         // From Person class

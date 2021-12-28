@@ -28,18 +28,27 @@ public class ReadWrite {
     // note pure JSON hashmap since I may need to create patient objects
     public static HashMap<String, Appointment> readAppointments() {
         HashMap<String, Appointment> mp = new HashMap<String, Appointment>();
+
         try {
             fileRead = new FileReader("appointments.json", Charset.forName("UTF8"));
             bufferRead = new BufferedReader(fileRead);
             parser = new JSONParser();
 
             String input = bufferRead.readLine();
-            JSONObject obj = (JSONObject) (parser.parse(input));
-            System.out.println(obj.get("app_2"));
-            // JSONObject obj = bufferRead.readLine();
+            JSONObject obj = (JSONObject) parser.parse(input);
+
+            for (Object elem : obj.entrySet()) {
+                HashMap.Entry<String, JSONObject> entry = (HashMap.Entry<String, JSONObject>) elem;
+                String key = entry.getKey();
+                JSONObject value = entry.getValue();
+                System.out.println(value.get("xRay").getClass());
+                mp.put(key, Appointment.fromJSONObject(value));
+            }
         } catch (Exception e) {
-            System.out.println(e); // TODO create file if it doesn't exist
+            e.printStackTrace();
+            //System.out.println(e); // TODO create file if it doesn't exist
         }
+
         return mp;
     }
 
@@ -52,7 +61,7 @@ public class ReadWrite {
             bufferWrite.write(obj.toJSONString());
             bufferWrite.close();
         } catch (Exception e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
     }
 }

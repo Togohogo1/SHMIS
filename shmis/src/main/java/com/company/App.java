@@ -3,6 +3,8 @@ package com.company;
 import java.util.HashMap;
 
 import com.company.classes.Appointment;
+import com.company.classes.Patient;
+import com.company.utilities.OnlineDataManager;
 import com.company.utilities.ReadWrite;
 
 import org.json.simple.JSONObject;
@@ -28,13 +30,17 @@ public class App {
         // System.out.println(req.toJSONObject());
         // System.out.println(app.toJSONObject());
 
-        // Patient p1 = new Patient(34, "John", "Smith", "Male", "johnsmith_1", "password", "123 Sesame Street", "john.smith@fakemail.com", "January 1, 1987", "647-123-4567");
+        Patient p1 = new Patient(34, "John", "Smith", "Male", "johnsmith_1", "password", "123 Sesame Street", "john.smith@fakemail.com", "January 1, 1987", "647-123-4567");
         // Patient p2 = new Guest(34, "John", "Smith", "Male", "johnsmith_1", "password", "123 Sesame Street", "john.smith@fakemail.com", "January 1, 1987", "647-123-4567");
 
         // p1.addAppointment(app);
         // System.out.println(p1.toJSONObject());
         // System.out.println(p2.toJSONObject());
         JSONObject a = ReadWrite.readFile("appointments.json");
+        ReadWrite.writeFile(p1.toJSONObject(), "patients.json");
+        OnlineDataManager m = new OnlineDataManager();
+        // Object pl = m.patientList;
+        Object al = OnlineDataManager.appointmentList;
         System.out.println(a);
         // ReadWrite.writeFile(app.toJSONObject(), "appointments.json");
     }

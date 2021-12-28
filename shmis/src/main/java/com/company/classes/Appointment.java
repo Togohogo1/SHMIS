@@ -47,8 +47,10 @@ public class Appointment {
 
     public static Appointment fromJSONObject(JSONObject obj) {
         // convert from JSONArray to array
-        boolean[] xRay = new boolean[7], ultrasound = new boolean[4];
-        JSONArray xRayJSON = (JSONArray) obj.get("xRay"), ultrasoundJSON = (JSONArray) obj.get("ultrasound");
+        boolean[] xRay = new boolean[7];
+        boolean[] ultrasound = new boolean[4];
+        JSONArray xRayJSON = (JSONArray) obj.get("xRay");
+        JSONArray ultrasoundJSON = (JSONArray) obj.get("ultrasound");
 
         for (int i = 0; i < 7; i++) {
             xRay[i] = (boolean) xRayJSON.get(i);
@@ -74,7 +76,8 @@ public class Appointment {
 
     public JSONObject toJSONObject() {
         JSONObject obj = new JSONObject();
-        JSONArray xRay = new JSONArray(), ultrasound = new JSONArray();  // TODO separate?
+        JSONArray xRay = new JSONArray();
+        JSONArray ultrasound = new JSONArray();
 
         for (boolean i : this.xRay) {
             xRay.add(i);

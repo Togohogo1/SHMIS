@@ -33,7 +33,7 @@ public class Patient extends Person {
             (String) obj.get("password"),
             (String) obj.get("address"),
             (String) obj.get("email"),
-            (String) obj.get("birthdate"),  // TODO this can't be a full date if i wanna parse
+            (String) obj.get("birthdate"),
             (String) obj.get("telephone")
         );
     }

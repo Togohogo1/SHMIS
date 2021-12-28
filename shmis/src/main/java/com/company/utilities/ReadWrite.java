@@ -7,8 +7,8 @@ import java.io.FileWriter;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 
-import com.company.Classes.Appointment;
-import com.company.Classes.Patient;
+import com.company.classes.Appointment;
+import com.company.classes.Patient;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;

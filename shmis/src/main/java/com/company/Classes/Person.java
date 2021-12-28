@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Classes;
 
 public abstract class Person {
     protected long age;

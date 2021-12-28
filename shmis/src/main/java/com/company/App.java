@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.HashMap;
 
+import com.company.Classes.Appointment;
 import com.company.Utilities.ReadWrite;
 
 public class App {

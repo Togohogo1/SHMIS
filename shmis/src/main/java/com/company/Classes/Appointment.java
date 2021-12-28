@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Classes;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -100,9 +100,5 @@ public class Appointment {
     // Patient class references Appointment ID
     public String getID() {
         return id;
-    }
-
-    public String toString() {
-        return "fddfd";
     }
 }

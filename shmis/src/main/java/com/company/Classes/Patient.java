@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Classes;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ public class Patient extends Person {
 
     ArrayList<Appointment> appointments;
 
-    public Patient(int age, String firstName, String lastName, String gender, String id, String password, String address, String email, String birthdate, String telephone) {
+    public Patient(long age, String firstName, String lastName, String gender, String id, String password, String address, String email, String birthdate, String telephone) {
         super(age, firstName, lastName, gender, id, password);
         this.address = address;
         this.email = email;
@@ -25,7 +25,7 @@ public class Patient extends Person {
 
     public static Patient fromJSONObject(JSONObject obj) {
         return new Patient(
-            (int) obj.get("age"),
+            (long) obj.get("age"),
             (String) obj.get("firstName"),
             (String) obj.get("lastName"),
             (String) obj.get("gender"),
@@ -33,7 +33,7 @@ public class Patient extends Person {
             (String) obj.get("password"),
             (String) obj.get("address"),
             (String) obj.get("email"),
-            (String) obj.get("birthdate"),
+            (String) obj.get("birthdate"),  // TODO this can't be a full date if i wanna parse
             (String) obj.get("telephone")
         );
     }
@@ -64,6 +64,18 @@ public class Patient extends Person {
         obj.put("appointments", appointments);
 
         return obj;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void addAppointment(Appointment appointment) {

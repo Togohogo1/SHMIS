@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Classes;
 
 public class Guest extends Patient {
     public Guest(int age, String firstName, String lastName, String gender, String id, String password, String address, String email, String birthdate, String telephone) {

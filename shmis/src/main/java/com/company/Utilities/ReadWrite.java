@@ -5,7 +5,6 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.company.Appointment;

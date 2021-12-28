@@ -8,9 +8,9 @@ import com.company.classes.Patient;
 import org.json.simple.JSONObject;
 
 public class OnlineDataManager {
-    public static ArrayList<Patient> patientList;
-    public static ArrayList<Patient> patientListSort;
-    public static ArrayList<Appointment> appointmentList;
+    public ArrayList<Patient> patientList;
+    public ArrayList<Patient> patientListSort;
+    public ArrayList<Appointment> appointmentList;
     // TODO Queue for the queue
     // TODO Waitlist for the waitlist
     // TODO appointmentArrayList for the calendar
@@ -23,7 +23,7 @@ public class OnlineDataManager {
         patientListSort = (ArrayList<Patient>) patientList.clone();
     }
 
-    public static ArrayList<Patient> mapPatients() {
+    public ArrayList<Patient> mapPatients() {
         ArrayList<Patient> arr = new ArrayList<Patient>();
         JSONObject obj = ReadWrite.readFile("patients.json");
 
@@ -34,7 +34,7 @@ public class OnlineDataManager {
         return arr;
     }
 
-    public static ArrayList<Appointment> mapAppointments() {
+    public ArrayList<Appointment> mapAppointments() {
         ArrayList<Appointment> arr = new ArrayList<Appointment>();
         JSONObject obj = ReadWrite.readFile("appointments.json");
 

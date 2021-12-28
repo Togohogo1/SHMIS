@@ -2,8 +2,8 @@ package com.company;
 
 import java.util.HashMap;
 
-import com.company.Classes.Appointment;
-import com.company.Utilities.ReadWrite;
+import com.company.classes.Appointment;
+import com.company.utilities.ReadWrite;
 
 public class App {
     public static void main(String[] args) {

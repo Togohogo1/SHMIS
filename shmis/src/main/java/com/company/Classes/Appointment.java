@@ -1,4 +1,4 @@
-package com.company.Classes;
+package com.company.classes;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -89,6 +89,7 @@ public class Appointment {
         obj.put("date", date);
         obj.put("status", status);
         obj.put("id", id);  // Key
+        obj.put("patient", patient);
         obj.put("referralDoctor", referralDoctor);
         obj.put("notes", notes);
         obj.put("xRay", xRay);

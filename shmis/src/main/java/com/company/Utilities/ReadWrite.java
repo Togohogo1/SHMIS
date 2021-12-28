@@ -1,4 +1,4 @@
-package com.company.Utilities;
+package com.company.utilities;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

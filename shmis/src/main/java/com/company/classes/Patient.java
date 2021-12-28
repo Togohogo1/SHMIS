@@ -66,16 +66,28 @@ public class Patient extends Person {
         return obj;
     }
 
-    public String getFirstName() {
-        return firstName;
+    // public String getFirstName() {
+    //     return firstName;
+    // }
+
+    // public String getLastName() {
+    //     return lastName;
+    // }
+
+    // public String getEmail() {
+    //     return email;
+    // }
+
+    public boolean lessEqualsFirstName(Patient other) {
+        return this.firstName.compareTo(other.firstName) <= 0;
     }
 
-    public String getLastName() {
-        return lastName;
+    public boolean lessEqualsLastName(Patient other) {
+        return this.lastName.compareTo(other.lastName) <= 0;
     }
 
-    public String getEmail() {
-        return email;
+    public boolean lessEqualEmail(Patient other) {
+        return this.email.compareTo(other.email) <= 0;
     }
 
     public void addAppointment(Appointment appointment) {

@@ -50,7 +50,7 @@ public class Appointment {
         boolean[] xRay = new boolean[7];
         boolean[] ultrasound = new boolean[4];
         JSONArray xRayJSON = (JSONArray) obj.get("xRay");
-        JSONArray ultrasoundJSON = (JSONArray) obj.get("ultrasound");
+        JSONArray ultrasoundJSON = (JSONArray) obj.get("ultrasound");  // TODO separate? decide later, also for the method below
 
         for (int i = 0; i < 7; i++) {
             xRay[i] = (boolean) xRayJSON.get(i);

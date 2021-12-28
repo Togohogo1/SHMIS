@@ -2,48 +2,53 @@ package com.company.utilities;
 
 import java.util.ArrayList;
 
+import com.company.classes.Patient;
+
 public class MergeSort {
+    public static void mergeSort(ArrayList<Patient> arr, String sortBy) {
+        // Keep dividing the array in half until the size of the array >= 2
+        if (arr.size() >= 2) {
+            ArrayList<Patient> left = new ArrayList<Patient>(arr.subList(0, arr.size()/2));
+            ArrayList<Patient> right = new ArrayList<Patient>(arr.subList(arr.size()/2, arr.size()));
 
-}
+            mergeSort(left, sortBy);
+            mergeSort(right, sortBy);
+            merge(arr, left, right, sortBy);
+        }
+    }
 
-
-class MergeSortInt {
-    public static void merge(ArrayList<Integer> result, ArrayList<Integer> left, ArrayList<Integer> right) {
+    public static void merge(ArrayList<Patient> result, ArrayList<Patient> left, ArrayList<Patient> right, String mergeBy) {
         int i = 0, j = 0;
 
-        for (int a = 0; a < result.size(); a++) {
+        for (int k = 0; k < result.size(); k++) {
             if (i < left.size() && j < right.size()) {
-                if (left.get(i) <= right.get(j)) {
-                    result.set(a, left.get(i));
+                boolean cmp;
+                Patient p1 = left.get(i), p2 = right.get(i);
+
+                if (mergeBy.equals("firstName"))
+                    cmp = p1.lessEqualsFirstName(p2);
+                else if (mergeBy.equals("lastName"))
+                    cmp = p1.lessEqualsLastName(p2);
+                else
+                    cmp = p1.lessEqualEmail(p2);
+
+                if (cmp) {
+                    result.set(k, left.get(i));
                     i++;
-                } else if (left.get(i) > right.get(j)) {
-                    result.set(a, right.get(j));
+                } else {
+                    result.set(k, right.get(j));
                     j++;
                 }
             }
 
             // Boundary check
             else if (i == left.size() && j < right.size()) {
-                result.set(a, right.get(j));
+                result.set(k, right.get(j));
                 j++;
             } else if (j == right.size() && i < left.size()) {
-                result.set(a, left.get(i));
+                result.set(k, left.get(i));
                 i++;
             }
-        }
-    }
-
-    public static void mergeSort(ArrayList<Integer> arr) {
-        // Keep dividing the array in half until the size of the array >= 2
-        if (arr.size() >= 2) {
-            ArrayList<Integer> left = new ArrayList<Integer>(arr.subList(0, arr.size()/2));
-            ArrayList<Integer> right = new ArrayList<Integer>(arr.subList(arr.size()/2, arr.size()));
-            // int[] left = Arrays.copyOfRange(arr, 0, arr.length/2);
-            // int[] right = Arrays.copyOfRange(arr, arr.length/2, arr.length);
-
-            mergeSort(left);
-            mergeSort(right);
-            merge(arr, left, right);
         }
     }
 }

@@ -49,6 +49,7 @@ public class App {  // TODO handle empty file
         dll.insertBack(new Node(new Appointment(14, 0, null, null, null, null, null, null, null, null)));
         dll.removeBack();
         dll.removeBack();
+        dll.traverse();
         System.out.println("end");
     }
 }

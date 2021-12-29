@@ -11,42 +11,23 @@ public class Patient extends Person {
     protected String birthdate;
     protected String telephone;
     protected String designation = "Patient";
+    protected ArrayList<Long> appointments;
 
-    ArrayList<Appointment> appointments;
-
-    public Patient(long age, String firstName, String lastName, String gender, String id, String password, String address, String email, String birthdate, String telephone) {
+    public Patient(long age, String firstName, String lastName, String gender, String id, String password, String address, String email, String birthdate, String telephone, ArrayList<Long> appointments) {
         super(age, firstName, lastName, gender, id, password);
         this.address = address;
         this.email = email;
         this.birthdate = birthdate;
         this.telephone = telephone;
-        appointments = new ArrayList<>();
-    }
-
-    public static Patient fromJSONObject(JSONObject obj) {
-        System.out.println(obj.get("appointments").getClass());
-        return new Patient(
-            (long) obj.get("age"),
-            (String) obj.get("firstName"),
-            (String) obj.get("lastName"),
-            (String) obj.get("gender"),
-            (String) obj.get("id"),
-            (String) obj.get("password"),
-            (String) obj.get("address"),
-            (String) obj.get("email"),
-            (String) obj.get("birthdate"),
-            (String) obj.get("telephone")
-        );
+        this.appointments = appointments;
     }
 
     public JSONObject toJSONObject() {
         JSONObject obj = new JSONObject();
         JSONArray appointments = new JSONArray();
 
-        // Only need appointment id
-        for (Appointment app : this.appointments) {
-            appointments.add(app.getID());
-        }
+        // convert from ArrayList to JSONArray
+        appointments.addAll(this.appointments);
 
         // From Person class
         obj.put("age", age);
@@ -67,20 +48,6 @@ public class Patient extends Person {
         return obj;
     }
 
-    // public
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
     public boolean lessEqualsFirstName(Patient other) {
         return this.firstName.compareTo(other.firstName) <= 0;
     }
@@ -93,7 +60,7 @@ public class Patient extends Person {
         return this.email.compareTo(other.email) <= 0;
     }
 
-    public void addAppointment(Appointment appointment) {
-        appointments.add(appointment);
+    public void addAppointment(Long appointmentID) {
+        appointments.add(appointmentID);
     }
 }

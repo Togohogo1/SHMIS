@@ -29,7 +29,7 @@ public class DataStructureManager {
         JSONObject obj = ReadWrite.readFile("patients.json");
 
         for (Object value : obj.values()) {
-            arr.add(Patient.fromJSONObject((JSONObject)value));
+            arr.add(JSONToPatient((JSONObject)value));
         }
 
         return arr;
@@ -46,36 +46,44 @@ public class DataStructureManager {
         return arr;
     }
 
+    public Patient JSONToPatient(JSONObject obj) {
+        System.out.println(obj.get("appointments").getClass());
+        return new Patient(
+            (long) obj.get("age"),
+            (String) obj.get("firstName"),
+            (String) obj.get("lastName"),
+            (String) obj.get("gender"),
+            (String) obj.get("id"),
+            (String) obj.get("password"),
+            (String) obj.get("address"),
+            (String) obj.get("email"),
+            (String) obj.get("birthdate"),
+            (String) obj.get("telephone"),
+            (ArrayList<Long>) obj.get("appointments")  // convert from JSONArray to ArrayList
+        );
+    }
+
     public Appointment JSONToAppointment(JSONObject obj) {
-        // convert from JSONArray to array
-        boolean[] xRay = new boolean[7];
-        boolean[] ultrasound = new boolean[4];
+        ArrayList<Boolean> xRay = new ArrayList<Boolean>();
+        ArrayList<Boolean> ultrasound = new ArrayList<Boolean>();
         JSONArray xRayJSON = (JSONArray) obj.get("xRay");
-        JSONArray ultrasoundJSON = (JSONArray) obj.get("ultrasound");  // TODO separate? decide later, also for the method below
+        JSONArray ultrasoundJSON = (JSONArray) obj.get("ultrasound");
 
-        for (int i = 0; i < 7; i++) {
-            xRay[i] = (boolean) xRayJSON.get(i);
-        }
-
-        for (int i = 0; i < 4; i++) {
-            ultrasound[i] = (boolean) ultrasoundJSON.get(i);
-        }
+          // convert from JSONArray to ArrayList
+        xRay = (ArrayList<Boolean>) xRayJSON;
+        ultrasound = (ArrayList<Boolean>) ultrasoundJSON;
 
         return new Appointment(
             (long) obj.get("start"),
             (long) obj.get("end"),
+            (long) obj.get("id"),
             (String) obj.get("date"),
             (String) obj.get("status"),
-            (String) obj.get("id"),
             (String) obj.get("patient"),
             (String) obj.get("referralDoctor"),
             (String) obj.get("notes"),
             xRay,
             ultrasound
         );
-    }
-
-    public Patient JSONToPatient(JSONObject obj) {
-        return null;
     }
 }

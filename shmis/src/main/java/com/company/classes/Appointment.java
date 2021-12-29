@@ -1,5 +1,7 @@
 package com.company.classes;
 
+import java.util.ArrayList;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -21,23 +23,23 @@ public class Appointment {
 
     private long start;
     private long end;
+    private long id;
 
     private String date;
     private String status;
-    private String id;
     private String patient;
     private String referralDoctor;
     private String notes;
 
-    private boolean[] xRay;
-    private boolean[] ultrasound;
+    private ArrayList<Boolean> xRay;
+    private ArrayList<Boolean> ultrasound;
 
-    public Appointment(long start, long end, String date, String status, String id, String patient, String referralDoctor, String notes, boolean[] xRay, boolean[] ultrasound) {
+    public Appointment(long start, long end, long id, String date, String status, String patient, String referralDoctor, String notes, ArrayList<Boolean> xRay, ArrayList<Boolean> ultrasound) {
         this.start = start;
         this.end = end;
+        this.id = id;
         this.date = date;
         this.status = status;
-        this.id = id;
         this.patient = patient;
         this.referralDoctor = referralDoctor;
         this.notes = notes;
@@ -50,19 +52,15 @@ public class Appointment {
         JSONArray xRay = new JSONArray();
         JSONArray ultrasound = new JSONArray();
 
-        for (boolean i : this.xRay) {
-            xRay.add(i);
-        }
-
-        for (boolean i : this.ultrasound) {
-            ultrasound.add(i);
-        }
+        // convert from JSONArray to ArrayList
+        xRay.addAll(this.xRay);
+        ultrasound.addAll(this.ultrasound);
 
         obj.put("start", start);
         obj.put("end", end);
+        obj.put("id", id);  // Key
         obj.put("date", date);
         obj.put("status", status);
-        obj.put("id", id);  // Key
         obj.put("patient", patient);
         obj.put("referralDoctor", referralDoctor);
         obj.put("notes", notes);
@@ -73,7 +71,7 @@ public class Appointment {
     }
 
     // Patient class references Appointment ID
-    public String getID() {
+    public long getID() {
         return id;
     }
 }

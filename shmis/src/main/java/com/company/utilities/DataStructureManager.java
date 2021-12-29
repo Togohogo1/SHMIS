@@ -9,6 +9,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class DataStructureManager {
+    // TODO make private if not testing
+    // TODO think about JSONObject being an intermediate
+    // TODO other.json for queue.waitlist/calendar storage
     public ArrayList<Patient> patientList;
     public ArrayList<Appointment> appointmentList;
     // TODO Queue for the queue
@@ -20,6 +23,28 @@ public class DataStructureManager {
         appointmentList = mapAppointments();
     }
 
+    // Pack to JSONObject which can then be written to a file
+    public JSONObject packPatients() {
+        JSONObject obj = new JSONObject();
+
+        for (Patient patient : patientList) {
+            obj.put(patient.getID(), patient.toJSONObject());
+        }
+
+        return obj;
+    }
+
+    public JSONObject packAppointments() {
+        JSONObject obj = new JSONObject();
+
+        for (Appointment appointment : appointmentList) {
+            obj.put(appointment.getIDAsKey(), appointment.toJSONObject());
+        }
+
+        return obj;
+    }
+
+    // unpack from file to JSONObject to Arraylist
     public ArrayList<Patient> mapPatients() {
         ArrayList<Patient> arr = new ArrayList<Patient>();
         JSONObject obj = ReadWrite.readFile("patients.json");

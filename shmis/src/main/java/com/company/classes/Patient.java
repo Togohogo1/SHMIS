@@ -48,6 +48,10 @@ public class Patient extends Person {
         return obj;
     }
 
+    public String getID() {
+        return id;
+    }
+
     public boolean lessEqualsFirstName(Patient other) {
         return this.firstName.compareTo(other.firstName) <= 0;
     }

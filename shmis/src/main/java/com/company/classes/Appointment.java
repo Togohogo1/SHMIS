@@ -71,7 +71,7 @@ public class Appointment {
     }
 
     // Patient class references Appointment ID
-    public long getID() {
-        return id;
+    public String getIDAsKey() {
+        return Long.toString(id);
     }
 }

@@ -37,7 +37,7 @@ public class DoublyLinkedList {
     }
 
     public void removeFront() {
-        if (head.getNext().getAppt() == null)
+        if (head.getNext().getAppointment() == null)
             return;
 
         Node next = head.getNext();
@@ -52,7 +52,7 @@ public class DoublyLinkedList {
     }
 
     public void removeBack() {
-        if (tail.getPrev().getAppt() == null)
+        if (tail.getPrev().getAppointment() == null)
             return;
 
         Node prev = tail.getPrev();
@@ -69,7 +69,7 @@ public class DoublyLinkedList {
     public void traverse() {
         Node node = head;
 
-        while (node.getNext().getAppt() != null) {
+        while (node.getNext().getAppointment() != null) {
             node = node.getNext();
         }
     }

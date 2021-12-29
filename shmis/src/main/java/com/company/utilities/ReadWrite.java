@@ -17,7 +17,7 @@ public class ReadWrite {
     public static JSONParser parser;
 
     public static JSONObject readFile(String fileName) {
-        JSONObject obj = new JSONObject();
+        JSONObject obj;
 
         try {
             fileRead = new FileReader(fileName, Charset.forName("UTF8"));
@@ -28,7 +28,7 @@ public class ReadWrite {
             obj = (JSONObject) parser.parse(input);
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return new JSONObject();
         }
 
         return obj;

@@ -13,9 +13,9 @@ import com.company.utilities.ReadWrite;
 
 import org.json.simple.JSONObject;
 
-public class App {  // TODO handle empty file
+public class App {  // TODO try to cast jsonarray to jsonlist? => use arraylist for requisition, numbers for id, move JSONToPatient to dsmanager
     public static void main(String[] args) {
-        test2();
+        test1();
     }
 
     public static void test1() {
@@ -23,6 +23,7 @@ public class App {  // TODO handle empty file
         DataStructureManager odm = new DataStructureManager();
         ArrayList<Patient> arr = odm.patientList;
         ArrayList<Patient> arr2 = odm.patientListSort;
+        ReadWrite.writeFile(obj, "patients.json");
     }
 
     public static void test2() {

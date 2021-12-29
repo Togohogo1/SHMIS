@@ -1,10 +1,9 @@
 package com.company.utilities;
 
-import com.company.App;
 import com.company.classes.Appointment;
 
 public class Node {
-    private Appointment appt;  // TODO check uses of appointment
+    private Appointment appointment;  // TODO check uses of appointment
     private Node next;
     private Node prev;
 
@@ -12,12 +11,12 @@ public class Node {
         this (null, null, null);
     }
 
-    public Node(Appointment appt) {
-        this.appt = appt;
+    public Node(Appointment appointment) {
+        this.appointment = appointment;
     }
 
-    public Node(Appointment appt, Node next, Node prev) {
-        this.appt = appt;
+    public Node(Appointment appointment, Node next, Node prev) {
+        this.appointment = appointment;
         this.next = next;
         this.prev = prev;
     }
@@ -39,6 +38,6 @@ public class Node {
     }
 
     public Appointment getAppt() {
-        return appt;
+        return appointment;
     }
 }

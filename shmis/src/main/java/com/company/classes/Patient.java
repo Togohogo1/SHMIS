@@ -24,6 +24,7 @@ public class Patient extends Person {
     }
 
     public static Patient fromJSONObject(JSONObject obj) {
+        System.out.println(obj.get("appointments").getClass());
         return new Patient(
             (long) obj.get("age"),
             (String) obj.get("firstName"),
@@ -65,6 +66,8 @@ public class Patient extends Person {
 
         return obj;
     }
+
+    // public
 
     public String getFirstName() {
         return firstName;

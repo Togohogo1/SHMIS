@@ -1,5 +1,4 @@
 package com.company.utilities;
 
-public class Queue {
-
+public class Queue extends DoublyLinkedList {
 }

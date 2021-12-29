@@ -7,7 +7,7 @@ import com.company.classes.Patient;
 
 import org.json.simple.JSONObject;
 
-public class OnlineDataManager {
+public class DataStructureManager {
     public ArrayList<Patient> patientList;
     public ArrayList<Patient> patientListSort;
     public ArrayList<Appointment> appointmentList;
@@ -17,7 +17,7 @@ public class OnlineDataManager {
 
     // don't have own impl of hashmap so i put these functions here
 
-    public OnlineDataManager() {
+    public DataStructureManager() {
         patientList = mapPatients();
         appointmentList = mapAppointments();
         patientListSort = (ArrayList<Patient>) patientList.clone();

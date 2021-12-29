@@ -60,7 +60,7 @@ public class Patient extends Person {
         return this.email.compareTo(other.email) <= 0;
     }
 
-    public void addAppointment(Long appointmentID) {
+    public void addAppointment(long appointmentID) {
         appointments.add(appointmentID);
     }
 }

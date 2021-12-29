@@ -3,7 +3,7 @@ package com.company.utilities;
 import com.company.classes.Appointment;
 
 public class Node {
-    private Appointment appointment;  // TODO check uses of appointment
+    private Appointment appointment;
     private Node next;
     private Node prev;
 
@@ -37,7 +37,7 @@ public class Node {
         this.prev = prev;
     }
 
-    public Appointment getAppt() {
+    public Appointment getAppointment() {
         return appointment;
     }
 }

@@ -10,18 +10,14 @@ import org.json.simple.JSONObject;
 
 public class DataStructureManager {
     public ArrayList<Patient> patientList;
-    public ArrayList<Patient> patientListSort;
     public ArrayList<Appointment> appointmentList;
     // TODO Queue for the queue
     // TODO Waitlist for the waitlist
     // TODO appointmentArrayList for the calendar
 
-    // don't have own impl of hashmap so i put these functions here
-
     public DataStructureManager() {
         patientList = mapPatients();
         appointmentList = mapAppointments();
-        patientListSort = (ArrayList<Patient>) patientList.clone();
     }
 
     public ArrayList<Patient> mapPatients() {
@@ -47,7 +43,6 @@ public class DataStructureManager {
     }
 
     public Patient JSONToPatient(JSONObject obj) {
-        System.out.println(obj.get("appointments").getClass());
         return new Patient(
             (long) obj.get("age"),
             (String) obj.get("firstName"),

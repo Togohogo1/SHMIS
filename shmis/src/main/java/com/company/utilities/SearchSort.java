@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import com.company.classes.Appointment;
 
 public class SearchSort {
-    public static int find(ArrayList<Appointment> arr, long id) {
+    // TODO add somewhere numbers are easy to increment
+    public static int binarySearch(ArrayList<Appointment> arr, long id) {
         int l = 0, r = arr.size() - 1;
 
         while (l <= r) {

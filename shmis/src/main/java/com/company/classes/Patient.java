@@ -60,7 +60,7 @@ public class Patient extends Person {
         return email;
     }
 
-    public Object getID() {
+    public Object getId() {
         return id;
     }
 

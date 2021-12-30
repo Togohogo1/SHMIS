@@ -22,7 +22,7 @@ public class DataStructureManager {
     public DataStructureManager() {
         initPatients();
         initAppointments();
-        initOtherdata();
+        // initOtherdata();
     }
 
     // Pack to JSONObject which can then be written to a file
@@ -30,7 +30,7 @@ public class DataStructureManager {
         JSONObject obj = new JSONObject();
 
         for (Patient patient : patientList) {
-            obj.put(patient.getID(), patient.toJSONObject());
+            obj.put(patient.getId(), patient.toJSONObject());
         }
 
         return obj;

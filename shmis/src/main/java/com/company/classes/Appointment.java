@@ -70,6 +70,10 @@ public class Appointment {
         return obj;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     // Patient class references Appointment ID
     public String getKey() {
         return Long.toString(id);

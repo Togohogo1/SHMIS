@@ -2,7 +2,26 @@ package com.company.utilities;
 
 import java.util.ArrayList;
 
-public class MergeSort {
+import com.company.classes.Appointment;
+
+public class SearchSort {
+    public static int find(ArrayList<Appointment> arr, long id) {
+        int l = 0, r = arr.size() - 1;
+
+        while (l <= r) {
+            int mid = (l+r)/2;
+
+            if (arr.get(mid).getId() > id)
+                r = mid - 1;
+            else if (arr.get(mid).getId() < id)
+                l = mid + 1;
+            else
+                return mid;
+        }
+
+        return -1;
+    }
+
     public static <T, R> void mergeSort(ArrayList<T> arr, AttributeFetcher<T, R> fetcher) {
         // Keep dividing the array in half until the size of the array >= 2
         if (arr.size() >= 2) {

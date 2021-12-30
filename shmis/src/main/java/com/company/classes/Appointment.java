@@ -40,7 +40,7 @@ public class Appointment {
         JSONArray xRayJSON = (JSONArray) obj.get("xRay");
         JSONArray ultrasoundJSON = (JSONArray) obj.get("ultrasound");
 
-          // convert from JSONArray to ArrayList
+        // convert from JSONArray to ArrayList
         xRay = (ArrayList<Boolean>) xRayJSON;
         ultrasound = (ArrayList<Boolean>) ultrasoundJSON;
 

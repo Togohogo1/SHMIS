@@ -12,15 +12,17 @@ public class DataStructureManager {
     // TODO make private if not testing
     // TODO think about JSONObject being an intermediate
     // TODO other.json for queue.waitlist/calendar storage
-    public ArrayList<Patient> patientList;
-    public ArrayList<Appointment> appointmentList;
-    // TODO Queue for the queue
-    // TODO Waitlist for the waitlist
-    // TODO appointmentArrayList for the calendar
+    public long appointmentID;
+    public ArrayList<Patient> patientList = new ArrayList<>();
+    public ArrayList<Appointment> appointmentList = new ArrayList<>();
+    public ArrayList<Appointment> inCalendar = new ArrayList<>();
+    public Queue queue = new Queue();
+    public DoublyLinkedList waitlist = new DoublyLinkedList();
 
     public DataStructureManager() {
-        patientList = mapPatients();
-        appointmentList = mapAppointments();
+        initPatients();
+        initAppointments();
+        initOtherdata();
     }
 
     // Pack to JSONObject which can then be written to a file
@@ -38,33 +40,36 @@ public class DataStructureManager {
         JSONObject obj = new JSONObject();
 
         for (Appointment appointment : appointmentList) {
-            obj.put(appointment.getIDAsKey(), appointment.toJSONObject());
+            obj.put(appointment.getKey(), appointment.toJSONObject());
         }
 
         return obj;
     }
 
+    public JSONObject packOtherdata() {
+        JSONObject obj = new JSONObject();
+        return obj;
+    }
+
     // unpack from file to JSONObject to Arraylist
-    public ArrayList<Patient> mapPatients() {
-        ArrayList<Patient> arr = new ArrayList<Patient>();
+    public void initPatients() {
         JSONObject obj = ReadWrite.readFile("patients.json");
 
         for (Object value : obj.values()) {
-            arr.add(JSONToPatient((JSONObject)value));
+            patientList.add(JSONToPatient((JSONObject)value));
         }
-
-        return arr;
     }
 
-    public ArrayList<Appointment> mapAppointments() {
-        ArrayList<Appointment> arr = new ArrayList<Appointment>();
+    public void initAppointments() {
         JSONObject obj = ReadWrite.readFile("appointments.json");
 
         for (Object value : obj.values()) {
-            arr.add(JSONToAppointment((JSONObject)value));
+            appointmentList.add(JSONToAppointment((JSONObject)value));
         }
+    }
 
-        return arr;
+    public void initOtherdata() {
+        JSONObject obj = ReadWrite.readFile("otherdata.json");
     }
 
     public Patient JSONToPatient(JSONObject obj) {
@@ -84,8 +89,8 @@ public class DataStructureManager {
     }
 
     public Appointment JSONToAppointment(JSONObject obj) {
-        ArrayList<Boolean> xRay = new ArrayList<Boolean>();
-        ArrayList<Boolean> ultrasound = new ArrayList<Boolean>();
+        ArrayList<Boolean> xRay = new ArrayList<>();
+        ArrayList<Boolean> ultrasound = new ArrayList<>();
         JSONArray xRayJSON = (JSONArray) obj.get("xRay");
         JSONArray ultrasoundJSON = (JSONArray) obj.get("ultrasound");
 

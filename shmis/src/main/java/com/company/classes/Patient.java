@@ -48,23 +48,23 @@ public class Patient extends Person {
         return obj;
     }
 
-    public String getID() {
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Object getID() {
         return id;
     }
 
-    public boolean lessEqualsFirstName(Patient other) {
-        return this.firstName.compareTo(other.firstName) <= 0;
-    }
-
-    public boolean lessEqualsLastName(Patient other) {
-        return this.lastName.compareTo(other.lastName) <= 0;
-    }
-
-    public boolean lessEqualEmail(Patient other) {
-        return this.email.compareTo(other.email) <= 0;
-    }
-
-    public void addAppointment(long appointmentID) {
-        appointments.add(appointmentID);
+    public void addAppointment(long id) {
+        appointments.add(id);
     }
 }

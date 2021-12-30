@@ -34,6 +34,29 @@ public class Appointment {
     private ArrayList<Boolean> xRay;
     private ArrayList<Boolean> ultrasound;
 
+    public Appointment(JSONObject obj) {
+        ArrayList<Boolean> xRay = new ArrayList<>();
+        ArrayList<Boolean> ultrasound = new ArrayList<>();
+        JSONArray xRayJSON = (JSONArray) obj.get("xRay");
+        JSONArray ultrasoundJSON = (JSONArray) obj.get("ultrasound");
+
+          // convert from JSONArray to ArrayList
+        xRay = (ArrayList<Boolean>) xRayJSON;
+        ultrasound = (ArrayList<Boolean>) ultrasoundJSON;
+
+        this.start = (long) obj.get("start");
+        this.end = (long) obj.get("end");
+        this.id = (long) obj.get("id");
+        this.date = (String) obj.get("date");
+        this.status = (String) obj.get("status");
+        this.patient = (String) obj.get("patient");
+        this.referralDoctor = (String) obj.get("referralDoctor");
+        this.notes = (String) obj.get("notes");
+        this.xRay = xRay;
+        this.ultrasound = ultrasound;
+    }
+
+    // This constructor used when converting to JSONObject is an extra step
     public Appointment(long start, long end, long id, String date, String status, String patient, String referralDoctor, String notes, ArrayList<Boolean> xRay, ArrayList<Boolean> ultrasound) {
         this.start = start;
         this.end = end;

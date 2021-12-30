@@ -3,6 +3,7 @@ package com.company.utilities;
 import java.util.ArrayList;
 
 import com.company.classes.Appointment;
+import com.company.classes.Guest;
 import com.company.classes.Patient;
 
 import org.json.simple.JSONArray;
@@ -56,7 +57,10 @@ public class DataStructureManager {
         JSONObject obj = ReadWrite.readFile("patients.json");
 
         for (Object value : obj.values()) {
-            patientList.add(JSONToPatient((JSONObject)value));
+            if (((JSONObject)value).get("designation").equals("Guest"))
+                patientList.add(new Guest((JSONObject)value));
+            else
+                patientList.add(new Patient((JSONObject)value));
         }
     }
 
@@ -64,51 +68,11 @@ public class DataStructureManager {
         JSONObject obj = ReadWrite.readFile("appointments.json");
 
         for (Object value : obj.values()) {
-            appointmentList.add(JSONToAppointment((JSONObject)value));
+            appointmentList.add(new Appointment((JSONObject)value));
         }
     }
 
     public void initOtherdata() {
         JSONObject obj = ReadWrite.readFile("otherdata.json");
-    }
-
-    public Patient JSONToPatient(JSONObject obj) {
-        return new Patient(
-            (long) obj.get("age"),
-            (String) obj.get("firstName"),
-            (String) obj.get("lastName"),
-            (String) obj.get("gender"),
-            (String) obj.get("id"),
-            (String) obj.get("password"),
-            (String) obj.get("address"),
-            (String) obj.get("email"),
-            (String) obj.get("birthdate"),
-            (String) obj.get("telephone"),
-            (ArrayList<Long>) obj.get("appointments")  // convert from JSONArray to ArrayList
-        );
-    }
-
-    public Appointment JSONToAppointment(JSONObject obj) {
-        ArrayList<Boolean> xRay = new ArrayList<>();
-        ArrayList<Boolean> ultrasound = new ArrayList<>();
-        JSONArray xRayJSON = (JSONArray) obj.get("xRay");
-        JSONArray ultrasoundJSON = (JSONArray) obj.get("ultrasound");
-
-          // convert from JSONArray to ArrayList
-        xRay = (ArrayList<Boolean>) xRayJSON;
-        ultrasound = (ArrayList<Boolean>) ultrasoundJSON;
-
-        return new Appointment(
-            (long) obj.get("start"),
-            (long) obj.get("end"),
-            (long) obj.get("id"),
-            (String) obj.get("date"),
-            (String) obj.get("status"),
-            (String) obj.get("patient"),
-            (String) obj.get("referralDoctor"),
-            (String) obj.get("notes"),
-            xRay,
-            ultrasound
-        );
     }
 }

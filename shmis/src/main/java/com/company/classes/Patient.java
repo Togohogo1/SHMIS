@@ -10,7 +10,6 @@ public class Patient extends Person {
     protected String email;
     protected String birthdate;
     protected String telephone;
-    protected String designation = "Patient";
     protected ArrayList<Long> appointments;
 
     public Patient(long age, String firstName, String lastName, String gender, String id, String password, String address, String email, String birthdate, String telephone, ArrayList<Long> appointments) {
@@ -20,6 +19,20 @@ public class Patient extends Person {
         this.birthdate = birthdate;
         this.telephone = telephone;
         this.appointments = appointments;
+    }
+
+    public Patient(JSONObject obj) {
+        this.age = (long) obj.get("age");
+        this.firstName = (String) obj.get("firstName");
+        this.lastName = (String) obj.get("lastName");
+        this.gender = (String) obj.get("gender");
+        this.id = (String) obj.get("id");
+        this.password = (String) obj.get("password");
+        this.address = (String) obj.get("address");
+        this.email = (String) obj.get("email");
+        this.birthdate = (String) obj.get("birthdate");
+        this.telephone = (String) obj.get("telephone");
+        this.appointments = (ArrayList<Long>) obj.get("appointments");  // convert from JSONArray to ArrayList
     }
 
     public JSONObject toJSONObject() {
@@ -42,13 +55,13 @@ public class Patient extends Person {
         obj.put("email", email);  // Key
         obj.put("birthdate", birthdate);
         obj.put("telephone", telephone);
-        obj.put("designation", designation);
+        obj.put("designation", getDesignation());
         obj.put("appointments", appointments);
 
         return obj;
     }
 
-    public String getFirstName() {
+    public String getFirstName() {  // TODO put this in superclass?
         return firstName;
     }
 
@@ -58,6 +71,10 @@ public class Patient extends Person {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getDesignation() {
+        return "Patient";
     }
 
     public Object getId() {

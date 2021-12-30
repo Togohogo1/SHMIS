@@ -1,5 +1,7 @@
 package com.company.classes;
 
+import java.security.Permission;
+
 public abstract class Person {
     protected long age;
     protected String firstName;
@@ -16,4 +18,6 @@ public abstract class Person {
         this.id = id;
         this.password = password;
     }
+
+    public Person() {}
 }

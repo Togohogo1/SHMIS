@@ -77,7 +77,7 @@ public class Patient extends Person {
         return "Patient";
     }
 
-    public Object getId() {
+    public String getId() {
         return id;
     }
 

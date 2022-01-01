@@ -9,9 +9,8 @@ import com.company.classes.Patient;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class DataStructureManager {
+public class DSManager {
     // TODO make private if not testing
-    // TODO think about JSONObject being an intermediate
     // TODO other.json for queue.waitlist/calendar storage
     public long appointmentID;
     public ArrayList<Patient> patientList = new ArrayList<>();
@@ -20,10 +19,10 @@ public class DataStructureManager {
     public Queue queue = new Queue();
     public DoublyLinkedList waitlist = new DoublyLinkedList();
 
-    public DataStructureManager() {
-        initPatients();
-        initAppointments();
-        // initOtherdata();
+    public DSManager() {
+        initPatients(ReadWrite.readFile("patients.json"));
+        initAppointments(ReadWrite.readFile("appointments.json"));
+        initOtherdata(ReadWrite.readFile("otherdata.json"));
     }
 
     // Pack to JSONObject which can then be written to a file
@@ -53,9 +52,7 @@ public class DataStructureManager {
     }
 
     // unpack from file to JSONObject to Arraylist
-    public void initPatients() {
-        JSONObject obj = ReadWrite.readFile("patients.json");
-
+    public void initPatients(JSONObject obj) {
         for (Object value : obj.values()) {
             if (((JSONObject)value).get("designation").equals("Guest"))
                 patientList.add(new Guest((JSONObject)value));
@@ -64,15 +61,12 @@ public class DataStructureManager {
         }
     }
 
-    public void initAppointments() {
-        JSONObject obj = ReadWrite.readFile("appointments.json");
-
+    public void initAppointments(JSONObject obj) {
         for (Object value : obj.values()) {
             appointmentList.add(new Appointment((JSONObject)value));
         }
     }
 
-    public void initOtherdata() {
-        JSONObject obj = ReadWrite.readFile("otherdata.json");
+    public void initOtherdata(JSONObject obj) {
     }
 }

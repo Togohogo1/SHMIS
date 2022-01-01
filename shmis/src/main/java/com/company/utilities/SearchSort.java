@@ -6,6 +6,7 @@ import com.company.classes.Appointment;
 
 public class SearchSort {
     // TODO add somewhere numbers are easy to increment
+    // appointments are removed if patients are removed -> arr[idx] != arr[idx].get(idx) -> requires bsearch
     public static int binarySearch(ArrayList<Appointment> arr, long id) {
         int l = 0, r = arr.size() - 1;
 

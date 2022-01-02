@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import com.company.pages.Login;
+
 
 public class HealthcareApp extends JFrame {
     public HealthcareApp() {

@@ -15,8 +15,8 @@ import com.company.pages.Login;
 public class HealthcareApp extends JFrame {
     public HealthcareApp() {
         super("Simple Healthcare Management Interface for Specialists");
-        this.setSize(960, 540);
 
+        this.setSize(1200, 675);
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
@@ -24,16 +24,15 @@ public class HealthcareApp extends JFrame {
 
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
-        c.weightx = 0.5;
+        c.weightx = 0.25;
         c.weighty = 1;
-        this.add(login, c);
-
+        this.add(login.sidebar(), c);
 
         JPanel dummy = new JPanel(new GridBagLayout());
         dummy.setBackground(Color.cyan);
         c.gridx = 1;
-        c.weightx = 0.5;
-        this.add(dummy, c);
+        c.weightx = 0.75;
+        this.add(login.login(), c);
 
         this.setLocationRelativeTo(null);  // Center of the screen when opened
         // this.setResizable(false);

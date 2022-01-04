@@ -1,72 +1,51 @@
 package com.company.pages;
 
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.BorderLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-
-import javax.swing.AbstractButton;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Color;
 
 public class Login extends JPanel {
-    private JPanel sidebar;
-    private JPanel login;
-    private JButton patient, employee, guest;
-
     public Login() {
-        this.setLayout(new GridBagLayout());
-        this.setBackground(Color.gray);
-    }
+        JTabbedPane tabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
 
-    public JPanel sidebar() {
-        sidebar = new JPanel(new GridBagLayout());
-        sidebar.setBackground(Color.decode("#A9E3F5"));
+        JPanel dummy = new JPanel();
+        dummy.add(new JButton("click me1"));
+        JPanel dummy2 = new JPanel();
+        dummy2.add(new JButton("click me2"));
+        JPanel dummy3 = new JPanel();
+        dummy3.add(new JButton("click me3"));
 
-        GridBagConstraints c = new GridBagConstraints();
+        tabs.add("", dummy);
+        tabs.add("", dummy2);
+        tabs.add("", dummy3);
 
-        patient = new JButton("Patient");
-        patient.setForeground(Color.WHITE);
-        patient.setBackground(Color.decode("#009BCC"));
-        patient.setHorizontalAlignment(SwingConstants.LEFT);
-        patient.setFont(new Font("Roboto", Font.PLAIN, 18));
-        c.fill = GridBagConstraints.BOTH;
-        c.anchor = GridBagConstraints.PAGE_START;
-        c.weightx = 1;
-        c.weighty = 1;
-        sidebar.add(patient, c);
+        JLabel l1 = new JLabel("tab1");
+        l1.setFont(new Font("Roboto", Font.PLAIN, 24));
+        l1.setBorder(new EmptyBorder(5, 5, 5, 5));
+        l1.setHorizontalAlignment(SwingConstants.LEFT);
+        l1.setPreferredSize(new Dimension(200, 200));
+        JLabel l2 = new JLabel("tab      2");
+        l2.setHorizontalAlignment(SwingConstants.LEFT);
 
-        employee = new JButton("Employee");
-        employee.setForeground(Color.WHITE);
-        employee.setBackground(Color.decode("#009BCC"));
-        employee.setHorizontalAlignment(SwingConstants.LEFT);
-        employee.setFont(new Font("Roboto", Font.PLAIN, 18));
-        c.gridy = 1;
-        sidebar.add(employee, c);
+        JLabel l3 = new JLabel("tab____________________3");
+        l3.setHorizontalAlignment(SwingConstants.LEFT);
 
-        guest = new JButton("Guest");
-        guest.setForeground(Color.WHITE);
-        guest.setBackground(Color.decode("#009BCC"));
-        guest.setHorizontalAlignment(SwingConstants.LEFT);
-        guest.setFont(new Font("Roboto", Font.PLAIN, 18));
-        c.gridy = 2;
-        c.insets = new Insets(0, 0, 450, 0);
-        sidebar.add(guest, c);
+        tabs.setTabComponentAt(0, l1);
+        tabs.setTabComponentAt(1, l2);
+        tabs.setTabComponentAt(2, l3);
 
-        return sidebar;
-    }
-
-    public JPanel login() {
-        login = new JPanel(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        return login;
+        this.setLayout(new GridLayout(1, 1));
+        this.add(tabs);
     }
 }

@@ -7,15 +7,16 @@ import com.company.classes.Appointment;
 public class SearchSort {
     // TODO add somewhere numbers are easy to increment
     // appointments are removed if patients are removed -> arr[idx] != arr[idx].get(idx) -> requires bsearch
-    public static int binarySearch(ArrayList<Appointment> arr, long id) {
+    public static <T, R> int binarySearch(ArrayList<T> arr, AttributeFetcher<T, R> fetcher, R val) {
         int l = 0, r = arr.size() - 1;
 
         while (l <= r) {
-            int mid = (l+r)/2;
+            int mid = (l+r) / 2;
+            Comparable<R> obj = fetcher.fetch(arr.get(mid));
 
-            if (arr.get(mid).getId() > id)
+            if (obj.compareTo(val) > 0)
                 r = mid - 1;
-            else if (arr.get(mid).getId() < id)
+            else if (obj.compareTo(val) < 0)
                 l = mid + 1;
             else
                 return mid;

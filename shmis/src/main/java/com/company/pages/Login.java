@@ -46,6 +46,7 @@ public class Login extends JPanel {
         tabs.setTabComponentAt(2, l3);
 
         this.setLayout(new GridLayout(1, 1));
+        this.setBackground(Color.CYAN);
         this.add(tabs);
     }
 }

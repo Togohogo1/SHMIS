@@ -16,7 +16,7 @@ public class HealthcareApp extends JFrame {
         this.setSize(1024, 576);
 
         // this.add(new Login());
-        this.add(new Login());
+        this.add(new Program());
 
         this.setLocationRelativeTo(null);  // Center of the screen when opened
         // this.setResizable(false);

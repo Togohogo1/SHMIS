@@ -39,17 +39,17 @@ public class Program extends JPanel {
         tabs.add("", new JPanel());
 
         JLabel l1 = new JLabel("Booking");
-        l1.setFont(new Font("Roboto", Font.BOLD, 20));
+        l1.setFont(new Font("Microsoft JhengHei UI", Font.BOLD, 20));
         l1.setHorizontalAlignment(SwingConstants.LEFT);
         l1.setPreferredSize(new Dimension(256, 50));
 
         JLabel l2 = new JLabel("Appointments");
-        l2.setFont(new Font("Roboto", Font.BOLD, 20));
+        l2.setFont(new Font("Microsoft JhengHei UI", Font.BOLD, 20));
         l2.setHorizontalAlignment(SwingConstants.LEFT);
         l2.setPreferredSize(new Dimension(256, 50));
 
         JLabel l3 = new JLabel("Calendar");
-        l3.setFont(new Font("Roboto", Font.BOLD, 20));
+        l3.setFont(new Font("Microsoft JhengHei UI", Font.BOLD, 20));
         l3.setHorizontalAlignment(SwingConstants.LEFT);
         l3.setPreferredSize(new Dimension(256, 50));
 

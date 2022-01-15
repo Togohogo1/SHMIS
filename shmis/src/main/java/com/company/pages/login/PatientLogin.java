@@ -35,33 +35,32 @@ public class PatientLogin extends JPanel {
         JButton but2 = new JButton("Register");
         but.setPreferredSize(new Dimension(178, 50));
         but2.setPreferredSize(new Dimension(178, 50));
-        but.setFont(new Font("Roboto", Font.PLAIN, 20));
-        but2.setFont(new Font("Roboto", Font.PLAIN, 20));
+        but.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+        but2.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 
 
-        username.setFont(new Font("Roboto", Font.PLAIN, 20));
-        password.setFont(new Font("Roboto", Font.PLAIN, 20));
+        username.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+        password.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
         username.setMargin(new Insets(10, 10, 10, 10));
         password.setMargin(new Insets(10, 10, 10, 10));
         username.setPreferredSize(new Dimension(256, 50));
         password.setPreferredSize(new Dimension(256, 50));
 
         JLabel l2 = new JLabel("Email");
-        l2.setFont(new Font("Roboto", Font.PLAIN, 20));
+        l2.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
         // l2.setHorizontalAlignment(SwingConstants.LEFT);
         l2.setPreferredSize(new Dimension(100, 50));
 
         JLabel l3 = new JLabel("Password");
-        l3.setFont(new Font("Roboto", Font.PLAIN, 20));
+        l3.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
         // l3.setHorizontalAlignment(SwingConstants.LEFT);
         l3.setPreferredSize(new Dimension(100, 50));
 
-        JPanel bruh = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
-        // bruh.
-        // bruh.setLayout(new );
-        bruh.add(but);
-        bruh.add(Box.createRigidArea(new Dimension(10, 0)));
-        bruh.add(but2);
+        JPanel buttons = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+
+        buttons.add(but);
+        buttons.add(Box.createRigidArea(new Dimension(10, 0)));
+        buttons.add(but2);
         // this.add(l2, c);
 
         // this.add(bruh, c);
@@ -86,6 +85,6 @@ public class PatientLogin extends JPanel {
         c.gridy = 2;
         c.gridx = 0;
         c.gridwidth = 2;
-        this.add(bruh, c);
+        this.add(buttons, c);
     }
 }

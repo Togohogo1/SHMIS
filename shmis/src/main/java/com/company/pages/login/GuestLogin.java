@@ -1,5 +1,7 @@
 package com.company.pages.login;
 
-public class GuestLogin {
+import javax.swing.JPanel;
 
+public class GuestLogin extends JPanel {
+    public GuestLogin() {}
 }

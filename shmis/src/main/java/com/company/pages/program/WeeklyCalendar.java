@@ -1,5 +1,7 @@
 package com.company.pages.program;
 
-public class WeeklyCalendar {
+import javax.swing.JPanel;
 
+public class WeeklyCalendar extends JPanel {
+    public WeeklyCalendar() {}
 }

@@ -1,5 +1,7 @@
 package com.company.pages.program;
 
-public class Profile {
+import javax.swing.JPanel;
 
+public class Profile extends JPanel {
+    public Profile() {}
 }

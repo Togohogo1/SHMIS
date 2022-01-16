@@ -1,5 +1,7 @@
 package com.company.pages.program;
 
-public class PatientCheckinQueue {
+import javax.swing.JPanel;
 
+public class PatientCheckinQueue extends JPanel {
+    public PatientCheckinQueue() {}
 }

@@ -1,5 +1,7 @@
 package com.company.pages.login;
 
-public class EmployeeLogin {
+import javax.swing.JPanel;
 
+public class EmployeeLogin extends JPanel {
+    public EmployeeLogin() {};
 }

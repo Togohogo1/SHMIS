@@ -1,5 +1,7 @@
 package com.company.pages.program;
 
-public class PatientIndex {
+import javax.swing.JPanel;
 
+public class PatientIndex extends JPanel {
+    public PatientIndex() {}
 }

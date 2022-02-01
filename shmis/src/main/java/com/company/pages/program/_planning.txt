@@ -1,6 +1,0 @@
-[AppointmentBooking]
-[MyAppointments]
-[PatientCheckinQueue]
-[PatientIndex]
-[Profile]
-[WeeklyCalendar]

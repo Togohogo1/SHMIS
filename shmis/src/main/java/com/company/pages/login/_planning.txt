@@ -1,9 +1,0 @@
-[PatientLogin]
--
-
-
-[EmployeeLogin]
-
-
-
-[GuestLogin]

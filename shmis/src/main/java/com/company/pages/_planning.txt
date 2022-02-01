@@ -1,8 +1,0 @@
-[HealthcareApp]
-
-
-[Login]
-public tabs
-public
-
-[Program]

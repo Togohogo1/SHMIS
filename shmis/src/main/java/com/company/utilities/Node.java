@@ -3,20 +3,21 @@ package com.company.utilities;
 import com.company.classes.Appointment;
 
 public class Node {
-    private Appointment appointment;
+    private long appointmentID = -1;
     private Node next;
     private Node prev;
 
     public Node() {
-        this (null, null, null);
+        this.next = null;
+        this.prev = null;
     }
 
-    public Node(Appointment appointment) {
-        this.appointment = appointment;
+    public Node(long appointmentID) {
+        this.appointmentID = appointmentID;
     }
 
-    public Node(Appointment appointment, Node next, Node prev) {
-        this.appointment = appointment;
+    public Node(long appointmentID, Node next, Node prev) {
+        this.appointmentID = appointmentID;
         this.next = next;
         this.prev = prev;
     }
@@ -37,7 +38,7 @@ public class Node {
         this.prev = prev;
     }
 
-    public Appointment getAppointment() {
-        return appointment;
+    public long getAppointmentID() {
+        return appointmentID;
     }
 }

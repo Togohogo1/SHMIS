@@ -24,7 +24,7 @@ public class HealthcareApp extends JFrame {
         this.add(program);
     }
 
-    public void LogOut() {  // Precondition: progra mpage is in the JFrame
+    public void LogOut() {  // Precondition: program page is in the JFrame
         this.remove(program);
         this.add(login);
         // Remember to reset some values (like current user)

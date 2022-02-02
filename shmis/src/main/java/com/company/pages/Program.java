@@ -1,6 +1,7 @@
 package com.company.pages;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,19 +16,48 @@ import com.company.pages.program.Profile;
 import com.company.pages.program.WeeklyCalendar;
 
 public class Program extends JPanel {
-    public JTabbedPane patientTabs;
-    public JTabbedPane employeeTabs;
+    private JTabbedPane patientTabs;
+    private JTabbedPane employeeTabs;
 
-    public AppointmentBooking appointmentBooking;
-    public MyAppointments myAppointments;
-    public PatientCheckinQueue patientCheckinQueue;
-    public PatientIndex patientIndex;
-    public Profile profile;
-    public WeeklyCalendar weeklyCalendar;
+    private AppointmentBooking appointmentBooking;
+    private MyAppointments myAppointments;
+    private PatientCheckinQueue patientCheckinQueue;
+    private PatientIndex patientIndex;
+    private Profile profile, profile2;
+    private WeeklyCalendar weeklyCalendar, weeklyCalendar2;
 
     public Program() {
+        // Initialize components
         patientTabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
         employeeTabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
+
+        appointmentBooking = new AppointmentBooking();
+        myAppointments = new MyAppointments();
+        patientCheckinQueue = new PatientCheckinQueue();
+        patientIndex = new PatientIndex();
+        profile = new Profile();
+        profile2 = new Profile();  // Same instance referenced by other JTabbedPane removed from the frist
+        weeklyCalendar = new WeeklyCalendar();
+        weeklyCalendar2 = new WeeklyCalendar();
+
+        // Patient
+        appendTab(patientTabs, appointmentBooking, "Booking", 0);
+        appendTab(patientTabs, myAppointments, "Appointments", 1);
+        appendTab(patientTabs, weeklyCalendar, "Calendar", 2);
+        appendTab(patientTabs, profile, "Profile", 3);
+
+        // Employee
+        appendTab(employeeTabs, patientCheckinQueue, "Check-In", 0);
+        appendTab(employeeTabs, patientIndex, "Patient Index", 1);
+        appendTab(employeeTabs, weeklyCalendar2, "Calendar", 2);
+        appendTab(employeeTabs, profile2, "Profile", 3);
+
+        this.setLayout(new GridLayout(1, 1));
+
+        // if current logged in is a patient
+        this.add(patientTabs);
+        // else
+        // this.add(employeeTabs);
     }
 
     public void appendTab(JTabbedPane tabs, JPanel panel, String name, int index) {

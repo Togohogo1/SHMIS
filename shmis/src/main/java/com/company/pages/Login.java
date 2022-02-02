@@ -13,9 +13,9 @@ import com.company.pages.login.EmployeeLogin;
 import com.company.pages.login.PatientLogin;
 
 public class Login extends JPanel {
-    public JTabbedPane tabs;
-    public PatientLogin patientLogin;
-    public EmployeeLogin employeeLogin;
+    private JTabbedPane tabs;
+    private PatientLogin patientLogin;
+    private EmployeeLogin employeeLogin;
 
     public Login() {
         tabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);

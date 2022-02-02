@@ -5,13 +5,13 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 public class HealthcareApp extends JFrame {
-    public JPanel login = new Login();
-    public JPanel program = new Program();
+    private JPanel login = new Login();
+    private JPanel program = new Program();
 
     public HealthcareApp() {
         super("Simple Healthcare Management Interface for Specialists");
 
-        this.add(login);  // Default
+        this.add(program);  // Default (changed to program for testing purposes)
         this.setSize(1024, 576);
         this.setLocationRelativeTo(null);  // Center of the screen when opened
         this.setResizable(false);

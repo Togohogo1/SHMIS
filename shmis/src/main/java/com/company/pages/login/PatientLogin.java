@@ -15,15 +15,14 @@ import javax.swing.JTextField;
 import com.company.pages.Settings;
 
 public class PatientLogin extends JPanel {
-    private JLabel email;
-    private JLabel password;
+    private JLabel email;  // doesn't need to be at this scope
+    private JLabel password;  // doesn't need to be at this scope
 
     private JTextField emailInput;
     private JPasswordField passwordInput;
 
     private JButton register;
     private JButton login;
-    private JButton guest;
 
     public PatientLogin() {
         super(new GridBagLayout());
@@ -39,7 +38,6 @@ public class PatientLogin extends JPanel {
 
         register = new JButton("Register");
         login = new JButton("Login");
-        guest = new JButton("Login as Guest");
 
         // Setting sizes
 

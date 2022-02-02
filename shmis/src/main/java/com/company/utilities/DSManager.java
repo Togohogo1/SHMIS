@@ -18,7 +18,7 @@ public class DSManager {
 
     public ArrayList<Patient> patientList = new ArrayList<>();
     public ArrayList<Appointment> appointmentList = new ArrayList<>();
-    public ArrayList<Appointment> inCalendar = new ArrayList<>();
+    public ArrayList<Long> inCalendar = new ArrayList<>();
     public Queue queue = new Queue();
 
     public DSManager() {
@@ -50,11 +50,12 @@ public class DSManager {
 
     public JSONObject packOtherdata() {
         JSONObject obj = new JSONObject();
-        JSONArray queue = new JSONArray();
-        JSONArray calendar = new JSONArray();
+        JSONArray calendarJSON = new JSONArray();
 
-        obj.put("queue", null);  // JSONArray
-        obj.put("calendar", null);  // JSONArray
+        calendarJSON.addAll(inCalendar);
+
+        obj.put("queue", queue.toJSONArray());  // JSONArray
+        obj.put("calendar", calendarJSON);  // JSONArray
         obj.put("appointmentID", appointmentID);  // long
 
         return obj;
@@ -77,5 +78,8 @@ public class DSManager {
     }
 
     public void initOtherdata(JSONObject obj) {
+        queue.fromJSONArray((JSONArray) obj.get("queue"));
+        inCalendar = (ArrayList<Long>) obj.get("calendar");
+        appointmentID = (long) obj.get("appointmentID");
     }
 }

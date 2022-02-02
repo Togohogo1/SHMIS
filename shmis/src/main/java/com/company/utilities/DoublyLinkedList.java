@@ -1,5 +1,7 @@
 package com.company.utilities;
 
+import org.json.simple.JSONArray;
+
 public class DoublyLinkedList {
     public Node head;
     public Node tail;
@@ -66,6 +68,27 @@ public class DoublyLinkedList {
         size--;
     }
 
+    public void fromJSONArray(JSONArray arr) {
+        for (Object id : arr) {
+            insertBack(new Node((long) id));
+        }
+    }
+
+    public JSONArray toJSONArray() {
+        JSONArray queue = new JSONArray();
+
+        // Traverse the queue and add items in the JSONArray
+        Node node = head;
+
+        while (node.getNext().getAppointmentID() != -1) {
+            node = node.getNext();
+            queue.add(node.getAppointmentID());
+        }
+
+        return queue;
+    }
+
+    // General purpose traverse function
     public void traverse() {
         Node node = head;
 

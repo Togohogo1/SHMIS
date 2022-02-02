@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 
-import com.company.pages.program.AppointmentBooking;
 import com.company.pages.program.MyAppointments;
 import com.company.pages.program.PatientCheckinQueue;
 import com.company.pages.program.PatientIndex;
@@ -19,7 +18,6 @@ public class Program extends JPanel {
     private JTabbedPane patientTabs;
     private JTabbedPane employeeTabs;
 
-    private AppointmentBooking appointmentBooking;
     private MyAppointments myAppointments;
     private PatientCheckinQueue patientCheckinQueue;
     private PatientIndex patientIndex;
@@ -31,7 +29,6 @@ public class Program extends JPanel {
         patientTabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
         employeeTabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
 
-        appointmentBooking = new AppointmentBooking();
         myAppointments = new MyAppointments();
         patientCheckinQueue = new PatientCheckinQueue();
         patientIndex = new PatientIndex();
@@ -41,10 +38,9 @@ public class Program extends JPanel {
         weeklyCalendar2 = new WeeklyCalendar();
 
         // Patient
-        appendTab(patientTabs, appointmentBooking, "Booking", 0);
-        appendTab(patientTabs, myAppointments, "Appointments", 1);
-        appendTab(patientTabs, weeklyCalendar, "Calendar", 2);
-        appendTab(patientTabs, profile, "Profile", 3);
+        appendTab(patientTabs, myAppointments, "Appointments", 0);
+        appendTab(patientTabs, weeklyCalendar, "Calendar", 1);
+        appendTab(patientTabs, profile, "Profile", 2);
 
         // Employee
         appendTab(employeeTabs, patientCheckinQueue, "Check-In", 0);

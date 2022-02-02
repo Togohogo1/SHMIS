@@ -66,10 +66,5 @@ public class PatientLogin extends JPanel {
         c.gridx = 1;
         c.gridy = 2;
         this.add(register, c);
-
-        c.gridx = 0;
-        c.gridy = 3;
-        c.gridwidth = 2;
-        this.add(guest, c);
     }
 }

@@ -55,9 +55,9 @@ public class Program extends JPanel {
         this.setLayout(new GridLayout(1, 1));
 
         // if current logged in is a patient
-        this.add(patientTabs);
+        // this.add(patientTabs);
         // else
-        // this.add(employeeTabs);
+        this.add(employeeTabs);
     }
 
     public void appendTab(JTabbedPane tabs, JPanel panel, String name, int index) {

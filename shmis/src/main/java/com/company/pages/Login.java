@@ -8,25 +8,22 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 
+import com.company.App;
 import com.company.pages.login.EmployeeLogin;
-import com.company.pages.login.GuestLogin;
 import com.company.pages.login.PatientLogin;
 
 public class Login extends JPanel {
     public JTabbedPane tabs;
     public PatientLogin patientLogin;
     public EmployeeLogin employeeLogin;
-    public GuestLogin guestLogin;
 
     public Login() {
         tabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
         patientLogin = new PatientLogin();
         employeeLogin = new EmployeeLogin();
-        guestLogin = new GuestLogin();
 
         appendTab(patientLogin, "Patient", 0);
         appendTab(employeeLogin, "Employee", 1);
-        appendTab(guestLogin, "Guest", 2);
 
         this.setLayout(new GridLayout(1, 1));
         this.add(tabs);

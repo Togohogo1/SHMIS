@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.company.classes.Appointment;
 import com.company.classes.Guest;
 import com.company.classes.Patient;
+import com.company.classes.Person;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -13,11 +14,12 @@ public class DSManager {
     // TODO make private if not testing
     // TODO other.json for queue.waitlist/calendar storage
     public long appointmentID;
+    public Person currentUser;
+
     public ArrayList<Patient> patientList = new ArrayList<>();
     public ArrayList<Appointment> appointmentList = new ArrayList<>();
     public ArrayList<Appointment> inCalendar = new ArrayList<>();
     public Queue queue = new Queue();
-    public DoublyLinkedList waitlist = new DoublyLinkedList();
 
     public DSManager() {
         initPatients(ReadWrite.readFile("patients.json"));
@@ -48,6 +50,13 @@ public class DSManager {
 
     public JSONObject packOtherdata() {
         JSONObject obj = new JSONObject();
+        JSONArray queue = new JSONArray();
+        JSONArray calendar = new JSONArray();
+
+        obj.put("queue", null);  // JSONArray
+        obj.put("calendar", null);  // JSONArray
+        obj.put("appointmentID", appointmentID);  // long
+
         return obj;
     }
 

@@ -11,7 +11,7 @@ public class HealthcareApp extends JFrame {
     public HealthcareApp() {
         super("Simple Healthcare Management Interface for Specialists");
 
-        this.add(program);  // Default (changed to program for testing purposes)
+        this.add(login);  // Default (changed to program for testing purposes)
         this.setSize(1024, 576);
         this.setLocationRelativeTo(null);  // Center of the screen when opened
         this.setResizable(false);

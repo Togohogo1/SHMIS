@@ -40,9 +40,9 @@ public class HealthcareApp extends JFrame implements WindowListener {
     @Override
     public void windowClosing(WindowEvent e) {
         System.out.println("Closing");
-        while (true) {
-            System.out.println("never closing >:)");
-        }
+        // while (true) {
+        //     System.out.println("never closing >:)");
+        // }
     }
 
     @Override

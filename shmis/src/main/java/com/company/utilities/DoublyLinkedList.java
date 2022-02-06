@@ -3,9 +3,9 @@ package com.company.utilities;
 import org.json.simple.JSONArray;
 
 public class DoublyLinkedList {
-    public Node head;
-    public Node tail;
-    public int size;
+    private Node head;
+    private Node tail;
+    private int size;
 
     public DoublyLinkedList() {
         head = new Node();
@@ -68,6 +68,17 @@ public class DoublyLinkedList {
         size--;
     }
 
+    public Node get(int index) {
+        Node node = head;
+        index++;  // the 0th Node is a sentinel
+
+        while (index-- != 0) {
+            node = node.getNext();
+        }
+
+        return node;
+    }
+
     public void fromJSONArray(JSONArray arr) {
         for (Object id : arr) {
             insertBack(new Node((long) id));
@@ -96,5 +107,9 @@ public class DoublyLinkedList {
             node = node.getNext();
             System.out.println(node.getAppointmentID());
         }
+    }
+
+    public int getSize() {
+        return size;
     }
 }

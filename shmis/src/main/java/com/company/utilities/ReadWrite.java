@@ -10,11 +10,11 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class ReadWrite {
-    public static FileReader fileRead;
-    public static FileWriter fileWrite;
-    public static BufferedReader bufferRead;
-    public static BufferedWriter bufferWrite;
-    public static JSONParser parser;
+    private static FileReader fileRead;
+    private static FileWriter fileWrite;
+    private static BufferedReader bufferRead;
+    private static BufferedWriter bufferWrite;
+    private static JSONParser parser;
 
     public static JSONObject readFile(String fileName) {
         JSONObject obj = new JSONObject();

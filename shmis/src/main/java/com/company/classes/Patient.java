@@ -84,4 +84,8 @@ public class Patient extends Person {
     public void addAppointment(long id) {
         appointments.add(id);
     }
+
+    public String getPassword() {
+        return password;
+    }
 }

@@ -7,6 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import com.company.App;
+import com.company.classes.Appointment;
+import com.company.utilities.DSManager;
+import com.company.utilities.ReadWrite;
+
 public class HealthcareApp extends JFrame implements WindowListener {
     private JPanel login = new Login();
     private JPanel program = new Program();
@@ -26,11 +31,15 @@ public class HealthcareApp extends JFrame implements WindowListener {
     public void LoggedIn() {  // Precondition: login page is in the JFrame
         this.remove(login);
         this.add(program);
+        this.revalidate();
+        this.repaint();
     }
 
     public void LogOut() {  // Precondition: program page is in the JFrame
         this.remove(program);
         this.add(login);
+        this.revalidate();
+        this.repaint();
         // Remember to reset some values (like current user)
     }
 
@@ -39,10 +48,9 @@ public class HealthcareApp extends JFrame implements WindowListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        System.out.println("Closing");
-        // while (true) {
-        //     System.out.println("never closing >:)");
-        // }
+        ReadWrite.writeFile(App.dsm.packPatients(), "patients.json");
+        ReadWrite.writeFile(App.dsm.packAppointments(), "appointments.json");
+        ReadWrite.writeFile(App.dsm.packOtherdata(), "otherdata.json");
     }
 
     @Override

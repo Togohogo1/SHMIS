@@ -11,20 +11,50 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class DSManager {
-    // TODO make private if not testing
-    // TODO other.json for queue.waitlist/calendar storage
-    public long appointmentID;
-    public Person currentUser;
+    private long appointmentID;  // Think of removing static?
+    private Person currentUser;
 
-    public ArrayList<Patient> patientList = new ArrayList<>();
-    public ArrayList<Appointment> appointmentList = new ArrayList<>();
-    public ArrayList<Long> inCalendar = new ArrayList<>();
-    public Queue queue = new Queue();
+    private ArrayList<Patient> patientList = new ArrayList<>();
+    private ArrayList<Appointment> appointmentList = new ArrayList<>();
+    private ArrayList<Long> inCalendar = new ArrayList<>();
+    private Queue queue = new Queue();
 
     public DSManager() {
         initPatients(ReadWrite.readFile("patients.json"));
         initAppointments(ReadWrite.readFile("appointments.json"));
         initOtherdata(ReadWrite.readFile("otherdata.json"));
+    }
+
+    public long getAppointmentID() {
+        return appointmentID;
+    }
+
+    public void incrAppointmentID() {
+        appointmentID++;
+    }
+
+    public Person getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(Person currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public ArrayList<Patient> getPatientList() {
+        return patientList;
+    }
+
+    public ArrayList<Appointment> getAppointmentList() {
+        return appointmentList;
+    }
+
+    public ArrayList<Long> getInCalendar() {
+        return inCalendar;
+    }
+
+    public Queue getQueue() {
+        return queue;
     }
 
     // Pack to JSONObject which can then be written to a file
@@ -44,7 +74,7 @@ public class DSManager {
         for (Appointment appointment : appointmentList) {
             obj.put(appointment.getKey(), appointment.toJSONObject());
         }
-
+        System.out.println(obj);
         return obj;
     }
 

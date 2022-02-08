@@ -1,8 +1,8 @@
 package com.company.classes;
 
 public class Employee extends Person {
-    public Employee(long age, String firstName, String lastName, String gender, String id, String password) {
-        super(age, firstName, lastName, gender, id, password);
+    public Employee() {
+        super(30, "admin_f", "admin_l", "M", "0", "password");
     }
 
     public String getDesignation() {

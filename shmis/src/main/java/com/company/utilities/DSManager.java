@@ -74,7 +74,7 @@ public class DSManager {
         for (Appointment appointment : appointmentList) {
             obj.put(appointment.getKey(), appointment.toJSONObject());
         }
-        System.out.println(obj);
+
         return obj;
     }
 

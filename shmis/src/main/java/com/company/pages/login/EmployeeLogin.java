@@ -4,14 +4,20 @@ import java.awt.GridBagLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class EmployeeLogin extends JPanel {
+import com.company.App;
+import com.company.classes.Employee;
+
+public class EmployeeLogin extends JPanel implements ActionListener {
     private JLabel key;
     private JLabel password;
 
@@ -33,6 +39,7 @@ public class EmployeeLogin extends JPanel {
         passwordInput = new JPasswordField();
 
         login = new JButton("Login");
+        login.addActionListener(this);
 
         // Setting sizes
 
@@ -58,5 +65,25 @@ public class EmployeeLogin extends JPanel {
         c.gridy = 2;
         c.gridwidth = 2;
         this.add(login, c);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String inputKey = keyInput.getText();
+        String inputPassword = String.valueOf(passwordInput.getPassword());  // .getText() deprecated for JPasswordField
+
+        if (!inputKey.equals("admin")) {
+            JOptionPane.showMessageDialog(null, "Invalid Employee Key", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (!inputPassword.equals("password")) {
+            JOptionPane.showMessageDialog(null, "Incorrect Password", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        App.dsm.setCurrentUser(new Employee());
+        App.shmis.LoggedIn();
+        JOptionPane.showMessageDialog(null, "Successfully Logged in as Employee");
     };
 }

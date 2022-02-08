@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 
+import com.company.App;
 import com.company.pages.program.MyAppointments;
 import com.company.pages.program.PatientCheckinQueue;
 import com.company.pages.program.PatientIndex;
@@ -35,14 +36,12 @@ public class Program extends JPanel {
         profile = new Profile();
         profile2 = new Profile();  // Same instance referenced by other JTabbedPane removed from the frist
         weeklyCalendar = new WeeklyCalendar();
-        weeklyCalendar2 = new WeeklyCalendar();
+        weeklyCalendar2 = new WeeklyCalendar();  // TODO another constructor that allows for disabling for patients?
 
-        // Patient
         appendTab(patientTabs, myAppointments, "Appointments", 0);
         appendTab(patientTabs, weeklyCalendar, "Calendar", 1);
         appendTab(patientTabs, profile, "Profile", 2);
 
-        // Employee
         appendTab(employeeTabs, patientCheckinQueue, "Check-In", 0);
         appendTab(employeeTabs, patientIndex, "Patient Index", 1);
         appendTab(employeeTabs, weeklyCalendar2, "Calendar", 2);
@@ -50,10 +49,10 @@ public class Program extends JPanel {
 
         this.setLayout(new GridLayout(1, 1));
 
-        // if current logged in is a patient
-        // this.add(patientTabs);
-        // else
-        this.add(employeeTabs);
+        if (App.dsm.getCurrentUser().getDesignation().equals("Patient"))  // Patient
+            this.add(patientTabs);
+        else  // Employee
+            this.add(employeeTabs);
     }
 
     public void appendTab(JTabbedPane tabs, JPanel panel, String name, int index) {

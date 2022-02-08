@@ -10,6 +10,8 @@ public abstract class Person {
     protected String id;
     protected String password;
 
+    public Person() {}
+
     public Person(long age, String firstName, String lastName, String gender, String id, String password) {
         this.age = age;
         this.firstName = firstName;
@@ -19,5 +21,7 @@ public abstract class Person {
         this.password = password;
     }
 
-    public Person() {}
+    public String getDesignation() {
+        return "Person";
+    }
 }

@@ -13,14 +13,16 @@ import com.company.utilities.DSManager;
 import com.company.utilities.ReadWrite;
 
 public class HealthcareApp extends JFrame implements WindowListener {
-    private JPanel login = new Login();
-    private JPanel program = new Program();
+    private JPanel login;
+    private JPanel program;
 
     public HealthcareApp() {
         super("Simple Healthcare Management Interface for Specialists");
 
-        this.addWindowListener(this);
+        login = new Login();
         this.add(login);  // Default (changed to program for testing purposes)
+
+        this.addWindowListener(this);
         this.setSize(1024, 576);
         this.setLocationRelativeTo(null);  // Center of the screen when opened
         this.setResizable(false);
@@ -29,6 +31,7 @@ public class HealthcareApp extends JFrame implements WindowListener {
     }
 
     public void LoggedIn() {  // Precondition: login page is in the JFrame
+        program = new Program();  // Avoid NullPointerException
         this.remove(login);
         this.add(program);
         this.revalidate();

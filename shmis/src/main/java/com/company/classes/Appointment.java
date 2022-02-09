@@ -22,7 +22,7 @@ public class Appointment {
     public static final int CARDIOVASCULAR = 3;
 
     private long start;
-    private long end;
+    private long span;
     private long id;
 
     private String date;
@@ -45,7 +45,7 @@ public class Appointment {
         ultrasound = (ArrayList<Boolean>) ultrasoundJSON;
 
         this.start = (long) obj.get("start");
-        this.end = (long) obj.get("end");
+        this.span = (long) obj.get("span");
         this.id = (long) obj.get("id");
         this.date = (String) obj.get("date");
         this.status = (String) obj.get("status");
@@ -57,9 +57,9 @@ public class Appointment {
     }
 
     // This constructor used when converting to JSONObject is an extra step
-    public Appointment(long start, long end, long id, String date, String status, String patient, String referralDoctor, String notes, ArrayList<Boolean> xRay, ArrayList<Boolean> ultrasound) {
+    public Appointment(long start, long span, long id, String date, String status, String patient, String referralDoctor, String notes, ArrayList<Boolean> xRay, ArrayList<Boolean> ultrasound) {
         this.start = start;
-        this.end = end;
+        this.span = span;
         this.id = id;
         this.date = date;
         this.status = status;
@@ -80,7 +80,7 @@ public class Appointment {
         ultrasound.addAll(this.ultrasound);
 
         obj.put("start", start);
-        obj.put("end", end);
+        obj.put("span", span);
         obj.put("id", id);  // Key
         obj.put("date", date);
         obj.put("status", status);

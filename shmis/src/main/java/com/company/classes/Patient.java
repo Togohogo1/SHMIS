@@ -61,31 +61,47 @@ public class Patient extends Person {
         return obj;
     }
 
-    public String getFirstName() {  // TODO put this in superclass?
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    public String getAddress() {
+        return address;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getDesignation() {
-        return "Patient";
+    public String getBirthdate() {
+        return birthdate;
     }
 
-    public String getId() {
-        return id;
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public ArrayList<Long> getAppointments() {
+        return this.appointments;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     public void addAppointment(long id) {
         appointments.add(id);
     }
 
-    public String getPassword() {
-        return password;
+    public String getDesignation() {
+        return "Patient";
     }
 }

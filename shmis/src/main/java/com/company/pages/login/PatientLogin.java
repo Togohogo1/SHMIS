@@ -31,7 +31,6 @@ public class PatientLogin extends JPanel implements ActionListener {
 
     public PatientLogin() {
         super(new GridBagLayout());
-
         GridBagConstraints c = new GridBagConstraints();
 
         // Initializing the elements
@@ -46,7 +45,7 @@ public class PatientLogin extends JPanel implements ActionListener {
         login = new JButton("Login");
         login.addActionListener(this);
 
-        // Setting sizes
+        // Setting sizes and styling
 
         // Positioning
         c.gridx = 0;
@@ -109,7 +108,10 @@ public class PatientLogin extends JPanel implements ActionListener {
 
             App.dsm.setCurrentUser(inputPatient);
             App.shmis.LoggedIn();
-            JOptionPane.showMessageDialog(null, "Successfully Logged in as Patient");
+
+            // Clearning text so it won't appear when logged out
+            emailInput.setText("");
+            passwordInput.setText("");
         }
     }
 }

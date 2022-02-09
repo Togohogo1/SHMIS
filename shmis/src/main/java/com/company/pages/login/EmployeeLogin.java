@@ -41,7 +41,7 @@ public class EmployeeLogin extends JPanel implements ActionListener {
         login = new JButton("Login");
         login.addActionListener(this);
 
-        // Setting sizes
+        // Setting sizes and styling
 
         // Positioning
         c.gridx = 0;
@@ -84,6 +84,9 @@ public class EmployeeLogin extends JPanel implements ActionListener {
 
         App.dsm.setCurrentUser(new Employee());
         App.shmis.LoggedIn();
-        JOptionPane.showMessageDialog(null, "Successfully Logged in as Employee");
+
+        // Clearning text so it won't appear when logged out
+        keyInput.setText("");
+        passwordInput.setText("");
     };
 }

@@ -3,7 +3,6 @@ package com.company.utilities;
 import java.util.ArrayList;
 
 import com.company.classes.Appointment;
-import com.company.classes.Guest;
 import com.company.classes.Patient;
 import com.company.classes.Person;
 
@@ -94,10 +93,7 @@ public class DSManager {
     // unpack from file to JSONObject to Arraylist
     public void initPatients(JSONObject obj) {
         for (Object value : obj.values()) {
-            if (((JSONObject)value).get("designation").equals("Guest"))
-                patientList.add(new Guest((JSONObject)value));
-            else
-                patientList.add(new Patient((JSONObject)value));
+            patientList.add(new Patient((JSONObject)value));
         }
     }
 

@@ -52,12 +52,14 @@ public class Signup extends JPanel implements ActionListener {
         new JLabel("Telephone:"),
     };
     private JTextField[] inputs;
+    private JDialog self;
 
-    public Signup() {
+    public Signup(JDialog self) {
         super(new GridBagLayout());
         GridBagConstraints co = new GridBagConstraints();
 
         // Initializing the elements
+        this.self = self;
         JTabbedPane top = new JTabbedPane();
 
         register = new JButton("Register");
@@ -121,7 +123,6 @@ public class Signup extends JPanel implements ActionListener {
                 ci.gridx = i;
 
                 if (j != 5 && j != 7) {
-                    System.out.println(j);
                     panel.add((i == 0 ? labels[j] : inputs[j]), ci);
                     ci.gridy++;
                 }
@@ -132,12 +133,17 @@ public class Signup extends JPanel implements ActionListener {
     }
 
     public boolean validPatient() {
+        // Trim whitespace
+        for (int i = 0; i < 9; i++) {
+            inputs[i].setText(inputs[i].getText().trim());
+        }
+
         // No input check
-        if (inputs[FIRST_NAME].getText().trim().equals("") ||
-            inputs[LAST_NAME].getText().trim().equals("") ||
-            inputs[ID].getText().trim().equals("") ||
-            inputs[PASSWORD].getText().trim().equals("") ||
-            inputs[ADDRESS].getText().trim().equals("")) {
+        if (inputs[FIRST_NAME].getText().equals("") ||
+            inputs[LAST_NAME].getText().equals("") ||
+            inputs[ID].getText().equals("") ||
+            inputs[PASSWORD].getText().equals("") ||
+            inputs[ADDRESS].getText().equals("")) {
             errorMessage = "Please fill in all fields";
             return false;
         }
@@ -164,14 +170,20 @@ public class Signup extends JPanel implements ActionListener {
 
 
         // Email regex check
-        if (!Pattern.compile("[A-Za-z0-9]+@[A-Za-z0-9]+\\.[A-Za-z0-9]+").matcher(inputs[EMAIL].getText()).matches()) {
+        // TODO improve regex range
+        if (!Pattern.compile("[A-Za-z0-9.]+@[A-Za-z0-9]+\\.[A-Za-z0-9]+").matcher(inputs[EMAIL].getText()).matches()) {
             errorMessage = "Please input a proper email";
+            return false;
+        }
+
+        if (emailExists(inputs[EMAIL].getText())) {
+            errorMessage = "Email already exists";
             return false;
         }
 
         // Telephone regex check
         if (!Pattern.compile("[0-9]{3}-[0-9]{3}-[0-9]{4}").matcher(inputs[TELEPHONE].getText()).matches()) {
-            errorMessage = "Please input a proper telephone number";
+            errorMessage = "Please input a telephone number in the form ###-###-####";
             return false;
         }
 
@@ -205,16 +217,17 @@ public class Signup extends JPanel implements ActionListener {
     public boolean emailExists(String email) {
         for (Patient p : App.dsm.getPatientList()) {
             if (p.getEmail().equals(email))
-                return false;
+                return true;
         }
 
-        return true;
+        return false;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (validPatient()) {
-            createPatient();// database stuff
+            App.dsm.getPatientList().add(createPatient());
+            self.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(null, errorMessage, "Warning", JOptionPane.WARNING_MESSAGE);
         }

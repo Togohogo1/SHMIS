@@ -10,7 +10,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class DSManager {
-    private long appointmentID;  // Think of removing static?
+    private long appointmentID;
     private Person currentUser;
 
     private ArrayList<Patient> patientList = new ArrayList<>();

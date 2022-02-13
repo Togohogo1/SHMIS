@@ -57,9 +57,7 @@ public class HealthcareApp extends JFrame implements WindowListener {
     }
 
     @Override
-    public void windowClosed(WindowEvent e) {
-        System.out.println("Closed");
-    }
+    public void windowClosed(WindowEvent e) {}
 
     @Override
     public void windowIconified(WindowEvent e) {}

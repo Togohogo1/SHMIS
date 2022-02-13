@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,6 +19,7 @@ import javax.swing.JTextField;
 import com.company.App;
 import com.company.classes.Patient;
 import com.company.pages.Settings;
+import com.company.pages.program.Signup;
 
 public class PatientLogin extends JPanel implements ActionListener {
     private JLabel email;  // doesn't need to be at this scope
@@ -89,9 +91,15 @@ public class PatientLogin extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == register)
-            ;
-        else if (e.getSource() == login) {
+        if (e.getSource() == register) {
+            JDialog signup = new JDialog(null, "Signup", JDialog.ModalityType.APPLICATION_MODAL);
+            signup.add(new Signup());
+
+            signup.setSize(new Dimension(500, 500));  // TODO bad size
+            signup.setLocationRelativeTo(null);
+            signup.setResizable(false);
+            signup.setVisible(true);
+        } else if (e.getSource() == login) {
             String inputEmail = emailInput.getText();
             String inputPassword = String.valueOf(passwordInput.getPassword());  // .getText() deprecated for JPasswordField
             Patient inputPatient = getPatient(inputEmail);

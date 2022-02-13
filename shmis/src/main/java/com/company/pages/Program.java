@@ -10,7 +10,7 @@ import javax.swing.SwingConstants;
 
 import com.company.App;
 import com.company.pages.program.MyAppointments;
-import com.company.pages.program.PatientCheckinQueue;
+import com.company.pages.program.Queue;
 import com.company.pages.program.PatientIndex;
 import com.company.pages.program.Profile;
 import com.company.pages.program.WeeklyCalendar;
@@ -20,7 +20,7 @@ public class Program extends JPanel {
     private JTabbedPane employeeTabs;
 
     private MyAppointments myAppointments;
-    private PatientCheckinQueue patientCheckinQueue;
+    private Queue patientCheckinQueue;
     private PatientIndex patientIndex;
     private Profile profile, profile2;
     private WeeklyCalendar weeklyCalendar, weeklyCalendar2;
@@ -31,7 +31,7 @@ public class Program extends JPanel {
         employeeTabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
 
         myAppointments = new MyAppointments();
-        patientCheckinQueue = new PatientCheckinQueue();
+        patientCheckinQueue = new Queue();
         patientIndex = new PatientIndex();
         profile = new Profile();
         profile2 = new Profile();  // Same instance referenced by other JTabbedPane removed from the frist
@@ -42,7 +42,7 @@ public class Program extends JPanel {
         appendTab(patientTabs, weeklyCalendar, "Calendar", 1);
         appendTab(patientTabs, profile, "Profile", 2);
 
-        appendTab(employeeTabs, patientCheckinQueue, "Check-In", 0);
+        appendTab(employeeTabs, patientCheckinQueue, "Queue", 0);
         appendTab(employeeTabs, patientIndex, "Patient Index", 1);
         appendTab(employeeTabs, weeklyCalendar2, "Calendar", 2);
         appendTab(employeeTabs, profile2, "Profile", 3);

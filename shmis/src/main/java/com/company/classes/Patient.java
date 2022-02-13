@@ -8,15 +8,13 @@ import org.json.simple.JSONObject;
 public class Patient extends Person {
     protected String address;
     protected String email;
-    protected String birthdate;
     protected String telephone;
     protected ArrayList<Long> appointments;
 
-    public Patient(long age, String firstName, String lastName, String gender, String id, String password, String address, String email, String birthdate, String telephone, ArrayList<Long> appointments) {
-        super(age, firstName, lastName, gender, id, password);
+    public Patient(long age, String firstName, String lastName, String gender, String id, String password, String address, String email, String telephone, ArrayList<Long> appointments) {
+        super(age, firstName, lastName, gender.toUpperCase(), id, password);
         this.address = address;
         this.email = email;
-        this.birthdate = birthdate;
         this.telephone = telephone;
         this.appointments = appointments;
     }
@@ -30,7 +28,6 @@ public class Patient extends Person {
         this.password = (String) obj.get("password");
         this.address = (String) obj.get("address");
         this.email = (String) obj.get("email");
-        this.birthdate = (String) obj.get("birthdate");
         this.telephone = (String) obj.get("telephone");
         this.appointments = (ArrayList<Long>) obj.get("appointments");  // convert from JSONArray to ArrayList
     }
@@ -53,7 +50,6 @@ public class Patient extends Person {
         // From Patient class
         obj.put("address", address);
         obj.put("email", email);  // Key
-        obj.put("birthdate", birthdate);
         obj.put("telephone", telephone);
         obj.put("designation", getDesignation());
         obj.put("appointments", appointments);
@@ -67,10 +63,6 @@ public class Patient extends Person {
 
     public String getEmail() {
         return email;
-    }
-
-    public String getBirthdate() {
-        return birthdate;
     }
 
     public String getTelephone() {
@@ -87,10 +79,6 @@ public class Patient extends Person {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
     }
 
     public void setTelephone(String telephone) {

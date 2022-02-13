@@ -39,9 +39,9 @@ public class Profile extends JPanel implements ActionListener {
         logout.addActionListener(this);
 
         boolean isPatient = person.getDesignation().equals("Patient");
-        JLabel[] patientlabels = new JLabel[9];
+        JLabel[] patientlabels = new JLabel[8];
         JLabel[] employeeLabels = new JLabel[5];
-        JLabel[] patientDetails = new JLabel[9];
+        JLabel[] patientDetails = new JLabel[8];
         JLabel[] employeeDetails = new JLabel[5];
 
         patientlabels[0] = employeeLabels[0] = new JLabel("Age:");
@@ -51,8 +51,7 @@ public class Profile extends JPanel implements ActionListener {
         patientlabels[4] = employeeLabels[4] = new JLabel("ID:");
         patientlabels[5] = new JLabel("Address:");
         patientlabels[6] = new JLabel("Email:");
-        patientlabels[7] = new JLabel("Birthdate:");
-        patientlabels[8] = new JLabel("Telephone:");
+        patientlabels[7] = new JLabel("Telephone:");
 
         patientDetails[0] = employeeDetails[0] = new JLabel("" + person.getAge());
         patientDetails[1] = employeeDetails[1] = new JLabel(person.getFirstName());
@@ -62,13 +61,11 @@ public class Profile extends JPanel implements ActionListener {
         patientDetails[5] = new JLabel();
         patientDetails[6] = new JLabel();
         patientDetails[7] = new JLabel();
-        patientDetails[8] = new JLabel();
 
         if (isPatient) {
             patientDetails[5] = new JLabel(((Patient)person).getAddress());
             patientDetails[6] = new JLabel(((Patient)person).getEmail());
-            patientDetails[7] = new JLabel(((Patient)person).getBirthdate());
-            patientDetails[8] = new JLabel(((Patient)person).getTelephone());
+            patientDetails[7] = new JLabel(((Patient)person).getTelephone());
         }
 
         // Setting sizes and styling
@@ -77,7 +74,7 @@ public class Profile extends JPanel implements ActionListener {
         ci.insets = new Insets(5, 5, 5, 5);
 
         for (int i = 0; i < 2; i++) {  // TODO take advantage of more ternary statements?
-            for (int j = 0; j < (isPatient ? 9 : 5); j++) {
+            for (int j = 0; j < (isPatient ? 8 : 5); j++) {
                 ci.gridx = i;
                 ci.gridy = j;
 

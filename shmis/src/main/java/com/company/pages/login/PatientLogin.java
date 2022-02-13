@@ -85,7 +85,7 @@ public class PatientLogin extends JPanel implements ActionListener {
         return null;
     }
 
-    public boolean passwordCorrect(Patient patient, String password) { // think of some encryption system
+    public boolean passwordCorrect(Patient patient, String password) { // TODO think of some encryption system
         return patient.getPassword().equals(password);
     }
 

@@ -10,7 +10,7 @@ import javax.swing.SwingConstants;
 
 import com.company.App;
 import com.company.pages.program.MyAppointments;
-import com.company.pages.program.Queue;
+import com.company.pages.program.PatientQueue;
 import com.company.pages.program.PatientIndex;
 import com.company.pages.program.Profile;
 import com.company.pages.program.WeeklyCalendar;
@@ -20,7 +20,7 @@ public class Program extends JPanel {
     private JTabbedPane employeeTabs;
 
     private MyAppointments myAppointments;
-    private Queue patientCheckinQueue;
+    private PatientQueue patientCheckinQueue;
     private PatientIndex patientIndex;
     private Profile profile, profile2;
     private WeeklyCalendar weeklyCalendar, weeklyCalendar2;
@@ -31,7 +31,7 @@ public class Program extends JPanel {
         employeeTabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
 
         myAppointments = new MyAppointments();
-        patientCheckinQueue = new Queue();
+        patientCheckinQueue = new PatientQueue();
         patientIndex = new PatientIndex();
         profile = new Profile();
         profile2 = new Profile();  // Same instance referenced by other JTabbedPane removed from the frist

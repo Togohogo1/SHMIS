@@ -211,7 +211,6 @@ public class Signup extends JPanel implements ActionListener {
         );
 
         return patient;
-        // TODO make the function voic and manage the database here?
     }
 
     public boolean emailExists(String email) {

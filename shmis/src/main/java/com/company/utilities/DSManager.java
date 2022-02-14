@@ -71,7 +71,7 @@ public class DSManager {
         JSONObject obj = new JSONObject();
 
         for (Appointment appointment : appointmentList) {
-            obj.put(appointment.getKey(), appointment.toJSONObject());
+            obj.put(""+appointment.getId(), appointment.toJSONObject());
         }
 
         return obj;
@@ -107,5 +107,9 @@ public class DSManager {
         queue.fromJSONArray((JSONArray) obj.get("queue"));
         inCalendar = (ArrayList<Long>) obj.get("calendar");
         appointmentID = (long) obj.get("appointmentID");
+    }
+
+    public Appointment query(Long idx) {
+        return appointmentList.get(SearchSort.binarySearch(appointmentList, appointment -> appointment.getId(), idx));
     }
 }

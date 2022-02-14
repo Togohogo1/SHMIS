@@ -1,5 +1,7 @@
 package com.company.classes;
 
+import java.util.ArrayList;
+
 // TODO regarrange getters
 
 public abstract class Person {
@@ -71,5 +73,9 @@ public abstract class Person {
 
     public String getDesignation() {
         return "Person";
+    }
+
+    public ArrayList<Long> getAppointments() {
+        return null;
     }
 }

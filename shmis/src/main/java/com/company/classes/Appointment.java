@@ -93,12 +93,53 @@ public class Appointment {
         return obj;
     }
 
+    public long getStart() {
+        return start;
+    }
+
+    public String getStartTable() {
+        long min = start*30 + 540;
+        return String.format("%02d:%02d", min/60, min%60);
+    }
+
+    public long getSpan() {
+        return span;
+    }
+
+    public String getEndTable() {
+        long min = (start+span)*30 + 540;
+        return String.format("%02d:%02d", min/60, min%60);
+    }
+
     public Long getId() {
         return id;
     }
 
-    // Patient class references Appointment ID
-    public String getKey() {
-        return Long.toString(id);
+    public String getDate() {
+        return date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getPatient() {
+        return patient;
+    }
+
+    public String getReferralDoctor() {
+        return referralDoctor;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public ArrayList<Boolean> getXRay() {
+        return xRay;
+    }
+
+    public ArrayList<Boolean> getUltrasound() {
+        return ultrasound;
     }
 }

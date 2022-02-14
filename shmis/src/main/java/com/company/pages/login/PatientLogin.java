@@ -94,7 +94,6 @@ public class PatientLogin extends JPanel implements ActionListener {
         if (e.getSource() == register) {
             JDialog signup = new JDialog(null, "Signup", JDialog.ModalityType.APPLICATION_MODAL);
             signup.add(new Signup(signup));
-
             signup.setSize(new Dimension(500, 500));  // TODO bad size
             signup.setLocationRelativeTo(null);
             signup.setResizable(false);

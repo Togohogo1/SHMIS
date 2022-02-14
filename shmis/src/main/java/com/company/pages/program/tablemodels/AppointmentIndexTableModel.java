@@ -17,9 +17,6 @@ public class AppointmentIndexTableModel extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        if (appiontmentIDs == null)
-            return 0;
-
         return appiontmentIDs.size();
     }
 

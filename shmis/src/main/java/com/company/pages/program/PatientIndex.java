@@ -1,7 +1,90 @@
 package com.company.pages.program;
 
+import java.awt.GridBagLayout;
+import java.net.SocketTimeoutException;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridLayout;
+import java.awt.Insets;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import com.company.App;
+import com.company.pages.program.tablemodels.AppointmentTableModel;
+import com.company.pages.program.tablemodels.PatientTableModel;
 
 public class PatientIndex extends JPanel {
-    public PatientIndex() {}
+    private JComboBox<String> sortBy;
+    private JTextField searchBar;
+
+    private JButton sort;
+    private JButton search;
+    private JButton reset;
+
+    private JTable tablePatients;
+    private JTable tableAppointments;
+    private JScrollPane patientTable;
+    private JScrollPane correspondingAppts;
+
+    public PatientIndex() {
+        super(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+
+        // Initializing the elements
+        JPanel top = new JPanel();
+        JPanel bottom = new JPanel();
+        JSplitPane splitPane = new JSplitPane();
+        JLabel sortLabel = new JLabel("Sort");
+        JLabel searchLabel = new JLabel("Search");
+
+        String[] sortOptions = {"Age", "First Name", "Last Name", "Address", "Email"};
+        sortBy = new JComboBox<>(sortOptions);
+        searchBar = new JTextField();
+        sort = new JButton("Sort");
+        search = new JButton("Search");
+        reset = new JButton("Reset");
+
+        PatientTableModel patientTableModel = new PatientTableModel(App.dsm.getPatientList());
+        AppointmentTableModel appointmentTableModel = new AppointmentTableModel();
+
+        tablePatients = new JTable(patientTableModel);
+        tableAppointments = new JTable(appointmentTableModel);
+        tablePatients.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tableAppointments.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        patientTable = new JScrollPane(tablePatients, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        correspondingAppts = new JScrollPane(tableAppointments, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, patientTable, correspondingAppts);
+        splitPane.setDividerLocation(150);  // Weird dividing behaviour (maybe its just a consequence of gridbaglayout)
+        // Setting sizes and styling
+
+        // Positioning
+        top.add(sortLabel);
+        top.add(sortBy);
+        top.add(sort);
+        // TODO add filler here?
+        top.add(searchLabel);
+        top.add(searchBar);
+        top.add(search);
+        top.add(reset);
+
+
+        c.gridy = 0;
+        this.add(top, c);
+
+        c.gridy = 1;
+        c.weightx = 1;
+        c.weighty = 1;
+        c.fill = GridBagConstraints.BOTH;
+        // splitPane.setPreferredSize(new Dimension(400, 400));
+        this.add(splitPane, c);
+    }
 }

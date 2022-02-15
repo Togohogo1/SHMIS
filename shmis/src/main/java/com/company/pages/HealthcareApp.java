@@ -25,7 +25,7 @@ public class HealthcareApp extends JFrame implements WindowListener {
         this.addWindowListener(this);
         this.setSize(1024, 576);
         this.setLocationRelativeTo(null);  // Center of the screen when opened
-        this.setResizable(false);
+        // this.setResizable(false);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
     }

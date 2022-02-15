@@ -1,5 +1,6 @@
 package com.company.pages.program.tablemodels;
 
-public class CalendarTableModel {
+import javax.swing.table.AbstractTableModel;
 
+public class CalendarTableModel {
 }

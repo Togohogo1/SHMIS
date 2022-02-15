@@ -24,7 +24,7 @@ public class PatientQueue extends JPanel {
         table = new JTable(tableModel);
         queueTable = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        // Seeting sizes and styling
+        // Setting sizes and styling
 
         // Positioning
         this.add(queueTable, c);

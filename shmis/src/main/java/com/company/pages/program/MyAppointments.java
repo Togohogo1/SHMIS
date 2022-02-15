@@ -16,7 +16,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import com.company.App;
-import com.company.pages.program.tablemodels.AppointmentIndexTableModel;
+import com.company.pages.program.tablemodels.AppointmentTableModel;
 
 public class MyAppointments extends JPanel implements ActionListener {
     private JButton book;
@@ -31,7 +31,8 @@ public class MyAppointments extends JPanel implements ActionListener {
         book = new JButton("Book Appointment");
         book.addActionListener(this);
 
-        AppointmentIndexTableModel tableModel = new AppointmentIndexTableModel(App.dsm.getCurrentUser().getAppointments());
+        AppointmentTableModel tableModel = new AppointmentTableModel();
+        tableModel.setAppointmentList(App.dsm.getCurrentUser().getAppointments());
         table = new JTable(tableModel);
         myAppointments = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 

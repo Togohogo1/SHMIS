@@ -49,7 +49,7 @@ public class MyAppointments extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JDialog book = new JDialog(null, "Signup", JDialog.ModalityType.APPLICATION_MODAL);
-        book.add(new Booking(book));
+        // book.add(new Booking(book));
         book.setSize(new Dimension(500, 500));  // TODO bad size
         book.setLocationRelativeTo(null);
         book.setResizable(false);

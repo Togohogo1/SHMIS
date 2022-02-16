@@ -15,12 +15,6 @@ public class Appointment {
     public static final int UPPER_EXTREMETIES = 5;
     public static final int LOWER_EXTREMETIES = 6;
 
-    // Ultrasound
-    public static final int GENERAL = 0;
-    public static final int OBSTETRICAL = 1;
-    public static final int MUSKULOSKELETAL = 2;
-    public static final int CARDIOVASCULAR = 3;
-
     private long start;
     private long span;
     private long id;
@@ -31,16 +25,14 @@ public class Appointment {
     private String referralDoctor;
     private String notes;
 
-    private ArrayList<Boolean> xRay;
+    private ArrayList<Boolean> imaging;
 
     public Appointment(JSONObject obj) {
-        ArrayList<Boolean> xRay = new ArrayList<>();
-        ArrayList<Boolean> ultrasound = new ArrayList<>();
-        JSONArray xRayJSON = (JSONArray) obj.get("xRay");
-        JSONArray ultrasoundJSON = (JSONArray) obj.get("ultrasound");
+        ArrayList<Boolean> imaging = new ArrayList<>();
+        JSONArray imagingJSON = (JSONArray) obj.get("imaging");
 
         // convert from JSONArray to ArrayList
-        xRay = (ArrayList<Boolean>) xRayJSON;
+        imaging = (ArrayList<Boolean>) imagingJSON;
 
         this.start = (long) obj.get("start");
         this.span = (long) obj.get("span");
@@ -50,11 +42,11 @@ public class Appointment {
         this.patient = (String) obj.get("patient");
         this.referralDoctor = (String) obj.get("referralDoctor");
         this.notes = (String) obj.get("notes");
-        this.xRay = xRay;
+        this.imaging = imaging;
     }
 
     // This constructor used when converting to JSONObject is an extra step
-    public Appointment(long start, long span, long id, String date, String status, String patient, String referralDoctor, String notes, ArrayList<Boolean> xRay, ArrayList<Boolean> ultrasound) {
+    public Appointment(long start, long span, long id, String date, String status, String patient, String referralDoctor, String notes, ArrayList<Boolean> imaging) {
         this.start = start;
         this.span = span;
         this.id = id;
@@ -63,16 +55,15 @@ public class Appointment {
         this.patient = patient;
         this.referralDoctor = referralDoctor;
         this.notes = notes;
-        this.xRay = xRay;
+        this.imaging = imaging;
     }
 
     public JSONObject toJSONObject() {
         JSONObject obj = new JSONObject();
-        JSONArray xRay = new JSONArray();
-        JSONArray ultrasound = new JSONArray();
+        JSONArray imaging = new JSONArray();
 
         // convert from JSONArray to ArrayList
-        xRay.addAll(this.xRay);
+        imaging.addAll(this.imaging);
 
         obj.put("start", start);
         obj.put("span", span);
@@ -82,8 +73,7 @@ public class Appointment {
         obj.put("patient", patient);
         obj.put("referralDoctor", referralDoctor);
         obj.put("notes", notes);
-        obj.put("xRay", xRay);
-        obj.put("ultrasound", ultrasound);
+        obj.put("imaging", imaging);
 
         return obj;
     }
@@ -130,7 +120,7 @@ public class Appointment {
         return notes;
     }
 
-    public ArrayList<Boolean> getXRay() {
-        return xRay;
+    public ArrayList<Boolean> getImaging() {
+        return imaging;
     }
 }

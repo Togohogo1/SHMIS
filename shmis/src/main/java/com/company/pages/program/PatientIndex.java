@@ -92,7 +92,6 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         top.add(sortLabel);
         top.add(sortBy);
         top.add(sort);
-        // TODO add filler here?
 
         c.gridy = 0;
         c.insets = new Insets(0, 5, 5, 5);

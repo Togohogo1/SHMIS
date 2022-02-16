@@ -12,7 +12,7 @@ import com.company.App;
 import com.company.pages.program.MyAppointments;
 import com.company.pages.program.PatientQueue;
 import com.company.pages.program.PatientIndex;
-import com.company.pages.program.ProfileHelper;
+import com.company.pages.program.Profile;
 import com.company.pages.program.WeeklyCalendar;
 
 public class Program extends JPanel {
@@ -22,7 +22,7 @@ public class Program extends JPanel {
     private MyAppointments myAppointments;
     private PatientQueue patientCheckinQueue;
     private PatientIndex patientIndex;
-    private ProfileHelper profile, profile2;
+    private Profile profile, profile2;
     private WeeklyCalendar weeklyCalendar, weeklyCalendar2;
 
     public Program() {
@@ -33,8 +33,8 @@ public class Program extends JPanel {
         myAppointments = new MyAppointments();
         patientCheckinQueue = new PatientQueue();
         patientIndex = new PatientIndex();
-        profile = new ProfileHelper();
-        profile2 = new ProfileHelper();  // Same instance referenced by other JTabbedPane removed from the frist
+        profile = new Profile();
+        profile2 = new Profile();  // Same instance referenced by other JTabbedPane removed from the frist
         weeklyCalendar = new WeeklyCalendar();
         weeklyCalendar2 = new WeeklyCalendar();  // TODO another constructor that allows for disabling for patients?
 

@@ -32,7 +32,6 @@ public class Appointment {
     private String notes;
 
     private ArrayList<Boolean> xRay;
-    private ArrayList<Boolean> ultrasound;
 
     public Appointment(JSONObject obj) {
         ArrayList<Boolean> xRay = new ArrayList<>();
@@ -42,7 +41,6 @@ public class Appointment {
 
         // convert from JSONArray to ArrayList
         xRay = (ArrayList<Boolean>) xRayJSON;
-        ultrasound = (ArrayList<Boolean>) ultrasoundJSON;
 
         this.start = (long) obj.get("start");
         this.span = (long) obj.get("span");
@@ -53,7 +51,6 @@ public class Appointment {
         this.referralDoctor = (String) obj.get("referralDoctor");
         this.notes = (String) obj.get("notes");
         this.xRay = xRay;
-        this.ultrasound = ultrasound;
     }
 
     // This constructor used when converting to JSONObject is an extra step
@@ -67,7 +64,6 @@ public class Appointment {
         this.referralDoctor = referralDoctor;
         this.notes = notes;
         this.xRay = xRay;
-        this.ultrasound = ultrasound;
     }
 
     public JSONObject toJSONObject() {
@@ -77,7 +73,6 @@ public class Appointment {
 
         // convert from JSONArray to ArrayList
         xRay.addAll(this.xRay);
-        ultrasound.addAll(this.ultrasound);
 
         obj.put("start", start);
         obj.put("span", span);
@@ -137,9 +132,5 @@ public class Appointment {
 
     public ArrayList<Boolean> getXRay() {
         return xRay;
-    }
-
-    public ArrayList<Boolean> getUltrasound() {
-        return ultrasound;
     }
 }

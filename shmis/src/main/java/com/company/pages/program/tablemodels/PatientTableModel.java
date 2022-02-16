@@ -22,7 +22,7 @@ public class PatientTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return columnNames.length - 1;  // Don't want the last column (appointment indicies)
+        return columnNames.length;  // Don't want the last column (appointment indicies)
     }
 
     @Override

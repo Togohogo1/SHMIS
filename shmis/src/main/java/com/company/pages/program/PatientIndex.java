@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -35,15 +36,26 @@ import com.company.pages.program.tablemodels.PatientTableModel;
 
 public class PatientIndex extends JPanel implements ListSelectionListener, ActionListener, MouseListener {
     private int selectedRow;
+    private String prevEmail;
 
     private JComboBox<String> sortBy;
-
     private JButton sort;
 
     private JTable tablePatients;
     private JTable tableAppointments;
+    private PatientTableModel patientTableModel;
+    private AppointmentTableModel appointmentTableModel;
     private JScrollPane patientTable;
     private JScrollPane correspondingAppts;
+
+    // For patient popup
+    private JDialog editPopup;
+    private JTextField[] inputs;
+    private JButton confirm;
+    private JButton delete;
+
+
+    // For appointment popup
 
     public PatientIndex() {
         super(new GridBagLayout());
@@ -59,10 +71,13 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         sortBy = new JComboBox<>(sortOptions);
         sort = new JButton("Sort");
 
-        PatientTableModel patientTableModel = new PatientTableModel(App.dsm.getPatientList());
-        AppointmentTableModel appointmentTableModel = new AppointmentTableModel();
+        patientTableModel = new PatientTableModel(App.dsm.getPatientList());
+        appointmentTableModel = new AppointmentTableModel();
 
         tablePatients = new JTable(patientTableModel);
+        tablePatients.addMouseListener(this);
+        tablePatients.getSelectionModel().addListSelectionListener(this);
+
         tableAppointments = new JTable(appointmentTableModel);
         tablePatients.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tableAppointments.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -92,8 +107,89 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
     }
 
     public JPanel createEdit(Patient patient) {
-        JPanel popup = new JPanel();
+        // Initialiing the elements
+        JPanel popup = new JPanel(new GridBagLayout());  // To put the stuff in
+        GridBagConstraints co = new GridBagConstraints();
+
+        JPanel top = new JPanel(new GridBagLayout());
+        GridBagConstraints ci = new GridBagConstraints();
+        inputs = new JTextField[9];
+
+        confirm = new JButton("Confirm Edits");
+        confirm.addActionListener(this);
+
+        delete = new JButton("Delete Patient");
+        delete.addActionListener(this);
+
+        JLabel[] labels = {
+            new JLabel("Age:"),
+            new JLabel("First Name:"),
+            new JLabel("Last Name:"),
+            new JLabel("Gender:"),
+            new JLabel("ID:"),
+            new JLabel("Password:"),
+            new JLabel("Address:"),
+            new JLabel("Email:"),
+            new JLabel("Telephone:"),
+        };
+
+        for (int i = 0; i < 9; i++) {
+            inputs[i] = new JTextField();
+        }
+
+        inputs[0].setText(Long.toString(patient.getAge()));
+        inputs[1].setText(patient.getFirstName());
+        inputs[2].setText(patient.getLastName());
+        inputs[3].setText(patient.getGender());
+        inputs[4].setText(patient.getId());
+        inputs[5].setText(patient.getPassword());
+        inputs[6].setText(patient.getAddress());
+        inputs[7].setText(patient.getEmail());
+        inputs[8].setText(patient.getTelephone());
+
+        // Setting sizes and styling
+
+        // Positioning
+        ci.insets = new Insets(5, 5, 5, 5);
+
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 9; j++) {
+                ci.gridx = i;
+                ci.gridy = j;
+
+                top.add((i == 0 ? labels[j] : inputs[j]), ci);
+            }
+        }
+
+        co.gridx = 0;
+        co.gridy = 0;
+        co.gridwidth = 2;
+        popup.add(top, co);
+
+        co.gridx = 0;
+        co.gridy = 1;
+        co.gridwidth = 1;
+        popup.add(confirm, co);
+
+        co.gridx = 1;
+        co.gridy = 1;
+        popup.add(delete, co);
+
         return popup;
+    }
+
+    public void changePatient() {
+        Patient patient = App.dsm.getPatientList().get(selectedRow);
+
+        patient.setAge(Long.valueOf(inputs[0].getText()));
+        patient.setFirstName(inputs[1].getText());
+        patient.setLastName(inputs[2].getText());
+        patient.setGender(inputs[3].getText());
+        patient.setId(inputs[4].getText());
+        patient.setPassword(inputs[5].getText());
+        patient.setAddress(inputs[6].getText());
+        patient.setEmail(inputs[7].getText());
+        patient.setTelephone(inputs[8].getText());
     }
 
     @Override
@@ -115,12 +211,43 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
+        if (e.getSource() == confirm) {
 
+            // Confirm that the new input is valid
+            if (PopupHelper.validPatient(inputs, prevEmail)) {
+                changePatient();
+                patientTableModel.fireTableDataChanged();
+                editPopup.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, PopupHelper.getError(), "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+        } else if (e.getSource() == delete) {
+            int n = JOptionPane.showConfirmDialog(null, "Confirm deletion of patient?", "Delete Patient", JOptionPane.YES_NO_OPTION);
+
+            if (JOptionPane.YES_OPTION == n) {
+                App.dsm.getPatientList().remove(selectedRow);
+                patientTableModel.fireTableDataChanged();  // maybe change to another firexxx method
+                editPopup.setVisible(false);
+            }
+        }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        JTable target = (JTable)e.getSource();
+        int row = target.getSelectedRow(); // select a row
+        int column = target.getSelectedColumn(); // select a column
+
+        if (e.getClickCount() == 2) {
+            Patient patient = App.dsm.getPatientList().get(row);
+            prevEmail = patient.getEmail();
+            editPopup = new JDialog(null, "Edit Patient", Dialog.ModalityType.APPLICATION_MODAL);
+            editPopup.add(createEdit(patient));
+            editPopup.setSize(new Dimension(250, 500));  // TODO make it a better size
+            editPopup.setLocationRelativeTo(null);
+            editPopup.setResizable(false);
+            editPopup.setVisible(true);
+        }
     }
 
     @Override

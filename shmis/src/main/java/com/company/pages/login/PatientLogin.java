@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -19,7 +20,8 @@ import javax.swing.JTextField;
 import com.company.App;
 import com.company.classes.Patient;
 import com.company.pages.Settings;
-import com.company.pages.program.Signup;
+// import com.company.pages.program.SignupHelper;
+import com.company.pages.program.PopupHelper;
 
 public class PatientLogin extends JPanel implements ActionListener {
     private JLabel email;  // doesn't need to be at this scope
@@ -30,6 +32,11 @@ public class PatientLogin extends JPanel implements ActionListener {
 
     private JButton register;
     private JButton login;
+
+    // For signup popup
+    private JDialog signup;
+    private JButton registerConfirm;
+    private JTextField[] inputs;
 
     public PatientLogin() {
         super(new GridBagLayout());
@@ -76,6 +83,76 @@ public class PatientLogin extends JPanel implements ActionListener {
         this.add(register, c);
     }
 
+    public JPanel createSignup() {
+        // Initialiing the elements
+        JPanel popup = new JPanel(new GridBagLayout());  // To put the stuff in
+        GridBagConstraints co = new GridBagConstraints();
+
+        JPanel top = new JPanel(new GridBagLayout());
+        GridBagConstraints ci = new GridBagConstraints();
+        inputs = new JTextField[9];
+
+        registerConfirm = new JButton("Register");
+        registerConfirm.addActionListener(this);
+
+        JLabel[] labels = {
+            new JLabel("Age:"),
+            new JLabel("First Name:"),
+            new JLabel("Last Name:"),
+            new JLabel("Gender:"),
+            new JLabel("ID:"),
+            new JLabel("Password:"),
+            new JLabel("Address:"),
+            new JLabel("Email:"),
+            new JLabel("Telephone:"),
+        };
+
+        for (int i = 0; i < 9; i++) {
+            inputs[i] = new JTextField();
+        }
+
+        // Setting sizes and styling
+
+        // Positioning
+        ci.insets = new Insets(5, 5, 5, 5);
+
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 9; j++) {
+                ci.gridx = i;
+                ci.gridy = j;
+
+                top.add((i == 0 ? labels[j] : inputs[j]), ci);
+            }
+        }
+
+        co.gridy = 0;
+        popup.add(top, co);
+
+        co.gridy = 1;
+        popup.add(registerConfirm, co);
+
+        return popup;
+    }
+
+    public Patient createPatient() {
+        ArrayList<Long> appointments = new ArrayList<>();
+        Patient patient = new Patient(
+            Long.valueOf(inputs[0].getText()),
+            inputs[1].getText(),
+            inputs[2].getText(),
+            inputs[3].getText(),
+            inputs[4].getText(),
+            inputs[5].getText(),
+            inputs[6].getText(),
+            inputs[7].getText(),
+            inputs[8].getText(),
+            appointments
+        );
+
+        return patient;
+
+    }
+
     public Patient getPatient(String email) {
         for (Patient p : App.dsm.getPatientList()) {
             if (p.getEmail().equals(email))  // All emails are unique
@@ -92,8 +169,8 @@ public class PatientLogin extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == register) {
-            JDialog signup = new JDialog(null, "Signup", JDialog.ModalityType.APPLICATION_MODAL);
-            signup.add(new Signup(signup));
+            signup = new JDialog(null, "Signup", JDialog.ModalityType.APPLICATION_MODAL);
+            signup.add(createSignup());
             signup.setSize(new Dimension(500, 500));  // TODO bad size
             signup.setLocationRelativeTo(null);
             signup.setResizable(false);
@@ -119,6 +196,14 @@ public class PatientLogin extends JPanel implements ActionListener {
             // Clearning text so it won't appear when logged out
             emailInput.setText("");
             passwordInput.setText("");
+        } else if (e.getSource() == registerConfirm) {
+            // TODO if valid patient
+            if (PopupHelper.validPatient(inputs, "")) {
+                App.dsm.getPatientList().add(createPatient());
+                signup.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, PopupHelper.getError(), "Warning", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }
 }

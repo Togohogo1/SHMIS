@@ -61,7 +61,7 @@ public class DSManager {
         JSONObject obj = new JSONObject();
 
         for (Patient patient : patientList) {
-            obj.put(patient.getId(), patient.toJSONObject());
+            obj.put(patient.getEmail(), patient.toJSONObject());
         }
 
         return obj;

@@ -33,11 +33,10 @@ import com.company.classes.Patient;
 import com.company.pages.program.tablemodels.AppointmentTableModel;
 import com.company.pages.program.tablemodels.PatientTableModel;
 
-public class PatientIndex extends JPanel implements ListSelectionListener, ActionListener {
+public class PatientIndex extends JPanel implements ListSelectionListener, ActionListener, MouseListener {
     private int selectedRow;
 
     private JComboBox<String> sortBy;
-    private JTextField searchBar;
 
     private JButton sort;
 
@@ -54,13 +53,11 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         JPanel top = new JPanel();
         JPanel bottom = new JPanel();
         JSplitPane splitPane = new JSplitPane();
-        JLabel sortLabel = new JLabel("Sort");
-        JLabel searchLabel = new JLabel("Search");
+        JLabel sortLabel = new JLabel("Sort By");
 
         String[] sortOptions = {"Age", "First Name", "Last Name", "Address", "Email"};
         sortBy = new JComboBox<>(sortOptions);
-        searchBar = new JTextField();
-        sort = new JButton("Sort By");
+        sort = new JButton("Sort");
 
         PatientTableModel patientTableModel = new PatientTableModel(App.dsm.getPatientList());
         AppointmentTableModel appointmentTableModel = new AppointmentTableModel();
@@ -81,8 +78,6 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         top.add(sortBy);
         top.add(sort);
         // TODO add filler here?
-        top.add(searchLabel);
-        top.add(searchBar);
 
         c.gridy = 0;
         c.insets = new Insets(0, 5, 5, 5);
@@ -94,6 +89,11 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         c.fill = GridBagConstraints.BOTH;
         // splitPane.setPreferredSize(new Dimension(400, 400));
         this.add(splitPane, c);
+    }
+
+    public JPanel createEdit(Patient patient) {
+        JPanel popup = new JPanel();
+        return popup;
     }
 
     @Override
@@ -118,4 +118,20 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         // TODO Auto-generated method stub
 
     }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
 }

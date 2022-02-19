@@ -26,6 +26,7 @@ import com.company.classes.Appointment;
 import com.company.classes.Patient;
 import com.company.classes.Person;
 import com.company.pages.program.tablemodels.AppointmentTableModel;
+import com.company.pages.program.tablemodels.ColorTable;
 
 public class MyAppointments extends JPanel implements ActionListener {
     private JButton book;
@@ -53,7 +54,7 @@ public class MyAppointments extends JPanel implements ActionListener {
 
         appointmentTableModel = new AppointmentTableModel();
         appointmentTableModel.setAppointmentList(((Patient)App.dsm.getCurrentUser()).getAppointments());
-        table = new JTable(appointmentTableModel);
+        table = new ColorTable(appointmentTableModel, "appointment");
         myAppointments = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         // Setting sizes and styling

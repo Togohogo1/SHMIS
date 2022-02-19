@@ -30,7 +30,7 @@ public class CalendarTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         Appointment appointment = events.get(rowIndex);
         return appointment.getStartTable() + " - " + appointment.getEndTable() + ": " + appointment.getPatient();
-
+        // TODO this is not initials yet
     }
 
     public String getColumnName(int col) {
@@ -39,5 +39,9 @@ public class CalendarTableModel extends AbstractTableModel {
 
     public boolean isCellEditable(int row, int col) {
         return false;
+    }
+
+    public String getStatusFromEvents(int row) {
+        return events.get(row).getStatus();
     }
 }

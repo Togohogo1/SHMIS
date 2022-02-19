@@ -47,14 +47,14 @@ public class HealthcareApp extends JFrame implements WindowListener {
     }
 
     @Override
-    public void windowOpened(WindowEvent e) {}
-
-    @Override
     public void windowClosing(WindowEvent e) {
         ReadWrite.writeFile(App.dsm.packPatients(), "patients.json");
         ReadWrite.writeFile(App.dsm.packAppointments(), "appointments.json");
         ReadWrite.writeFile(App.dsm.packOtherdata(), "otherdata.json");
     }
+
+    @Override
+    public void windowOpened(WindowEvent e) {}
 
     @Override
     public void windowClosed(WindowEvent e) {}

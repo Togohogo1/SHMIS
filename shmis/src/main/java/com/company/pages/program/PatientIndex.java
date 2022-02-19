@@ -32,6 +32,7 @@ import javax.swing.table.AbstractTableModel;
 import com.company.App;
 import com.company.classes.Patient;
 import com.company.pages.program.tablemodels.AppointmentTableModel;
+import com.company.pages.program.tablemodels.ColorTable;
 import com.company.pages.program.tablemodels.PatientTableModel;
 import com.company.utilities.SearchSort;
 
@@ -81,9 +82,9 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         tablePatients.getSelectionModel().addListSelectionListener(this);
         tablePatients.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        tableAppointments = new JTable(appointmentTableModel);
+        tableAppointments = new ColorTable(appointmentTableModel, "appointment");
         tablePatients.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tableAppointments.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        // tableAppointments.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         patientTable = new JScrollPane(tablePatients, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         correspondingAppts = new JScrollPane(tableAppointments, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

@@ -2,7 +2,9 @@ package com.company.pages.program;
 
 import java.util.regex.Pattern;
 
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import com.company.App;
@@ -67,6 +69,46 @@ public class PopupHelper extends JPanel {
         }
 
         return true;
+    }
+
+/*
+    private JRadioButton[] imaging;
+    private JComboBox<String> day;
+    private JComboBox<String> from;
+    private JComboBox<String> to;
+    private JComboBox<String> referralDoctor;
+*/
+
+    public static boolean validAppointment(JRadioButton[] imaging, JComboBox<String> from, JComboBox<String> to) {
+        // Checking that no JRadioButtons are left empty
+        boolean atLeastOne = false;
+
+        for (JRadioButton i : imaging) {
+            atLeastOne |= i.isSelected();
+        }
+
+        if (!atLeastOne) {
+            errorMessage = "Please make sure to check at least 1 body area";
+            return false;
+        }
+
+        if (stringToStart((String)to.getSelectedItem()) <= stringToStart((String)from.getSelectedItem())) {
+            errorMessage = "Please make sure your end time is after your start time";
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean conflictExists(JComboBox<String> day, JComboBox<String> from, JComboBox<String> to) {
+        return true;
+    }
+
+    public static int stringToStart(String time) {
+        String[] arr = time.split(":");
+        int min = Integer.parseInt(arr[0])*60 + Integer.parseInt(arr[1]);
+        int numMin = (min-540) / 30;
+        return numMin;
     }
 
     public static boolean emailExists(String prevEmail, String email) {

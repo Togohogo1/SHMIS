@@ -85,7 +85,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         patientTable = new JScrollPane(tablePatients, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         correspondingAppts = new JScrollPane(tableAppointments, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, patientTable, correspondingAppts);
-        splitPane.setDividerLocation(150);  // Weird dividing behaviour (maybe its just a consequence of gridbaglayout)
+        splitPane.setDividerLocation(450);  // Weird dividing behaviour (maybe its just a consequence of gridbaglayout)
         // Setting sizes and styling
 
         // Positioning

@@ -11,6 +11,8 @@ import javax.crypto.CipherSpi;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -86,36 +88,47 @@ public class MyAppointments extends JPanel implements ActionListener {
         String[] doctors = {"Dr. Adams", "Dr. Brian", "Dr. Campbell", "Dr. Duncan", "Dr. Eaton"};
         referralDoctor = new JComboBox<>(doctors);
 
-        notes = new JTextField();
+        notes = new JTextField("Notes");
         bookConfirm = new JButton("Book Appointment");
+        bookConfirm.addActionListener(this);
         // Setting sizes and styling
 
         // Positioning
         ci.insets = new Insets(5, 5, 5, 5);
+        ci.gridx = 2;
 
         for (int i = 0; i < 7; i++) {
             ci.gridy = i;
             top.add(imaging[i], ci);
         }
 
-        ci.gridx = 1;
         ci.gridy = 0;
+        ci.gridx = 0;
+        top.add(new JLabel("Day:"), ci);
+        ci.gridx = 1;
         top.add(day, ci);
 
-        ci.gridx = 1;
         ci.gridy = 1;
+        ci.gridx = 0;
+        top.add(new JLabel("From:"), ci);
+        ci.gridx = 1;
         top.add(from, ci);
 
-        ci.gridx = 1;
         ci.gridy = 2;
+        ci.gridx = 0;
+        top.add(new JLabel("To:"), ci);
+        ci.gridx = 1;
         top.add(to, ci);
 
-        ci.gridx = 1;
         ci.gridy = 3;
+        ci.gridx = 0;
+        top.add(new JLabel("Ref. Doctor:"), ci);
+        ci.gridx = 1;
         top.add(referralDoctor, ci);
 
-        ci.gridx = 1;
         ci.gridy = 4;
+        ci.gridx = 0;
+        ci.gridwidth = 2;
         top.add(notes, ci);
 
         co.gridy = 0;
@@ -133,11 +146,20 @@ public class MyAppointments extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JDialog book = new JDialog(null, "Signup", JDialog.ModalityType.APPLICATION_MODAL);
-        book.add(createBooking());
-        book.setSize(new Dimension(500, 500));  // TODO bad size
-        book.setLocationRelativeTo(null);
-        book.setResizable(false);
-        book.setVisible(true);
+        if (e.getSource() == book) {
+            bookingPopup = new JDialog(null, "Signup", JDialog.ModalityType.APPLICATION_MODAL);
+            bookingPopup.add(createBooking());
+            bookingPopup.setSize(new Dimension(500, 500));  // TODO bad size
+            bookingPopup.setLocationRelativeTo(null);
+            bookingPopup.setResizable(false);
+            bookingPopup.setVisible(true);
+        } else if (e.getSource() == bookConfirm) {
+            if (PopupHelper.validAppointment(imaging, from, to)) {
+                // do some database stuff here :monke:
+                bookingPopup.setVisible(false);
+            } else {  // TODO else if conflict with another appointment
+                JOptionPane.showMessageDialog(null, PopupHelper.getError(), "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }
 }

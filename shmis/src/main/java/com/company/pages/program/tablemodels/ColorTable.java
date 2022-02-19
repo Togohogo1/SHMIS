@@ -34,13 +34,15 @@ public class ColorTable extends JTable {
             if (row != 0 && isQueue)  // As if its deselected for queue
                 c.setForeground(Color.LIGHT_GRAY);
 
-            if (status.equals("Pending")) {
-                c.setBackground(Settings.LIGHT_YELLOW_3);
-            } else if (status.equals("Approved"))
-                c.setBackground(Settings.LIGHT_GREEN_3);
-            else if (status.equals("Unapproved"))
-                c.setBackground(Settings.LIGHT_RED_3);
+            if (!isQueue) {
+                if (status.equals("Pending")) {
+                    c.setBackground(Settings.LIGHT_YELLOW_3);
+                } else if (status.equals("Approved"))
+                    c.setBackground(Settings.LIGHT_GREEN_3);
+                else if (status.equals("Unapproved"))
+                    c.setBackground(Settings.LIGHT_RED_3);
             }
+        }
 
         return c;
     }

@@ -9,6 +9,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
 import com.company.App;
+import com.company.pages.program.tablemodels.ColorTable;
 import com.company.pages.program.tablemodels.QueueTableModel;
 
 public class PatientQueue extends JPanel {
@@ -21,7 +22,7 @@ public class PatientQueue extends JPanel {
 
         // Initializing the elements
         QueueTableModel tableModel = new QueueTableModel(App.dsm.getQueue());
-        table = new JTable(tableModel);
+        table = new ColorTable(tableModel, "queue");
         queueTable = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         // Setting sizes and styling

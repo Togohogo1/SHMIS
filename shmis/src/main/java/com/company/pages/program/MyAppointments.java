@@ -27,6 +27,7 @@ import com.company.classes.Patient;
 import com.company.classes.Person;
 import com.company.pages.program.tablemodels.AppointmentTableModel;
 import com.company.pages.program.tablemodels.ColorTable;
+import com.company.utilities.Node;
 
 public class MyAppointments extends JPanel implements ActionListener {
     private JButton book;
@@ -186,6 +187,7 @@ public class MyAppointments extends JPanel implements ActionListener {
                 Appointment appt = createAppointment();
                 App.dsm.getAppointmentList().add(appt);
                 ((Patient)App.dsm.getCurrentUser()).addAppointment(appt.getId());
+                App.dsm.getQueue().insertBack(new Node(appt.getId()));
                 bookingPopup.setVisible(false);
                 appointmentTableModel.fireTableDataChanged();
             }

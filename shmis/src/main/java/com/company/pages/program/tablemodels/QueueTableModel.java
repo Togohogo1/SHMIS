@@ -27,7 +27,7 @@ public class QueueTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         long idx = queue.get(rowIndex).getAppointmentID() - 1;  //
-        Appointment appointment = App.dsm.getAppointmentList().get((int)idx);  // Bsearch appointment
+        Appointment appointment = App.dsm.query(idx);  // Bsearch appointment
 
         switch (columnIndex) {
             case 0:

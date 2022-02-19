@@ -23,7 +23,7 @@ public class AppointmentTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Long idx = appiontmentIDs.get(rowIndex);
+        long idx = appiontmentIDs.get(rowIndex);
         Appointment appointment = App.dsm.query(idx);
 
         switch (columnIndex) {

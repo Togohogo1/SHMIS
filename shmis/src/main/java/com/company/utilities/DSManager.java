@@ -22,6 +22,7 @@ public class DSManager {
         initPatients(ReadWrite.readFile("patients.json"));
         initAppointments(ReadWrite.readFile("appointments.json"));
         initOtherdata(ReadWrite.readFile("otherdata.json"));
+        SearchSort.mergeSort(appointmentList, appointment -> appointment.getId());  // For binary search
     }
 
     public long getAppointmentID() {

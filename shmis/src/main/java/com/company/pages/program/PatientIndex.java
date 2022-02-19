@@ -33,6 +33,7 @@ import com.company.App;
 import com.company.classes.Patient;
 import com.company.pages.program.tablemodels.AppointmentTableModel;
 import com.company.pages.program.tablemodels.PatientTableModel;
+import com.company.utilities.SearchSort;
 
 public class PatientIndex extends JPanel implements ListSelectionListener, ActionListener, MouseListener {
     private int selectedRow;
@@ -70,6 +71,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         String[] sortOptions = {"Age", "First Name", "Last Name", "Address", "Email"};
         sortBy = new JComboBox<>(sortOptions);
         sort = new JButton("Sort");
+        sort.addActionListener(this);
 
         patientTableModel = new PatientTableModel(App.dsm.getPatientList());
         appointmentTableModel = new AppointmentTableModel();
@@ -77,6 +79,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         tablePatients = new JTable(patientTableModel);
         tablePatients.addMouseListener(this);
         tablePatients.getSelectionModel().addListSelectionListener(this);
+        tablePatients.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         tableAppointments = new JTable(appointmentTableModel);
         tablePatients.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -191,6 +194,8 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         patient.setTelephone(inputs[8].getText());
     }
 
+    // public ArrayList<Long> getSpecificAppointment(Patient patient)
+
     @Override
     public void valueChanged(ListSelectionEvent e) {
         ListSelectionModel lsm = (ListSelectionModel)e.getSource();
@@ -201,11 +206,10 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         if (firstIndex >= 0) {
             selectedRow = firstIndex;
             System.out.println("changes");  // DEBUG
-            // TODO set the other table for changes
-            // TODO fire data changes in the other table
+            System.out.println(App.dsm.getPatientList().get(firstIndex).getAppointments());
+            appointmentTableModel.setAppointmentList(App.dsm.getPatientList().get(firstIndex).getAppointments());
+            appointmentTableModel.fireTableDataChanged();
         }
-        // TODO Auto-generated method stub
-
     }
 
     @Override
@@ -228,6 +232,21 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
                 patientTableModel.fireTableDataChanged();  // maybe change to another firexxx method
                 editPopup.setVisible(false);
             }
+        } else if (e.getSource() == sort) {
+            String sortOption = (String) sortBy.getSelectedItem();
+
+            if (sortOption.equals("Age"))
+                SearchSort.mergeSort(App.dsm.getPatientList(), patient -> patient.getAge());
+            else if (sortOption.equals("First Name"))
+                SearchSort.mergeSort(App.dsm.getPatientList(), patient -> patient.getFirstName());
+            else if (sortOption.equals("Last Name"))
+                SearchSort.mergeSort(App.dsm.getPatientList(), patient -> patient.getLastName());
+            else if (sortOption.equals("Address"))
+                SearchSort.mergeSort(App.dsm.getPatientList(), patient -> patient.getAddress());
+            else if (sortOption.equals("Email")) // Else
+                SearchSort.mergeSort(App.dsm.getPatientList(), patient -> patient.getEmail());
+
+            patientTableModel.fireTableDataChanged();
         }
     }
 

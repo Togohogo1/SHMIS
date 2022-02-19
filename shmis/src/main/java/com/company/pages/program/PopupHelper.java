@@ -71,14 +71,6 @@ public class PopupHelper extends JPanel {
         return true;
     }
 
-/*
-    private JRadioButton[] imaging;
-    private JComboBox<String> day;
-    private JComboBox<String> from;
-    private JComboBox<String> to;
-    private JComboBox<String> referralDoctor;
-*/
-
     public static boolean validAppointment(JRadioButton[] imaging, JComboBox<String> from, JComboBox<String> to) {
         // Checking that no JRadioButtons are left empty
         boolean atLeastOne = false;
@@ -104,10 +96,10 @@ public class PopupHelper extends JPanel {
         return true;
     }
 
-    public static int stringToStart(String time) {
+    public static long stringToStart(String time) {
         String[] arr = time.split(":");
-        int min = Integer.parseInt(arr[0])*60 + Integer.parseInt(arr[1]);
-        int numMin = (min-540) / 30;
+        long min = Long.valueOf(arr[0])*60 + Long.valueOf(arr[1]);
+        long numMin = (min-540) / 30;
         return numMin;
     }
 

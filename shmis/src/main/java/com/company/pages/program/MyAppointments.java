@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.Period;
+import java.util.ArrayList;
 
 import javax.crypto.CipherSpi;
 import javax.swing.JButton;
@@ -21,11 +23,14 @@ import javax.swing.JTextField;
 
 import com.company.App;
 import com.company.classes.Appointment;
+import com.company.classes.Patient;
+import com.company.classes.Person;
 import com.company.pages.program.tablemodels.AppointmentTableModel;
 
 public class MyAppointments extends JPanel implements ActionListener {
     private JButton book;
     private JTable table;
+    private AppointmentTableModel appointmentTableModel;
     private JScrollPane myAppointments;
 
     // For booking popup
@@ -46,9 +51,9 @@ public class MyAppointments extends JPanel implements ActionListener {
         book = new JButton("Book Appointment");
         book.addActionListener(this);
 
-        AppointmentTableModel tableModel = new AppointmentTableModel();
-        tableModel.setAppointmentList(App.dsm.getCurrentUser().getAppointments());
-        table = new JTable(tableModel);
+        appointmentTableModel = new AppointmentTableModel();
+        appointmentTableModel.setAppointmentList(((Patient)App.dsm.getCurrentUser()).getAppointments());
+        table = new JTable(appointmentTableModel);
         myAppointments = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         // Setting sizes and styling
@@ -70,7 +75,7 @@ public class MyAppointments extends JPanel implements ActionListener {
 
         // Initilizing the elements
         imaging = new JRadioButton[7];
-        String[] imagingText = {"Abdomen", "Spine and Pelvis", "Chest", "Upper Extremeties", "Head and Neck", "Lower Extremeties", "Skeletal"};
+        String[] imagingText = {"Abdomen", "Head and Neck", "Chest", "Skeletal", "Spine and Pelvis", "Upper Extremeties", "Lower Extremeties"};
 
         for (int i = 0; i < 7; i++) {
             imaging[i] = new JRadioButton(imagingText[i]);
@@ -79,7 +84,7 @@ public class MyAppointments extends JPanel implements ActionListener {
         String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
         day = new JComboBox<>(days);
 
-        String[] starts = {"09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"};
+        String[] starts = {"09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30"};
         from = new JComboBox<>(starts);
 
         String[] ends = {"09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"};
@@ -141,7 +146,26 @@ public class MyAppointments extends JPanel implements ActionListener {
     }
 
     public Appointment createAppointment() {
-        return null;
+        ArrayList<Boolean> imagingArr = new ArrayList<>();
+
+        for (JRadioButton i : imaging) {
+            imagingArr.add(i.isSelected());
+        }
+
+        Appointment appointment = new Appointment(
+            PopupHelper.stringToStart((String)from.getSelectedItem()),
+            PopupHelper.stringToStart((String)to.getSelectedItem()) - PopupHelper.stringToStart((String)from.getSelectedItem()),
+            App.dsm.getAppointmentID(),
+            (String) day.getSelectedItem(),
+            "Pending",
+            App.dsm.getCurrentUser().getFirstName(),
+            (String) referralDoctor.getSelectedItem(),
+            notes.getText(),
+            imagingArr
+        );
+
+        App.dsm.incrAppointmentID();
+        return appointment;
     }
 
     @Override
@@ -154,11 +178,15 @@ public class MyAppointments extends JPanel implements ActionListener {
             bookingPopup.setResizable(false);
             bookingPopup.setVisible(true);
         } else if (e.getSource() == bookConfirm) {
-            if (PopupHelper.validAppointment(imaging, from, to)) {
-                // do some database stuff here :monke:
-                bookingPopup.setVisible(false);
-            } else {  // TODO else if conflict with another appointment
+            if (!PopupHelper.validAppointment(imaging, from, to)) {
                 JOptionPane.showMessageDialog(null, PopupHelper.getError(), "Warning", JOptionPane.WARNING_MESSAGE);
+            } else {  // TODO else if conflict with another appointment
+                // do some database and queue managing stuff here
+                Appointment appt = createAppointment();
+                App.dsm.getAppointmentList().add(appt);
+                ((Patient)App.dsm.getCurrentUser()).addAppointment(appt.getId());
+                bookingPopup.setVisible(false);
+                appointmentTableModel.fireTableDataChanged();
             }
         }
     }

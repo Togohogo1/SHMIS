@@ -23,7 +23,7 @@ public class Patient extends Person {
         this.age = (long) obj.get("age");
         this.firstName = (String) obj.get("firstName");
         this.lastName = (String) obj.get("lastName");
-        this.gender = (String) obj.get("gender");
+        this.gender = ((String)obj.get("gender")).toUpperCase();
         this.id = (String) obj.get("id");
         this.password = (String) obj.get("password");
         this.address = (String) obj.get("address");

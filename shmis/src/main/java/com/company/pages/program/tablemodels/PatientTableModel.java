@@ -41,7 +41,7 @@ public class PatientTableModel extends AbstractTableModel {
             case 4:
                 return patient.getId();
             case 5:
-                return patient.getPassword();
+                return "••••••••";  // Better alternative to creating a custom renderer
             case 6:
                 return patient.getAddress();
             case 7:

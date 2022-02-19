@@ -19,7 +19,7 @@ public class Program extends JPanel {
     private JTabbedPane patientTabs;
     private JTabbedPane employeeTabs;
 
-    private MyAppointments myAppointments;
+    private MyAppointments myAppointments;  // TODO need to be up here?
     private PatientQueue patientCheckinQueue;
     private PatientIndex patientIndex;
     private Profile profile, profile2;
@@ -30,29 +30,27 @@ public class Program extends JPanel {
         patientTabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
         employeeTabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
 
-        myAppointments = new MyAppointments();
-        patientCheckinQueue = new PatientQueue();
-        patientIndex = new PatientIndex();
-        profile = new Profile();
-        profile2 = new Profile();  // Same instance referenced by other JTabbedPane removed from the frist
-        weeklyCalendar = new WeeklyCalendar();
-        weeklyCalendar2 = new WeeklyCalendar();  // TODO another constructor that allows for disabling for patients?
-
-        appendTab(patientTabs, myAppointments, "Appointments", 0);
-        appendTab(patientTabs, weeklyCalendar, "Calendar", 1);
-        appendTab(patientTabs, profile, "Profile", 2);
-
-        appendTab(employeeTabs, patientCheckinQueue, "Queue", 0);
-        appendTab(employeeTabs, patientIndex, "Patient Index", 1);
-        appendTab(employeeTabs, weeklyCalendar2, "Calendar", 2);
-        appendTab(employeeTabs, profile2, "Profile", 3);
-
         this.setLayout(new GridLayout(1, 1));
 
-        if (App.dsm.getCurrentUser().getDesignation().equals("Patient"))  // Patient
+        if (App.dsm.getCurrentUser().getDesignation().equals("Patient")) {  // Patient
+            myAppointments = new MyAppointments();
+            profile = new Profile();
+            weeklyCalendar = new WeeklyCalendar();
+            appendTab(patientTabs, myAppointments, "Appointments", 0);  // TODO or do i even need this unecessary initializtion (Unless i plan to do something with jtabbedpanes listener)
+            appendTab(patientTabs, weeklyCalendar, "Calendar", 1);
+            appendTab(patientTabs, profile, "Profile", 2);
             this.add(patientTabs);
-        else  // Employee
+        } else { // Employee
+            patientCheckinQueue = new PatientQueue();
+            patientIndex = new PatientIndex();
+            profile2 = new Profile();  // Same instance referenced by other JTabbedPane removed from the frist
+            weeklyCalendar2 = new WeeklyCalendar();  // TODO another constructor that allows for disabling for patients?
+            appendTab(employeeTabs, patientCheckinQueue, "Queue", 0);
+            appendTab(employeeTabs, patientIndex, "Patient Index", 1);
+            appendTab(employeeTabs, weeklyCalendar2, "Calendar", 2);
+            appendTab(employeeTabs, profile2, "Profile", 3);
             this.add(employeeTabs);
+        }
     }
 
     public void appendTab(JTabbedPane tabs, JPanel panel, String name, int index) {

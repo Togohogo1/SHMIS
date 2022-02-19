@@ -60,7 +60,7 @@ public abstract class Person {
     }
 
     public void setGender(String gender) {
-        this.gender = gender;
+        this.gender = gender.toUpperCase();
     }
 
     public void setId(String id) {
@@ -73,9 +73,5 @@ public abstract class Person {
 
     public String getDesignation() {
         return "Person";
-    }
-
-    public ArrayList<Long> getAppointments() {
-        return null;
     }
 }

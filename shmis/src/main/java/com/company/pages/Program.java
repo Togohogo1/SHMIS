@@ -30,7 +30,9 @@ public class Program extends JPanel implements ChangeListener {
     public Program() {
         // Initialize components
         patientTabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
+        patientTabs.addChangeListener(this);
         employeeTabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
+        employeeTabs.addChangeListener(this);
 
         this.setLayout(new GridLayout(1, 1));
 
@@ -48,8 +50,8 @@ public class Program extends JPanel implements ChangeListener {
             profile2 = new Profile();  // Same instance referenced by other JTabbedPane removed from the frist
             weeklyCalendar2 = new WeeklyCalendar();  // TODO another constructor that allows for disabling for patients?
             appendTab(employeeTabs, patientCheckinQueue, "Queue", 0);
-            appendTab(employeeTabs, patientIndex, "Patient Index", 1);
-            appendTab(employeeTabs, weeklyCalendar2, "Calendar", 2);
+            appendTab(employeeTabs, weeklyCalendar2, "Calendar", 1);
+            appendTab(employeeTabs, patientIndex, "Patient Index", 2);
             appendTab(employeeTabs, profile2, "Profile", 3);
             this.add(employeeTabs);
         }

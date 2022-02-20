@@ -28,7 +28,7 @@ public class QueueTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         long appId = queue.get(rowIndex).getAppointmentID();
         Appointment appointment = App.dsm.query(appId);  // Bsearch appointment
-
+        // TODO change to arraylist to get rid of the switch?
         switch (columnIndex) {
             case 0:
                 return appointment.getId();

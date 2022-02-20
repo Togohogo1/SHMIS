@@ -8,7 +8,7 @@ import com.company.App;
 import com.company.classes.Appointment;
 
 public class AppointmentTableModel extends AbstractTableModel {
-    private String[] columnNames = {"ID", "Date", "From", "To", "Status"};
+    private String[] columnNames = {"ID", "Date", "From", "To", "Status"};  // TODO change to arraylist to get rid of the switch?
     private ArrayList<Long> appiontmentIDs;
 
     @Override

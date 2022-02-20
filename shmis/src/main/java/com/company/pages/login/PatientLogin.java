@@ -7,6 +7,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -199,8 +200,11 @@ public class PatientLogin extends JPanel implements ActionListener {
         } else if (e.getSource() == registerConfirm) {
             // TODO if valid patient
             if (PopupHelper.validPatient(inputs, "")) {
-                App.dsm.getPatientList().add(createPatient());
+                Patient registerPatient = createPatient();
+                App.dsm.getPatientList().add(registerPatient);
+                App.dsm.setCurrentUser(registerPatient);
                 signup.setVisible(false);
+                App.shmis.LoggedIn();
             } else {
                 JOptionPane.showMessageDialog(null, PopupHelper.getError(), "Warning", JOptionPane.WARNING_MESSAGE);
             }

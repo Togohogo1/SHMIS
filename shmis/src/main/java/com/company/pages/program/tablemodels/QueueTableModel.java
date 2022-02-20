@@ -7,7 +7,7 @@ import com.company.classes.Appointment;
 import com.company.utilities.Queue;
 
 public class QueueTableModel extends AbstractTableModel {
-    private String[] columnNames = {"Patient", "Date", "From", "To", "Status"};
+    private String[] columnNames = {"ID", "Patient", "Date", "From", "To"};
     private Queue queue;
 
     public QueueTableModel(Queue queue) {
@@ -31,15 +31,15 @@ public class QueueTableModel extends AbstractTableModel {
 
         switch (columnIndex) {
             case 0:
-                return appointment.getPatient();
+                return appointment.getId();
             case 1:
-                return appointment.getDate();
+                return appointment.getPatient();
             case 2:
-                return appointment.getStartTable();
+                return appointment.getDate();
             case 3:
-                return appointment.getEndTable();
+                return appointment.getStartTable();
             case 4:
-                return appointment.getStatus();
+                return appointment.getEndTable();
         }
 
         return null;

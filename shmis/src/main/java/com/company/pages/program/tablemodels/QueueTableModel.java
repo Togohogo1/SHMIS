@@ -7,7 +7,7 @@ import com.company.classes.Appointment;
 import com.company.utilities.Queue;
 
 public class QueueTableModel extends AbstractTableModel {
-    private String[] columnNames = {"ID", "Date", "From", "To", "Status"};
+    private String[] columnNames = {"Patient", "Date", "From", "To", "Status"};
     private Queue queue;
 
     public QueueTableModel(Queue queue) {
@@ -26,12 +26,12 @@ public class QueueTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        long idx = queue.get(rowIndex).getAppointmentID() - 1;  //
-        Appointment appointment = App.dsm.query(idx);  // Bsearch appointment
+        long appId = queue.get(rowIndex).getAppointmentID();
+        Appointment appointment = App.dsm.query(appId);  // Bsearch appointment
 
         switch (columnIndex) {
             case 0:
-                return appointment.getId();
+                return appointment.getPatient();
             case 1:
                 return appointment.getDate();
             case 2:

@@ -98,7 +98,7 @@ public class Profile extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         int confirm = JOptionPane.showConfirmDialog(null, "Confirm Logout?", "Option", JOptionPane.YES_NO_OPTION);
 
-        if (confirm == JOptionPane.YES_OPTION)
+        if (JOptionPane.YES_OPTION == confirm)
             App.shmis.LogOut();
     }
 }

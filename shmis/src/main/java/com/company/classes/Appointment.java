@@ -123,4 +123,8 @@ public class Appointment {
     public ArrayList<Boolean> getImaging() {
         return imaging;
     }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

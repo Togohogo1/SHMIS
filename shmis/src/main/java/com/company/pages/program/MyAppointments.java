@@ -160,7 +160,7 @@ public class MyAppointments extends JPanel implements ActionListener {
             App.dsm.getAppointmentID(),
             (String) day.getSelectedItem(),
             "Pending",
-            App.dsm.getCurrentUser().getFirstName(),
+            App.dsm.getCurrentUser().getFirstName() + " " + App.dsm.getCurrentUser().getLastName(),  // Full name
             (String) referralDoctor.getSelectedItem(),
             notes.getText(),
             imagingArr
@@ -187,7 +187,7 @@ public class MyAppointments extends JPanel implements ActionListener {
                 Appointment appt = createAppointment();
                 App.dsm.getAppointmentList().add(appt);
                 ((Patient)App.dsm.getCurrentUser()).addAppointment(appt.getId());
-                App.dsm.getQueue().insertBack(new Node(appt.getId()));
+                App.dsm.getQueue().insertFront(new Node(appt.getId()));
                 bookingPopup.setVisible(false);
                 appointmentTableModel.fireTableDataChanged();
             }

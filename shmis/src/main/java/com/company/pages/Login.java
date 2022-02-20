@@ -29,13 +29,13 @@ public class Login extends JPanel {
         this.add(tabs);
     }
 
-    public void appendTab(JPanel panel, String name, int index) {
+    public void appendTab(JPanel panel, String name, int idx) {
         JLabel label = new JLabel(name);
         label.setFont(Settings.H1_BOLD);
         label.setHorizontalAlignment(SwingConstants.LEFT);
         label.setPreferredSize(new Dimension(256, 50));
 
         tabs.addTab("", panel);
-        tabs.setTabComponentAt(index, label);
+        tabs.setTabComponentAt(idx, label);
     }
 }

@@ -68,11 +68,11 @@ public class DoublyLinkedList {
         size--;
     }
 
-    public Node get(int index) {
+    public Node get(int idx) {
         Node node = head;
-        index++;  // the 0th Node is a sentinel
+        idx++;  // the 0th Node is a sentinel
 
-        while (index-- != 0) {
+        while (idx-- != 0) {
             node = node.getNext();
         }
 

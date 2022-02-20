@@ -69,14 +69,15 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
                 int n = JOptionPane.showConfirmDialog(null, "Approve the first appointment in queue?", "Approve Appointment", JOptionPane.YES_NO_OPTION);
                 long appId = App.dsm.getQueue().get(0).getAppointmentID();  // TODO new method?
                 Appointment appointment = App.dsm.getAppointmentList().get(SearchSort.binarySearch(App.dsm.getAppointmentList(), appt -> appt.getId(), appId));
-                App.dsm.getQueue().removeFront();
 
                 if (JOptionPane.YES_OPTION == n) {
+                    App.dsm.getQueue().removeFront();
                     System.out.println("Approved");
                     appointment.setStatus("Approved");
                     // TODO and more db stuff
                     tableModel.fireTableDataChanged();
-                } else {
+                } else if (JOptionPane.NO_OPTION == n) {
+                    App.dsm.getQueue().removeFront();
                     appointment.setStatus("Unapproved");
                     System.out.println("Unapproved");
                     // TODO and more db stuff

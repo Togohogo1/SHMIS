@@ -2,7 +2,7 @@ package com.company.classes;
 
 public class Employee extends Person {
     public Employee() {
-        super(99, "Admin", "Nimda", "M/F", "0", "password");
+        super(-1, "Admin", "Admin", "M/F/O", "0", "password");
     }
 
     public String getDesignation() {

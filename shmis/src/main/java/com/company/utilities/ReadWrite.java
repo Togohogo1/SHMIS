@@ -27,7 +27,7 @@ public class ReadWrite {
             String input = bufferRead.readLine();
             obj = (JSONObject) parser.parse(input);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
 
         return obj;
@@ -42,7 +42,7 @@ public class ReadWrite {
             bufferWrite.write(obj.toJSONString());
             bufferWrite.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
     }
 }

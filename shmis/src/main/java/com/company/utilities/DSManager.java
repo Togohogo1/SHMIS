@@ -105,9 +105,11 @@ public class DSManager {
     }
 
     public void initOtherdata(JSONObject obj) {  // TODO Program dies if this file doesn't exist
-        queue.fromJSONArray((JSONArray) obj.get("queue"));
-        inCalendar = (ArrayList<Long>) obj.get("calendar");
-        appointmentID = (long) obj.get("appointmentID");
+        if (!obj.isEmpty()) {
+            queue.fromJSONArray((JSONArray) obj.get("queue"));
+            inCalendar = (ArrayList<Long>) obj.get("calendar");
+            appointmentID = (long) obj.get("appointmentID");
+        }
     }
 
     public Appointment query(Long appId) {

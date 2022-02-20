@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.GridBagConstraints;
 
+import javax.print.PrintService;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -13,14 +14,16 @@ import javax.swing.JTable;
 import com.company.App;
 import com.company.classes.Appointment;
 import com.company.pages.program.tablemodels.CalendarTableModel;
+import com.company.pages.program.tablemodels.ColorTable;
+import com.company.utilities.SearchSort;
 
 public class WeeklyCalendar extends JPanel {
+    private int presize;
     private String[] names = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
     private ArrayList<ArrayList<Appointment>> days = new ArrayList<>();
     private CalendarTableModel[] tableModels = new CalendarTableModel[5];
     private JTable[] calendars = new JTable[5];
     private JScrollPane[] calendarTables = new JScrollPane[5];
-
 
     public WeeklyCalendar() {
         super(new GridBagLayout());
@@ -33,10 +36,13 @@ public class WeeklyCalendar extends JPanel {
 
         for (int i = 0; i < 5; i++) {
             days.add(new ArrayList<>());
-            tableModels[i] = new CalendarTableModel(names[i], days.get(i));
-            calendars[i] = new JTable(tableModels[i]);
+            tableModels[i] = new CalendarTableModel(names[i], days.get(i));  // Pass by reference, only need to do this once
+            calendars[i] = new ColorTable(tableModels[i], "calendar"); // TODO change to colortable later
             calendarTables[i] = new JScrollPane(calendars[i]);
         }
+
+        render();
+        presize = App.dsm.getInCalendar().size();
 
         // Setting sizes and styling
 
@@ -49,11 +55,47 @@ public class WeeklyCalendar extends JPanel {
             panel.add(calendarTables[i], ci);
         }
 
-
         co.insets = new Insets(5, 5, 5, 5);
         co.weightx = 1;
         co.weighty = 1;
         co.fill = GridBagConstraints.BOTH;
         this.add(panel, co);
+    }
+
+    // Efficient enough for maximum calendar capacity, less prone to bugs
+    public void render() {
+        for (int i = presize; i < App.dsm.getInCalendar().size(); i++) {
+            Appointment appointment = App.dsm.query(App.dsm.getInCalendar().get(i));
+            int day = dayToInt(appointment.getDate());  // Get day of each appointment in calendar list
+            days.get(day).add(appointment);  // Unsorted, but distributed appointments from calendar list
+        }
+
+        presize = App.dsm.getInCalendar().size();
+
+        // Ordering by start time
+        for (ArrayList<Appointment> arr : days) {
+            SearchSort.mergeSort(arr, appointment -> appointment.getStart());
+        }
+
+        for (CalendarTableModel model : tableModels) {
+            model.fireTableDataChanged();
+        }
+    }
+
+    public int dayToInt(String day) {
+        switch (day) {  // TODO think about using array indicies instead
+            case "Monday":
+                return 0;
+            case "Tuesday":
+                return 1;
+            case "Wednesday":
+                return 2;
+            case "Thursday":
+                return 3;
+            case "Friday":
+                return 4;
+        }
+
+        return -1;
     }
 }

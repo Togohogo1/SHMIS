@@ -71,5 +71,12 @@ public class Program extends JPanel implements ChangeListener {
     public void stateChanged(ChangeEvent e) {
         JTabbedPane target = (JTabbedPane) e.getSource();
         int idx = target.getSelectedIndex();
+
+        if (idx == 1) {
+            if (App.dsm.getCurrentUser().getDesignation().equals("Patient"))
+                weeklyCalendar.render();
+            else
+                weeklyCalendar2.render();
+        }
     }
 }

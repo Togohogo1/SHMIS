@@ -30,6 +30,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
 import com.company.App;
+import com.company.classes.Appointment;
 import com.company.classes.Patient;
 import com.company.pages.program.tablemodels.AppointmentTableModel;
 import com.company.pages.program.tablemodels.ColorTable;
@@ -181,9 +182,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         return popup;
     }
 
-    public void changePatient() {
-        Patient patient = App.dsm.getPatientList().get(selectedRow);
-
+    public void changePatient(Patient patient) {
         patient.setAge(Long.valueOf(inputs[0].getText()));
         patient.setFirstName(inputs[1].getText());
         patient.setLastName(inputs[2].getText());
@@ -213,13 +212,22 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         }
     }
 
+    public void changeAppointmentRefs(Patient patient) {
+        for (long appId : patient.getAppointments()) {
+            Appointment appointment = App.dsm.query(appId);
+            appointment.setPatient(patient.getFirstName() + " " + patient.getLastName());
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == confirm) {
 
             // Confirm that the new input is valid
             if (PopupHelper.validPatient(inputs, prevEmail)) {
-                changePatient();
+                Patient patient = App.dsm.getPatientList().get(selectedRow);
+                changePatient(patient);
+                changeAppointmentRefs(patient);
                 patientTableModel.fireTableDataChanged();
                 editPopup.setVisible(false);
             } else {

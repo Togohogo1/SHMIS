@@ -2,10 +2,12 @@ package com.company.pages.program.tablemodels;
 
 import java.util.ArrayList;
 
+import javax.lang.model.util.ElementScanner14;
 import javax.swing.table.AbstractTableModel;
 
 import com.company.App;
 import com.company.classes.Appointment;
+import com.company.classes.Person;
 
 public class CalendarTableModel extends AbstractTableModel {
     private String day;
@@ -29,8 +31,20 @@ public class CalendarTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Appointment appointment = events.get(rowIndex);
-        return appointment.getStartTable() + " - " + appointment.getEndTable() + ": " + appointment.getPatient();
-        // TODO this is not initials yet
+        Person currentUser = App.dsm.getCurrentUser();
+        String designation = currentUser.getDesignation();
+        String fromTo = appointment.getStartTable() + " to " + appointment.getEndTable();
+
+
+        if (designation.equals("Employee"))
+            return fromTo  + " - " + appointment.getPatient();
+        else {
+            if (appointment.getPatient().equals(currentUser.getFirstName() + " " + currentUser.getLastName()))
+                return fromTo + " - You";  // Current user's appointment
+            else
+                return fromTo;
+        }
+            // TODO diff if patient
     }
 
     public String getColumnName(int col) {

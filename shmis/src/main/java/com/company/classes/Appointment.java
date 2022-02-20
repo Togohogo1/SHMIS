@@ -127,4 +127,8 @@ public class Appointment {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public void setPatient(String patient) {
+        this.patient = patient;
+    }
 }

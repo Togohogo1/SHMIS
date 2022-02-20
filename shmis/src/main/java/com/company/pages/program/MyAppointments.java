@@ -186,8 +186,9 @@ public class MyAppointments extends JPanel implements ActionListener {
                 // do some database and queue managing stuff here
                 Appointment appt = createAppointment();
                 App.dsm.getAppointmentList().add(appt);
-                ((Patient)App.dsm.getCurrentUser()).addAppointment(appt.getId());
                 App.dsm.getQueue().insertFront(new Node(appt.getId()));
+                App.dsm.getInCalendar().add(appt.getId());
+                ((Patient)App.dsm.getCurrentUser()).addAppointment(appt.getId());
                 bookingPopup.setVisible(false);
                 appointmentTableModel.fireTableDataChanged();
             }

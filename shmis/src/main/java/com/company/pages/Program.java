@@ -48,7 +48,7 @@ public class Program extends JPanel implements ChangeListener {
             patientCheckinQueue = new PatientQueue();
             patientIndex = new PatientIndex();
             profile2 = new Profile();  // Same instance referenced by other JTabbedPane removed from the frist
-            weeklyCalendar2 = new WeeklyCalendar();  // TODO another constructor that allows for disabling for patients?
+            weeklyCalendar2 = new WeeklyCalendar();
             appendTab(employeeTabs, patientCheckinQueue, "Queue", 0);
             appendTab(employeeTabs, weeklyCalendar2, "Calendar", 1);
             appendTab(employeeTabs, patientIndex, "Patient Index", 2);

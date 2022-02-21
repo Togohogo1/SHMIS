@@ -108,7 +108,7 @@ public class WeeklyCalendar extends JPanel implements MouseListener {
 
         return -1;
     }
-
+    // TODO types of selection
     @Override
     public void mouseClicked(MouseEvent e) {
         if (App.dsm.currUserIsPatient())
@@ -124,7 +124,7 @@ public class WeeklyCalendar extends JPanel implements MouseListener {
             int n = JOptionPane.showConfirmDialog(null, String.format("Mark %s's appointment (ID = %d) as complete?", appointment.getPatient(), appointment.getId()), "Complete Appointment", JOptionPane.YES_NO_OPTION);
 
             if (JOptionPane.YES_OPTION == n) {
-                appointment.setStatus("Complete");
+                appointment.setStatus("Completed");
                 App.dsm.getInCalendar().remove(appointment.getId());
                 render();
             }

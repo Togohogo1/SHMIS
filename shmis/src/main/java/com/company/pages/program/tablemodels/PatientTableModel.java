@@ -28,7 +28,6 @@ public class PatientTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Patient patient = patients.get(rowIndex);
-        // TODO change to arraylist to get rid of the switch?
         switch (columnIndex) {
             case 0:
                 return patient.getAge();

@@ -1,5 +1,6 @@
 package com.company.pages.program;
 
+import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.GridBagLayout;
 import java.net.SocketTimeoutException;
@@ -177,6 +178,10 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         inputs[8].setText(patient.getTelephone());
 
         // Setting sizes and styling
+        for (int i = 0; i < 9; i++) {
+            labels[i].setPreferredSize(new Dimension(75, 22));  // Default JButton size
+            inputs[i].setPreferredSize(new Dimension(140, 22));
+        }
 
         // Positioning
         ci.insets = new Insets(5, 5, 5, 5);
@@ -190,11 +195,14 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
             }
         }
 
+        co.insets = new Insets(0, 5, 5, 5);
         co.gridx = 0;
         co.gridy = 0;
         co.gridwidth = 2;
+        top.setBackground(Color.RED);
         popup.add(top, co);
 
+        co.insets = new Insets(10, 0, 5, 0);
         co.gridx = 0;
         co.gridy = 1;
         co.gridwidth = 1;
@@ -378,7 +386,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
                 prevEmail = patient.getEmail();
                 editPopup = new JDialog(null, "Edit Patient", Dialog.ModalityType.APPLICATION_MODAL);
                 editPopup.add(createEdit(patient));
-                editPopup.setSize(new Dimension(250, 500));  // TODO make it a better size
+                editPopup.setSize(new Dimension(280, 400));  // TODO make it a better size
                 editPopup.setLocationRelativeTo(null);
                 editPopup.setResizable(false);
                 editPopup.setVisible(true);

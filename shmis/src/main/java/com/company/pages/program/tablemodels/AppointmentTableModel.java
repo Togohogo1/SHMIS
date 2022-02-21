@@ -54,4 +54,8 @@ public class AppointmentTableModel extends AbstractTableModel {
     public void setAppointmentList(ArrayList<Long> appointmentIDs) {
         this.appiontmentIDs = appointmentIDs;
     }
+
+    public ArrayList<Long> getAppointmentList() {
+        return appiontmentIDs;
+    }
 }

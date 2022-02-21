@@ -288,6 +288,9 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
                 editPopup.setResizable(false);
                 editPopup.setVisible(true);
             } else if (target == tableAppointments) {
+                long appId = appointmentTableModel.getAppointmentList().get(row);
+                Appointment appointment = App.dsm.query(appId);
+                System.out.println(appointment.getId());
                 System.out.println("appointments bruh");
             }
         }

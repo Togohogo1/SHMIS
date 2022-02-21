@@ -36,7 +36,7 @@ public class Program extends JPanel implements ChangeListener {
 
         this.setLayout(new GridLayout(1, 1));
 
-        if (App.dsm.getCurrentUser().getDesignation().equals("Patient")) {  // Patient
+        if (App.dsm.currUserIsPatient()) {  // Patient
             myAppointments = new MyAppointments();
             profile = new Profile();
             weeklyCalendar = new WeeklyCalendar();
@@ -73,7 +73,7 @@ public class Program extends JPanel implements ChangeListener {
         int idx = target.getSelectedIndex();
 
         if (idx == 1) {
-            if (App.dsm.getCurrentUser().getDesignation().equals("Patient"))
+            if (App.dsm.currUserIsPatient())
                 weeklyCalendar.render();
             else
                 weeklyCalendar2.render();

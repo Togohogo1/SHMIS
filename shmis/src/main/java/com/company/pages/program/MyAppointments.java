@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.time.Period;
 import java.util.ArrayList;
 
@@ -29,7 +31,7 @@ import com.company.pages.program.tablemodels.AppointmentTableModel;
 import com.company.pages.program.tablemodels.ColorTable;
 import com.company.utilities.Node;
 
-public class MyAppointments extends JPanel implements ActionListener {
+public class MyAppointments extends JPanel implements ActionListener, MouseListener{
     private JButton book;
     private JTable table;
     private AppointmentTableModel appointmentTableModel;
@@ -45,6 +47,9 @@ public class MyAppointments extends JPanel implements ActionListener {
     private JTextField notes;
     private JButton bookConfirm;
 
+    // For appointment info popup
+    private JDialog appInfoPopup;
+
     public MyAppointments() {
         super(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -56,6 +61,7 @@ public class MyAppointments extends JPanel implements ActionListener {
         appointmentTableModel = new AppointmentTableModel();
         appointmentTableModel.setAppointmentList(((Patient)App.dsm.getCurrentUser()).getAppointments());
         table = new ColorTable(appointmentTableModel, "appointment");
+        table.addMouseListener(this);
         myAppointments = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         // Setting sizes and styling
@@ -147,6 +153,12 @@ public class MyAppointments extends JPanel implements ActionListener {
         return panel;
     }
 
+    public JPanel createApptInfo() {
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        return panel;
+    }
+
     public Appointment createAppointment() {
         ArrayList<Boolean> imagingArr = new ArrayList<>();
 
@@ -197,4 +209,35 @@ public class MyAppointments extends JPanel implements ActionListener {
             }
         }
     }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        JTable target = (JTable) e.getSource();
+        int row = target.getSelectedRow(); // select a row
+        int column = target.getSelectedColumn(); // select a column
+
+        if (e.getClickCount() == 2) {
+            long appId = ((Patient)App.dsm.getCurrentUser()).getAppointments().get(row);
+            Appointment appointment = App.dsm.query(appId);
+            appInfoPopup = new JDialog(null, "Appointment Info", JDialog.ModalityType.APPLICATION_MODAL);
+            appInfoPopup.add(createApptInfo());
+            appInfoPopup.setSize(new Dimension(500, 500));  // TODO bad size
+            appInfoPopup.setLocationRelativeTo(null);
+            appInfoPopup.setResizable(false);
+            appInfoPopup.setVisible(true);
+        }
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
 }

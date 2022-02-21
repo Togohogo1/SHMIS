@@ -73,12 +73,12 @@ public class EmployeeLogin extends JPanel implements ActionListener {
         String inputPassword = String.valueOf(passwordInput.getPassword());  // .getText() deprecated for JPasswordField
 
         if (!inputKey.equals("admin")) {
-            JOptionPane.showMessageDialog(null, "Invalid Employee Key", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Invalid employee key", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         if (!inputPassword.equals("pass")) {
-            JOptionPane.showMessageDialog(null, "Incorrect Password", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Incorrect password", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
 

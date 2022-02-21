@@ -182,12 +182,12 @@ public class PatientLogin extends JPanel implements ActionListener {
             Patient inputPatient = getPatient(inputEmail);
 
             if (inputPatient == null) {
-                JOptionPane.showMessageDialog(null, "Email Does Not Exist", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Email does not exist", "Warning", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             if (!passwordCorrect(inputPatient, inputPassword)) {
-                JOptionPane.showMessageDialog(null, "Incorrect Password", "Warning", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Incorrect password", "Warning", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 

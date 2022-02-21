@@ -57,8 +57,9 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
     private JButton confirm;
     private JButton delete;
 
+    // For appointment info popup
+    private JDialog appInfoPopup;
 
-    // For appointment popup
 
     public PatientIndex() {
         super(new GridBagLayout());
@@ -82,9 +83,10 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         tablePatients.addMouseListener(this);
         tablePatients.getSelectionModel().addListSelectionListener(this);
         tablePatients.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        tablePatients.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         tableAppointments = new ColorTable(appointmentTableModel, "appointment");
-        tablePatients.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tableAppointments.addMouseListener(this);
         // tableAppointments.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         patientTable = new JScrollPane(tablePatients, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -182,6 +184,12 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         return popup;
     }
 
+    public JPanel createApptInfo() {
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        return panel;
+    }
+
     public void changePatient(Patient patient) {
         patient.setAge(Long.valueOf(inputs[0].getText()));
         patient.setFirstName(inputs[1].getText());
@@ -270,14 +278,18 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         int column = target.getSelectedColumn(); // select a column
 
         if (e.getClickCount() == 2) {
-            Patient patient = App.dsm.getPatientList().get(row);
-            prevEmail = patient.getEmail();
-            editPopup = new JDialog(null, "Edit Patient", Dialog.ModalityType.APPLICATION_MODAL);
-            editPopup.add(createEdit(patient));
-            editPopup.setSize(new Dimension(250, 500));  // TODO make it a better size
-            editPopup.setLocationRelativeTo(null);
-            editPopup.setResizable(false);
-            editPopup.setVisible(true);
+            if (target == tablePatients) {
+                Patient patient = App.dsm.getPatientList().get(row);
+                prevEmail = patient.getEmail();
+                editPopup = new JDialog(null, "Edit Patient", Dialog.ModalityType.APPLICATION_MODAL);
+                editPopup.add(createEdit(patient));
+                editPopup.setSize(new Dimension(250, 500));  // TODO make it a better size
+                editPopup.setLocationRelativeTo(null);
+                editPopup.setResizable(false);
+                editPopup.setVisible(true);
+            } else if (target == tableAppointments) {
+                System.out.println("appointments bruh");
+            }
         }
     }
 

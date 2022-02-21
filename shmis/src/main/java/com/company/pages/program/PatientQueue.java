@@ -64,7 +64,7 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
         int row = target.getSelectedRow(); // select a row
         int column = target.getSelectedColumn(); // select a column
 
-        if (target.getSelectedRow() == 0) {
+        if (target.getSelectedRow() == 0) {  // Only allow the first row to be selected
             if (e.getClickCount() == 2) {
                 int n = JOptionPane.showConfirmDialog(null, "Approve the first appointment in queue?", "Approve Appointment", JOptionPane.YES_NO_OPTION);
                 long appId = App.dsm.getQueue().get(0).getAppointmentID();  // TODO new method?
@@ -88,32 +88,17 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
+    public void mousePressed(MouseEvent e) {}
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
+    public void mouseReleased(MouseEvent e) {}
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
-    public void mouseExited(MouseEvent e) {
-        // TODO Auto-generated method stub
-
-    }
+    public void mouseExited(MouseEvent e) {}
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-
-    }
+    public void actionPerformed(ActionEvent e) {}
 }

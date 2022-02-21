@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 
 import com.company.App;
 import com.company.classes.Employee;
+import com.company.pages.Settings;
 
 public class EmployeeLogin extends JPanel implements ActionListener {
     private JLabel key;
@@ -32,8 +33,8 @@ public class EmployeeLogin extends JPanel implements ActionListener {
         GridBagConstraints c = new GridBagConstraints();
 
         // Initializing the elements
-        key = new JLabel("Key");
-        password = new JLabel("Password");
+        key = new JLabel("Enter key:");
+        password = new JLabel("Enter password:");
 
         keyInput = new JTextField();
         passwordInput = new JPasswordField();
@@ -42,6 +43,20 @@ public class EmployeeLogin extends JPanel implements ActionListener {
         login.addActionListener(this);
 
         // Setting sizes and styling
+        key.setFont(Settings.H2_BOLD);
+        key.setPreferredSize(new Dimension(120, 30));
+
+        password.setFont(Settings.H2_BOLD);
+        password.setPreferredSize(new Dimension(120, 30));
+
+        keyInput.setFont(Settings.H2);
+        keyInput.setPreferredSize(new Dimension(120, 30));
+
+        passwordInput.setFont(Settings.H2);
+        passwordInput.setPreferredSize(new Dimension(120, 30));
+
+        login.setFont(Settings.H2);
+        login.setPreferredSize(new Dimension(120+120+10, 30));
 
         // Positioning
         c.gridx = 0;
@@ -77,7 +92,7 @@ public class EmployeeLogin extends JPanel implements ActionListener {
             return;
         }
 
-        if (!inputPassword.equals("pass")) {
+        if (!inputPassword.equals("password")) {
             JOptionPane.showMessageDialog(null, "Incorrect password", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }

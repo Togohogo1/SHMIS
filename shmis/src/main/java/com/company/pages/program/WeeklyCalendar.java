@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -13,9 +14,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 import com.company.App;
 import com.company.classes.Appointment;
+import com.company.pages.Settings;
 import com.company.pages.program.tablemodels.CalendarTableModel;
 import com.company.pages.program.tablemodels.ColorTable;
 import com.company.utilities.SearchSort;
@@ -42,7 +45,6 @@ public class WeeklyCalendar extends JPanel implements MouseListener {
             tableModels[i] = new CalendarTableModel(names[i], days.get(i));  // Pass by reference, only need to do this once
             calendars[i] = new ColorTable(tableModels[i], "calendar"); // TODO change to colortable later
             calendars[i].addMouseListener(this);
-            calendars[i].setRowHeight(25);
             calendarTables[i] = new JScrollPane(calendars[i]);
         }
 
@@ -50,7 +52,15 @@ public class WeeklyCalendar extends JPanel implements MouseListener {
         presize = App.dsm.getInCalendar().size();
 
         // Setting sizes and styling
-
+        for (int i = 0; i < 5; i++) {
+            calendars[i].setRowHeight(25);
+            calendars[i].setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            calendars[i].setFont(Settings.H3);
+            calendars[i].getTableHeader().setFont(Settings.H3_BOLD);
+            calendars[i].getTableHeader().setPreferredSize(new Dimension(0, 30));  // Will auto resize
+            calendars[i].getTableHeader().setReorderingAllowed(false);
+        }
+        // TODO sizes depending on time
         // Positioning
         for (int i = 0; i < 5; i++) {
             ci.gridx = i;
@@ -60,7 +70,7 @@ public class WeeklyCalendar extends JPanel implements MouseListener {
             panel.add(calendarTables[i], ci);
         }
 
-        co.insets = new Insets(5, 5, 5, 5);
+        co.insets = new Insets(10, 10, 10, 10);
         co.weightx = 1;
         co.weighty = 1;
         co.fill = GridBagConstraints.BOTH;
@@ -120,13 +130,18 @@ public class WeeklyCalendar extends JPanel implements MouseListener {
         Appointment appointment = days.get(day).get(row);
         System.out.println(row + " " + day + appointment.getId());
 
-        if (e.getClickCount() == 2 && appointment.getStatus().equals("Approved")) {
-            int n = JOptionPane.showConfirmDialog(null, String.format("Mark %s's appointment (ID = %d) as complete?", appointment.getPatient(), appointment.getId()), "Complete Appointment", JOptionPane.YES_NO_OPTION);
+        if (e.getClickCount() == 2) {
+            if (appointment.getStatus().equals("Approved")) {
+                int n = JOptionPane.showConfirmDialog(null, String.format("Mark %s's appointment (ID = %d) as complete?", appointment.getPatient(), appointment.getId()), "Complete Appointment", JOptionPane.YES_NO_OPTION);
 
-            if (JOptionPane.YES_OPTION == n) {
-                appointment.setStatus("Completed");
-                App.dsm.getInCalendar().remove(appointment.getId());
-                render();
+                if (JOptionPane.YES_OPTION == n) {
+                    appointment.setStatus("Completed");
+                    App.dsm.getInCalendar().remove(appointment.getId());
+                    render();
+                }
+            } else {
+                System.out.println("amogus");
+                JOptionPane.showMessageDialog(null, String.format("%s's appointment (ID = %d)", appointment.getPatient(), appointment.getId()));
             }
         }
 

@@ -33,6 +33,7 @@ import javax.swing.table.AbstractTableModel;
 import com.company.App;
 import com.company.classes.Appointment;
 import com.company.classes.Patient;
+import com.company.pages.Settings;
 import com.company.pages.program.tablemodels.AppointmentTableModel;
 import com.company.pages.program.tablemodels.ColorTable;
 import com.company.pages.program.tablemodels.PatientTableModel;
@@ -69,13 +70,13 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
 
     public PatientIndex() {
         super(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
+        GridBagConstraints co = new GridBagConstraints();
 
         // Initializing the elements
-        JPanel top = new JPanel();
+        JPanel top = new JPanel(new GridBagLayout());
+        GridBagConstraints ci = new GridBagConstraints();
         JPanel bottom = new JPanel();
         JSplitPane splitPane = new JSplitPane();
-        JLabel sortLabel = new JLabel("Sort By");
 
         String[] sortOptions = {"Age", "First Name", "Last Name", "Address", "Email"};
         sortBy = new JComboBox<>(sortOptions);
@@ -88,8 +89,6 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         tablePatients = new JTable(patientTableModel);
         tablePatients.addMouseListener(this);
         tablePatients.getSelectionModel().addListSelectionListener(this);
-        tablePatients.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        tablePatients.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         tableAppointments = new ColorTable(appointmentTableModel, "appointment");
         tableAppointments.addMouseListener(this);
@@ -99,23 +98,41 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         correspondingAppts = new JScrollPane(tableAppointments, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, patientTable, correspondingAppts);
         splitPane.setDividerLocation(450);  // Weird dividing behaviour (maybe its just a consequence of gridbaglayout)
+
         // Setting sizes and styling
+        tablePatients.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        tablePatients.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tablePatients.setRowHeight(25);
+        tablePatients.getTableHeader().setReorderingAllowed(false);
+        tablePatients.getTableHeader().setPreferredSize(new Dimension(0, 30));
+        tablePatients.getTableHeader().setFont(Settings.H3_BOLD);;
+
+        tableAppointments.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        tableAppointments.setRowHeight(25);
+        tableAppointments.getTableHeader().setReorderingAllowed(false);
+        tableAppointments.getTableHeader().setPreferredSize(new Dimension(0, 30));  // Will auto resize
+        tableAppointments.getTableHeader().setFont(Settings.H3_BOLD);;
+
+        sortBy.setFont(Settings.H2);
+        sortBy.setPreferredSize(new Dimension(150, 30));
+        sort.setFont(Settings.H2);
+        sort.setPreferredSize(new Dimension(120, 30));
 
         // Positioning
-        top.add(sortLabel);
-        top.add(sortBy);
-        top.add(sort);
+        ci.insets = new Insets(10, 5, 0, 5); // TODO more clean insets
+        top.add(sortBy, ci);
+        top.add(sort, ci);
 
-        c.gridy = 0;
-        c.insets = new Insets(0, 5, 5, 5);
-        this.add(top, c);
+        co.gridy = 0;
+        this.add(top, co);
 
-        c.gridy = 1;
-        c.weightx = 1;
-        c.weighty = 1;
-        c.fill = GridBagConstraints.BOTH;
+        co.insets = new Insets(10, 10, 10, 10);
+        co.gridy = 1;
+        co.weightx = 1;
+        co.weighty = 1;
+        co.fill = GridBagConstraints.BOTH;
         // splitPane.setPreferredSize(new Dimension(400, 400));
-        this.add(splitPane, c);
+        this.add(splitPane, co);
     }
 
     public JPanel createEdit(Patient patient) {
@@ -219,6 +236,8 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         notesView = new JTextField(appointment.getNotes());
         notesView.setEditable(false);
 
+
+
         // Setting sizes and styling
 
 
@@ -302,6 +321,9 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (App.dsm.getPatientList().isEmpty())
+            return;
+
         Patient patient = App.dsm.getPatientList().get(selectedRow);
 
         if (e.getSource() == confirm) {

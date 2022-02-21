@@ -22,11 +22,13 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 import com.company.App;
 import com.company.classes.Appointment;
 import com.company.classes.Patient;
 import com.company.classes.Person;
+import com.company.pages.Settings;
 import com.company.pages.program.tablemodels.AppointmentTableModel;
 import com.company.pages.program.tablemodels.ColorTable;
 import com.company.utilities.Node;
@@ -71,12 +73,25 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         myAppointments = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         // Setting sizes and styling
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.setRowHeight(25);
+        table.getTableHeader().setReorderingAllowed(false);
+        table.getTableHeader().setPreferredSize(new Dimension(0, 30));
+        table.getTableHeader().setFont(Settings.H3_BOLD);
+
+        book.setFont(Settings.H2);
+        book.setPreferredSize(new Dimension(150, 30));
 
         // Positioning
         c.gridy = 0;
+        c.insets = new Insets(10, 10, 5, 10);
         this.add(book, c);
 
+        c.insets = new Insets(5, 10, 10, 10);
         c.gridy = 1;
+        c.weightx = 1;
+        c.weighty = 1;
+        c.fill = GridBagConstraints.BOTH;
         this.add(myAppointments, c);
     }
 
@@ -101,7 +116,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         String[] starts = {"09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30"};
         from = new JComboBox<>(starts);
 
-        String[] ends = {"09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"};
+        String[] ends = {"09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"};
         to = new JComboBox<>(ends);
 
         String[] doctors = {"Dr. Adams", "Dr. Brian", "Dr. Campbell", "Dr. Duncan", "Dr. Eaton"};

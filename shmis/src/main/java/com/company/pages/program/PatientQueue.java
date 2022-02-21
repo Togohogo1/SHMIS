@@ -1,6 +1,7 @@
 package com.company.pages.program;
 
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Dialog;
@@ -16,11 +17,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import com.company.App;
 import com.company.classes.Appointment;
+import com.company.pages.Settings;
 import com.company.pages.program.tablemodels.ColorTable;
 import com.company.pages.program.tablemodels.QueueTableModel;
 import com.company.utilities.SearchSort;
@@ -40,12 +43,20 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
         table = new ColorTable(tableModel, "queue");
         table.addMouseListener(this);
         table.getSelectionModel().addListSelectionListener(this);
-        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         queueTable = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         // Setting sizes and styling
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.setRowHeight(25);
+        table.getTableHeader().setFont(Settings.H3_BOLD);
+        table.getTableHeader().setPreferredSize(new Dimension(0, 30));  // Will auto resize
+        table.getTableHeader().setReorderingAllowed(false);
 
         // Positioning
+        c.insets = new Insets(10, 10, 10, 10);
+        c.fill = GridBagConstraints.BOTH;
+        c.weightx = 1;
+        c.weighty = 1;
         this.add(queueTable, c);
     }
 

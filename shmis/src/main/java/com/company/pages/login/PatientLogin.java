@@ -1,6 +1,7 @@
 package com.company.pages.login;
 
 import java.awt.GridBagLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -44,18 +45,36 @@ public class PatientLogin extends JPanel implements ActionListener {
         GridBagConstraints c = new GridBagConstraints();
 
         // Initializing the elements
-        email = new JLabel("Email");
-        password = new JLabel("Password");
+        email = new JLabel("Enter email:");
+        password = new JLabel("Enter password:");
 
         emailInput = new JTextField();
         passwordInput = new JPasswordField();
 
         register = new JButton("Register");
         register.addActionListener(this);
+
         login = new JButton("Login");
         login.addActionListener(this);
 
         // Setting sizes and styling
+        email.setFont(Settings.H2_BOLD);
+        email.setPreferredSize(new Dimension(120, 30));
+
+        password.setFont(Settings.H2_BOLD);
+        password.setPreferredSize(new Dimension(120, 30));
+
+        emailInput.setFont(Settings.H2);
+        emailInput.setPreferredSize(new Dimension(120, 30));
+
+        passwordInput.setFont(Settings.H2);
+        passwordInput.setPreferredSize(new Dimension(120, 30));
+
+        register.setFont(Settings.H2);
+        register.setPreferredSize(new Dimension(120, 30));
+
+        login.setFont(Settings.H2);
+        login.setPreferredSize(new Dimension(120, 30));
 
         // Positioning
         c.gridx = 0;
@@ -113,6 +132,10 @@ public class PatientLogin extends JPanel implements ActionListener {
         }
 
         // Setting sizes and styling
+        for (int i = 0; i < 9; i++) {
+            labels[i].setPreferredSize(new Dimension(75, 22));  // Default JButton size
+            inputs[i].setPreferredSize(new Dimension(100, 22));
+        }
 
         // Positioning
         ci.insets = new Insets(5, 5, 5, 5);
@@ -130,6 +153,7 @@ public class PatientLogin extends JPanel implements ActionListener {
         popup.add(top, co);
 
         co.gridy = 1;
+        co.insets = new Insets(15, 0, 0, 0);
         popup.add(registerConfirm, co);
 
         return popup;
@@ -172,7 +196,7 @@ public class PatientLogin extends JPanel implements ActionListener {
         if (e.getSource() == register) {
             signup = new JDialog(null, "Signup", JDialog.ModalityType.APPLICATION_MODAL);
             signup.add(createSignup());
-            signup.setSize(new Dimension(500, 500));  // TODO bad size
+            signup.setSize(new Dimension(245, 400));  // TODO bad size
             signup.setLocationRelativeTo(null);
             signup.setResizable(false);
             signup.setVisible(true);

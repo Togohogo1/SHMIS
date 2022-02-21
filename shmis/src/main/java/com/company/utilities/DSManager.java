@@ -115,4 +115,8 @@ public class DSManager {
     public Appointment query(Long appId) {
         return appointmentList.get(SearchSort.binarySearch(appointmentList, appointment -> appointment.getId(), appId));
     }
+
+    public boolean currUserIsPatient() {
+        return getCurrentUser().getDesignation().equals("Patient");
+    }
 }

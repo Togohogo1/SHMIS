@@ -111,7 +111,7 @@ public class WeeklyCalendar extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (App.dsm.getCurrentUser().getDesignation().equals("Patient"))
+        if (App.dsm.currUserIsPatient())
             return;
 
         JTable target = (JTable) e.getSource();

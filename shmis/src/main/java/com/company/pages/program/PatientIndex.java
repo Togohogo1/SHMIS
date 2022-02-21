@@ -18,6 +18,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -59,7 +60,12 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
 
     // For appointment info popup
     private JDialog appInfoPopup;
-
+    private JRadioButton[] imagingView;
+    private JComboBox<String> dayView;
+    private JComboBox<String> fromView;
+    private JComboBox<String> toView;
+    private JComboBox<String> referralDoctorView;
+    private JTextField notesView;
 
     public PatientIndex() {
         super(new GridBagLayout());
@@ -184,9 +190,76 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         return popup;
     }
 
-    public JPanel createApptInfo() {
+    public JPanel createApptInfo(Appointment appointment) {
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
+
+        // Initializing the elements
+        imagingView = new JRadioButton[7];
+        String[] imagingText = {"Abdomen", "Head and Neck", "Chest", "Skeletal", "Spine and Pelvis", "Upper Extremeties", "Lower Extremeties"};
+
+        for (int i = 0; i < 7; i++) {
+            imagingView[i] = new JRadioButton(imagingText[i]);
+            imagingView[i].setSelected(appointment.getImaging().get(i));
+            imagingView[i].setEnabled(false);
+        }
+
+        dayView = new JComboBox<>(new String[]{appointment.getDate()});
+        dayView.setEnabled(false);
+
+        fromView = new JComboBox<>(new String[]{appointment.getStartTable()});
+        fromView.setEnabled(false);
+
+        toView = new JComboBox<>(new String[]{appointment.getEndTable()});
+        toView.setEnabled(false);
+
+        referralDoctorView = new JComboBox<>(new String[]{appointment.getReferralDoctor()});
+        referralDoctorView.setEnabled(false);
+
+        notesView = new JTextField(appointment.getNotes());
+        notesView.setEditable(false);
+
+        // Setting sizes and styling
+
+
+        // Positioning
+        c.insets = new Insets(5, 5, 5, 5);
+        c.gridx = 2;
+
+        for (int i = 0; i < 7; i++) {
+            c.gridy = i;
+            panel.add(imagingView[i], c);
+        }
+
+        c.gridy = 0;
+        c.gridx = 0;
+        panel.add(new JLabel("Day:"), c);
+        c.gridx = 1;
+        panel.add(dayView, c);
+
+        c.gridy = 1;
+        c.gridx = 0;
+        panel.add(new JLabel("From:"), c);
+        c.gridx = 1;
+        panel.add(fromView, c);
+
+        c.gridy = 2;
+        c.gridx = 0;
+        panel.add(new JLabel("To:"), c);
+        c.gridx = 1;
+        panel.add(toView, c);
+
+        c.gridy = 3;
+        c.gridx = 0;
+        panel.add(new JLabel("Ref. Doctor:"), c);
+        c.gridx = 1;
+        panel.add(referralDoctorView, c);
+
+        c.gridy = 4;
+        c.gridx = 0;
+        c.gridwidth = 2;
+        panel.add(notesView, c);
+
         return panel;
     }
 
@@ -290,8 +363,12 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
             } else if (target == tableAppointments) {
                 long appId = appointmentTableModel.getAppointmentList().get(row);
                 Appointment appointment = App.dsm.query(appId);
-                System.out.println(appointment.getId());
-                System.out.println("appointments bruh");
+                appInfoPopup = new JDialog(null, "Signup", JDialog.ModalityType.APPLICATION_MODAL);
+                appInfoPopup.add(createApptInfo(appointment));
+                appInfoPopup.setSize(new Dimension(500, 500));  // TODO bad size
+                appInfoPopup.setLocationRelativeTo(null);
+                appInfoPopup.setResizable(false);
+                appInfoPopup.setVisible(true);
             }
         }
     }

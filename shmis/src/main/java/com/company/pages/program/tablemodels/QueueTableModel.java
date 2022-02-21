@@ -53,5 +53,4 @@ public class QueueTableModel extends AbstractTableModel {
     public boolean isCellEditable(int row, int col) {
         return false;
     }
-
 }

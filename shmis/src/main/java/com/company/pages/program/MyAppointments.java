@@ -180,17 +180,20 @@ public class MyAppointments extends JPanel implements ActionListener {
             bookingPopup.setResizable(false);
             bookingPopup.setVisible(true);
         } else if (e.getSource() == bookConfirm) {
-            if (!PopupHelper.validAppointment(imaging, from, to)) {
+            if (!PopupHelper.validAppointment(imaging, from, to))
                 JOptionPane.showMessageDialog(null, PopupHelper.getError(), "Warning", JOptionPane.WARNING_MESSAGE);
-            } else {  // TODO else if conflict with another appointment
-                // do some database and queue managing stuff here
+            else {
                 Appointment appt = createAppointment();
-                App.dsm.getAppointmentList().add(appt);
-                App.dsm.getQueue().insertFront(new Node(appt.getId()));
-                App.dsm.getInCalendar().add(appt.getId());
-                ((Patient)App.dsm.getCurrentUser()).addAppointment(appt.getId());
-                bookingPopup.setVisible(false);
-                appointmentTableModel.fireTableDataChanged();
+                if (PopupHelper.existsTimeConflict(appt))
+                    JOptionPane.showMessageDialog(null, PopupHelper.getError(), "Warning", JOptionPane.WARNING_MESSAGE);
+                else {
+                    App.dsm.getAppointmentList().add(appt);
+                    App.dsm.getQueue().insertFront(new Node(appt.getId()));
+                    App.dsm.getInCalendar().add(appt.getId());
+                    ((Patient)App.dsm.getCurrentUser()).addAppointment(appt.getId());
+                    bookingPopup.setVisible(false);
+                    appointmentTableModel.fireTableDataChanged();
+                }
             }
         }
     }

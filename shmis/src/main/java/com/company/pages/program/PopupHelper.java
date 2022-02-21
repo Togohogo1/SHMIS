@@ -8,6 +8,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import com.company.App;
+import com.company.classes.Appointment;
 import com.company.classes.Patient;
 
 public class PopupHelper extends JPanel {
@@ -111,6 +112,21 @@ public class PopupHelper extends JPanel {
         for (Patient p : App.dsm.getPatientList()) {
             if (p.getEmail().equals(email))
                 return true;
+        }
+
+        return false;
+    }
+
+    public static boolean existsTimeConflict(Appointment booked) {
+        for (long appId: App.dsm.getInCalendar()) {
+            Appointment appointment = App.dsm.query(appId);
+            long x1 = booked.getStart(), x2 = x1 + booked.getSpan();
+            long y1 = appointment.getStart(), y2 = y1 + appointment.getSpan();
+
+            if (x1 < y2 && y1 < x2 && booked.getDate().equals(appointment.getDate())) {
+                errorMessage = "Your appointment conflicts with another appointment";
+                return true;
+            }
         }
 
         return false;

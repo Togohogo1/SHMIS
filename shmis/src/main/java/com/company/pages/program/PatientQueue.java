@@ -78,6 +78,7 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
                     tableModel.fireTableDataChanged();
                 } else if (JOptionPane.NO_OPTION == n) {
                     App.dsm.getQueue().removeFront();
+                    App.dsm.getInCalendar().remove(appId);
                     appointment.setStatus("Unapproved");
                     System.out.println("Unapproved");
                     // TODO and more db stuff

@@ -85,8 +85,6 @@ public class Profile extends JPanel implements ActionListener {
             }
         }
 
-        top.setBackground(Color.CYAN);        // DEBUG
-
         co.gridy = 0;
         this.add(top, co);
 

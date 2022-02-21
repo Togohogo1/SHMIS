@@ -77,7 +77,7 @@ public class EmployeeLogin extends JPanel implements ActionListener {
             return;
         }
 
-        if (!inputPassword.equals("password")) {
+        if (!inputPassword.equals("pass")) {
             JOptionPane.showMessageDialog(null, "Incorrect Password", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }

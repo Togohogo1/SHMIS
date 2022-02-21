@@ -221,11 +221,12 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Patient patient = App.dsm.getPatientList().get(selectedRow);
+
         if (e.getSource() == confirm) {
 
             // Confirm that the new input is valid
             if (PopupHelper.validPatient(inputs, prevEmail)) {
-                Patient patient = App.dsm.getPatientList().get(selectedRow);
                 changePatient(patient);
                 changeAppointmentRefs(patient);
                 patientTableModel.fireTableDataChanged();
@@ -237,6 +238,9 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
             int n = JOptionPane.showConfirmDialog(null, "Confirm deletion of patient?", "Delete Patient", JOptionPane.YES_NO_OPTION);
 
             if (JOptionPane.YES_OPTION == n) {
+                for (long i : patient.getAppointments()) {
+                    App.dsm.getInCalendar().remove(i);
+                }
                 App.dsm.getPatientList().remove(selectedRow);
                 patientTableModel.fireTableDataChanged();  // maybe change to another firexxx method
                 editPopup.setVisible(false);
@@ -245,15 +249,15 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
             String sortOption = (String) sortBy.getSelectedItem();
 
             if (sortOption.equals("Age"))
-                SearchSort.mergeSort(App.dsm.getPatientList(), patient -> patient.getAge());
+                SearchSort.mergeSort(App.dsm.getPatientList(), pat -> pat.getAge());
             else if (sortOption.equals("First Name"))
-                SearchSort.mergeSort(App.dsm.getPatientList(), patient -> patient.getFirstName());
+                SearchSort.mergeSort(App.dsm.getPatientList(), pat -> pat.getFirstName());
             else if (sortOption.equals("Last Name"))
-                SearchSort.mergeSort(App.dsm.getPatientList(), patient -> patient.getLastName());
+                SearchSort.mergeSort(App.dsm.getPatientList(), pat -> pat.getLastName());
             else if (sortOption.equals("Address"))
-                SearchSort.mergeSort(App.dsm.getPatientList(), patient -> patient.getAddress());
+                SearchSort.mergeSort(App.dsm.getPatientList(), pat -> pat.getAddress());
             else if (sortOption.equals("Email")) // Else
-                SearchSort.mergeSort(App.dsm.getPatientList(), patient -> patient.getEmail());
+                SearchSort.mergeSort(App.dsm.getPatientList(), pat -> pat.getEmail());
 
             patientTableModel.fireTableDataChanged();
         }

@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.GridBagConstraints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.print.PrintService;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -17,7 +20,7 @@ import com.company.pages.program.tablemodels.CalendarTableModel;
 import com.company.pages.program.tablemodels.ColorTable;
 import com.company.utilities.SearchSort;
 
-public class WeeklyCalendar extends JPanel {
+public class WeeklyCalendar extends JPanel implements MouseListener {
     private int presize;
     private String[] names = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
     private ArrayList<ArrayList<Appointment>> days = new ArrayList<>();
@@ -38,6 +41,8 @@ public class WeeklyCalendar extends JPanel {
             days.add(new ArrayList<>());
             tableModels[i] = new CalendarTableModel(names[i], days.get(i));  // Pass by reference, only need to do this once
             calendars[i] = new ColorTable(tableModels[i], "calendar"); // TODO change to colortable later
+            calendars[i].addMouseListener(this);
+            calendars[i].setRowHeight(25);
             calendarTables[i] = new JScrollPane(calendars[i]);
         }
 
@@ -64,8 +69,13 @@ public class WeeklyCalendar extends JPanel {
 
     // Efficient enough for maximum calendar capacity, less prone to bugs
     public void render() {
-        for (int i = presize; i < App.dsm.getInCalendar().size(); i++) {
-            Appointment appointment = App.dsm.query(App.dsm.getInCalendar().get(i));
+        for (int i = 0; i < 5; i++) {
+            if (!days.get(i).isEmpty())
+                days.get(i).clear();
+        }
+
+        for (long idx : App.dsm.getInCalendar()) {
+            Appointment appointment = App.dsm.query(idx);
             int day = dayToInt(appointment.getDate());  // Get day of each appointment in calendar list
             days.get(day).add(appointment);  // Unsorted, but distributed appointments from calendar list
         }
@@ -98,4 +108,39 @@ public class WeeklyCalendar extends JPanel {
 
         return -1;
     }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (App.dsm.getCurrentUser().getDesignation().equals("Patient"))
+            return;
+
+        JTable target = (JTable) e.getSource();
+        int row = target.getSelectedRow(); // select a row
+        int day = dayToInt(((CalendarTableModel)target.getModel()).getDay());
+        Appointment appointment = days.get(day).get(row);
+        System.out.println(row + " " + day + appointment.getId());
+
+        if (e.getClickCount() == 2 && appointment.getStatus().equals("Approved")) {
+            int n = JOptionPane.showConfirmDialog(null, String.format("Mark %s's appointment (ID = %d) as complete?", appointment.getPatient(), appointment.getId()), "Complete Appointment", JOptionPane.YES_NO_OPTION);
+
+            if (JOptionPane.YES_OPTION == n) {
+                appointment.setStatus("Complete");
+                App.dsm.getInCalendar().remove(appointment.getId());
+                render();
+            }
+        }
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
 }

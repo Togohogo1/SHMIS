@@ -58,4 +58,8 @@ public class CalendarTableModel extends AbstractTableModel {
     public String getStatusFromEvents(int row) {
         return events.get(row).getStatus();
     }
+
+    public String getDay() {
+        return day;
+    }
 }

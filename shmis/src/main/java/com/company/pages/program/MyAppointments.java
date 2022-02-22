@@ -58,6 +58,12 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
     private JComboBox<String> referralDoctorView;
     private JTextField notesView;
 
+    // Lables for both popups
+    JLabel dayLabel = new JLabel("Day:");
+    JLabel fromLabel = new JLabel("From:");
+    JLabel toLable = new JLabel("To:");
+    JLabel referralDoctorLabel = new JLabel("Ref. Doctor:");
+
     public MyAppointments() {
         super(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -97,10 +103,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
 
     public JPanel createBooking() {
         JPanel panel = new JPanel(new GridBagLayout());
-        GridBagConstraints co = new GridBagConstraints();
-
-        JPanel top = new JPanel(new GridBagLayout());
-        GridBagConstraints ci = new GridBagConstraints();
+        GridBagConstraints c = new GridBagConstraints();
 
         // Initilizing the elements
         imaging = new JRadioButton[7];
@@ -119,57 +122,73 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         String[] ends = {"09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"};
         to = new JComboBox<>(ends);
 
-        String[] doctors = {"Dr. Atkinson", "Dr. Brian", "Dr. Campbell", "Dr. Duncan", "Dr. Eaton", "Dr. Ferguson", "Dr. Gee"};
+        String[] doctors = {"Dr. Atkinson", "Dr. Brian", "Dr. Collins", "Dr. Duncan", "Dr. Eaton", "Dr. Fuller", "Dr. Gee"};
         referralDoctor = new JComboBox<>(doctors);
 
         notes = new JTextField("Notes");
         bookConfirm = new JButton("Book Appointment");
         bookConfirm.addActionListener(this);
-        // Setting sizes and styling
 
-        // Positioning
-        ci.insets = new Insets(5, 5, 5, 5);
-        ci.gridx = 2;
+        // Setting sizes and styling
+        dayLabel.setPreferredSize(new Dimension(75, 22));
+        fromLabel.setPreferredSize(new Dimension(75, 22));
+        toLable.setPreferredSize(new Dimension(75, 22));
+        referralDoctorLabel.setPreferredSize(new Dimension(75, 22));
+
+        day.setPreferredSize(new Dimension(100, 22));
+        from.setPreferredSize(new Dimension(100, 22));
+        to.setPreferredSize(new Dimension(100, 22));
+        referralDoctor.setPreferredSize(new Dimension(100, 22));
+        notes.setPreferredSize(new Dimension(100+75+10, 22));
 
         for (int i = 0; i < 7; i++) {
-            ci.gridy = i;
-            top.add(imaging[i], ci);
+            imaging[i].setPreferredSize(new Dimension(120, 22));
         }
 
-        ci.gridy = 0;
-        ci.gridx = 0;
-        top.add(new JLabel("Day:"), ci);
-        ci.gridx = 1;
-        top.add(day, ci);
+        // Positioning
+        c.insets = new Insets(5, 15, 5, 5);
+        c.gridx = 2;
 
-        ci.gridy = 1;
-        ci.gridx = 0;
-        top.add(new JLabel("From:"), ci);
-        ci.gridx = 1;
-        top.add(from, ci);
+        for (int i = 0; i < 7; i++) {
+            c.gridy = i;
+            panel.add(imaging[i], c);
+        }
 
-        ci.gridy = 2;
-        ci.gridx = 0;
-        top.add(new JLabel("To:"), ci);
-        ci.gridx = 1;
-        top.add(to, ci);
+        c.insets = new Insets(5, 5, 5, 5);
+        c.gridy = 0;
+        c.gridx = 0;
+        panel.add(dayLabel, c);
+        c.gridx = 1;
+        panel.add(day, c);
 
-        ci.gridy = 3;
-        ci.gridx = 0;
-        top.add(new JLabel("Ref. Doctor:"), ci);
-        ci.gridx = 1;
-        top.add(referralDoctor, ci);
+        c.gridy = 1;
+        c.gridx = 0;
+        panel.add(fromLabel, c);
+        c.gridx = 1;
+        panel.add(from, c);
 
-        ci.gridy = 4;
-        ci.gridx = 0;
-        ci.gridwidth = 2;
-        top.add(notes, ci);
+        c.gridy = 2;
+        c.gridx = 0;
+        panel.add(toLable, c);
+        c.gridx = 1;
+        panel.add(to, c);
 
-        co.gridy = 0;
-        panel.add(top);
+        c.gridy = 3;
+        c.gridx = 0;
+        panel.add(referralDoctorLabel, c);
+        c.gridx = 1;
+        panel.add(referralDoctor, c);
 
-        co.gridy = 1;
-        panel.add(bookConfirm, co);
+        c.gridy = 4;
+        c.gridx = 0;
+        c.gridwidth = 2;
+        panel.add(notes, c);
+
+        c.gridx = 0;
+        c.gridy = 7;
+        c.gridwidth = 3;
+        c.insets = new Insets(15, 5, 5, 5);
+        panel.add(bookConfirm, c);
 
         return panel;
     }
@@ -201,13 +220,27 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         referralDoctorView.setEnabled(false);
 
         notesView = new JTextField(appointment.getNotes());
-        notesView.setEditable(false);
+        notesView.setEnabled(false);
 
         // Setting sizes and styling
+        dayLabel.setPreferredSize(new Dimension(75, 22));
+        fromLabel.setPreferredSize(new Dimension(75, 22));
+        toLable.setPreferredSize(new Dimension(75, 22));
+        referralDoctorLabel.setPreferredSize(new Dimension(75, 22));
+
+        dayView.setPreferredSize(new Dimension(100, 22));
+        fromView.setPreferredSize(new Dimension(100, 22));
+        toView.setPreferredSize(new Dimension(100, 22));
+        referralDoctorView.setPreferredSize(new Dimension(100, 22));
+        notesView.setPreferredSize(new Dimension(100+75+10, 22));
+
+        for (int i = 0; i < 7; i++) {
+            imagingView[i].setPreferredSize(new Dimension(120, 22));
+        }
 
 
         // Positioning
-        c.insets = new Insets(5, 5, 5, 5);
+        c.insets = new Insets(5, 15, 5, 5);
         c.gridx = 2;
 
         for (int i = 0; i < 7; i++) {
@@ -215,27 +248,28 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
             panel.add(imagingView[i], c);
         }
 
+        c.insets = new Insets(5, 5, 5, 5);
         c.gridy = 0;
         c.gridx = 0;
-        panel.add(new JLabel("Day:"), c);
+        panel.add(dayLabel, c);
         c.gridx = 1;
         panel.add(dayView, c);
 
         c.gridy = 1;
         c.gridx = 0;
-        panel.add(new JLabel("From:"), c);
+        panel.add(fromLabel, c);
         c.gridx = 1;
         panel.add(fromView, c);
 
         c.gridy = 2;
         c.gridx = 0;
-        panel.add(new JLabel("To:"), c);
+        panel.add(toLable, c);
         c.gridx = 1;
         panel.add(toView, c);
 
         c.gridy = 3;
         c.gridx = 0;
-        panel.add(new JLabel("Ref. Doctor:"), c);
+        panel.add(referralDoctorLabel, c);
         c.gridx = 1;
         panel.add(referralDoctorView, c);
 
@@ -275,7 +309,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         if (e.getSource() == book) {
             bookingPopup = new JDialog(null, "Signup", JDialog.ModalityType.APPLICATION_MODAL);
             bookingPopup.add(createBooking());
-            bookingPopup.setSize(new Dimension(500, 500));  // TODO bad size
+            bookingPopup.setSize(new Dimension(450, 350));
             bookingPopup.setLocationRelativeTo(null);
             bookingPopup.setResizable(false);
             bookingPopup.setVisible(true);
@@ -309,7 +343,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
             Appointment appointment = App.dsm.query(appId);
             appInfoPopup = new JDialog(null, "Appointment Info", JDialog.ModalityType.APPLICATION_MODAL);
             appInfoPopup.add(createApptInfo(appointment));
-            appInfoPopup.setSize(new Dimension(500, 500));  // TODO bad size
+            appInfoPopup.setSize(new Dimension(450, 325));
             appInfoPopup.setLocationRelativeTo(null);
             appInfoPopup.setResizable(false);
             appInfoPopup.setVisible(true);

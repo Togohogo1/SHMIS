@@ -199,7 +199,7 @@ public class PatientLogin extends JPanel implements ActionListener {
             // TODO fix some jdialog headers
             signup = new JDialog(null, "Signup", JDialog.ModalityType.APPLICATION_MODAL);
             signup.add(createSignup());
-            signup.setSize(new Dimension(350, 450));  // TODO bad size
+            signup.setSize(new Dimension(350, 450));
             signup.setLocationRelativeTo(null);
             signup.setResizable(false);
             signup.setVisible(true);

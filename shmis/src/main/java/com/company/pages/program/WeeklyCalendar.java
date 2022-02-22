@@ -143,7 +143,6 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
                     render();
                 }
             } else {
-                System.out.println("amogus");
                 JOptionPane.showMessageDialog(null, String.format("%s's appointment (ID = %d)", appointment.getPatient(), appointment.getId()));
             }
         }

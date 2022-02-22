@@ -409,7 +409,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
                 Appointment appointment = App.dsm.query(appId);
                 appInfoPopup = new JDialog(null, "Signup", JDialog.ModalityType.APPLICATION_MODAL);
                 appInfoPopup.add(createApptInfo(appointment));
-                appInfoPopup.setSize(new Dimension(450, 350));  // TODO bad size
+                appInfoPopup.setSize(new Dimension(450, 325));
                 appInfoPopup.setLocationRelativeTo(null);
                 appInfoPopup.setResizable(false);
                 appInfoPopup.setVisible(true);

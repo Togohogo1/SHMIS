@@ -307,7 +307,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == book) {
-            bookingPopup = new JDialog(null, "Signup", JDialog.ModalityType.APPLICATION_MODAL);
+            bookingPopup = new JDialog(null, "Book Appointment", JDialog.ModalityType.APPLICATION_MODAL);
             bookingPopup.add(createBooking());
             bookingPopup.setSize(new Dimension(450, 350));
             bookingPopup.setLocationRelativeTo(null);

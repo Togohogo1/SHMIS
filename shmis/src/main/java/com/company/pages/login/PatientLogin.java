@@ -26,10 +26,10 @@ import com.company.pages.Settings;
 import com.company.pages.program.PopupHelper;
 
 public class PatientLogin extends JPanel implements ActionListener {
-    private JLabel email;  // doesn't need to be at this scope
-    private JLabel password;  // doesn't need to be at this scope
+    private JLabel email;  // TODO doesn't need to be at this scope
+    private JLabel password;  // TODO doesn't need to be at this scope
 
-    private JTextField emailInput;  // TODO dont make this thing resize to text later
+    private JTextField emailInput;
     private JPasswordField passwordInput;
 
     private JButton register;
@@ -197,7 +197,7 @@ public class PatientLogin extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == register) {
             // TODO fix some jdialog headers
-            signup = new JDialog(null, "Signup", JDialog.ModalityType.APPLICATION_MODAL);
+            signup = new JDialog(null, "Register", JDialog.ModalityType.APPLICATION_MODAL);
             signup.add(createSignup());
             signup.setSize(new Dimension(350, 450));
             signup.setLocationRelativeTo(null);

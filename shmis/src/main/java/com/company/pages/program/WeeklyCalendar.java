@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import com.company.App;
 import com.company.classes.Appointment;
@@ -23,7 +25,7 @@ import com.company.pages.program.tablemodels.CalendarTableModel;
 import com.company.pages.program.tablemodels.ColorTable;
 import com.company.utilities.SearchSort;
 
-public class WeeklyCalendar extends JPanel implements MouseListener {
+public class WeeklyCalendar extends JPanel implements MouseListener, ListSelectionListener {
     private int presize;
     private String[] names = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
     private ArrayList<ArrayList<Appointment>> days = new ArrayList<>();
@@ -45,6 +47,7 @@ public class WeeklyCalendar extends JPanel implements MouseListener {
             tableModels[i] = new CalendarTableModel(names[i], days.get(i));  // Pass by reference, only need to do this once
             calendars[i] = new ColorTable(tableModels[i], "calendar"); // TODO change to colortable later
             calendars[i].addMouseListener(this);
+            calendars[i].getSelectionModel().addListSelectionListener(this);
             calendarTables[i] = new JScrollPane(calendars[i]);
         }
 
@@ -54,8 +57,8 @@ public class WeeklyCalendar extends JPanel implements MouseListener {
         // Setting sizes and styling
         for (int i = 0; i < 5; i++) {
             calendars[i].setRowHeight(25);
-            calendars[i].setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             calendars[i].setFont(Settings.H3);
+            calendars[i].setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             calendars[i].getTableHeader().setFont(Settings.H3_BOLD);
             calendars[i].getTableHeader().setPreferredSize(new Dimension(0, 30));  // Will auto resize
             calendars[i].getTableHeader().setReorderingAllowed(false);
@@ -145,6 +148,13 @@ public class WeeklyCalendar extends JPanel implements MouseListener {
             }
         }
 
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        // ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+        // System.out.println(lsm.getMinSelectionIndex());
+        // lsm.clearSelection();
     }
 
     @Override

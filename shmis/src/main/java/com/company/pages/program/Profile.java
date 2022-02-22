@@ -100,7 +100,7 @@ public class Profile extends JPanel implements ActionListener {
         this.add(top, co);
 
         co.gridy = 1;
-        co.insets = new Insets(15, 0, 0, 0);
+        co.insets = new Insets(5, 0, 0, 0);
         this.add(logout, co);
     }
 

@@ -33,7 +33,7 @@ import com.company.pages.program.tablemodels.AppointmentTableModel;
 import com.company.pages.program.tablemodels.ColorTable;
 import com.company.utilities.Node;
 
-public class MyAppointments extends JPanel implements ActionListener, MouseListener{
+public class MyAppointments extends JPanel implements ActionListener, MouseListener {
     private JButton book;
     private JTable table;
     private AppointmentTableModel appointmentTableModel;
@@ -119,7 +119,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         String[] ends = {"09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00"};
         to = new JComboBox<>(ends);
 
-        String[] doctors = {"Dr. Adams", "Dr. Brian", "Dr. Campbell", "Dr. Duncan", "Dr. Eaton"};
+        String[] doctors = {"Dr. Atkinson", "Dr. Brian", "Dr. Campbell", "Dr. Duncan", "Dr. Eaton", "Dr. Ferguson", "Dr. Gee"};
         referralDoctor = new JComboBox<>(doctors);
 
         notes = new JTextField("Notes");

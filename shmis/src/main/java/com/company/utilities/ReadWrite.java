@@ -20,7 +20,8 @@ public class ReadWrite {
         JSONObject obj = new JSONObject();
 
         try {
-            fileRead = new FileReader(fileName, Charset.forName("UTF8"));
+            // TODO java version issue here
+            fileRead = new FileReader(fileName);
             bufferRead = new BufferedReader(fileRead);
             parser = new JSONParser();
 
@@ -36,7 +37,7 @@ public class ReadWrite {
     // Writes whole patient or appointment json file
     public static void writeFile(JSONObject obj, String fileName) {
         try {
-            fileWrite = new FileWriter(fileName, Charset.forName("UTF8"));
+            fileWrite = new FileWriter(fileName);
             bufferWrite = new BufferedWriter(fileWrite);
 
             bufferWrite.write(obj.toJSONString());

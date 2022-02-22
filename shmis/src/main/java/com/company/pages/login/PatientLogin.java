@@ -106,7 +106,7 @@ public class PatientLogin extends JPanel implements ActionListener {
     public JPanel createSignup() {
         // Initialiing the elements
         JPanel popup = new JPanel(new GridBagLayout());  // To put the stuff in
-        GridBagConstraints co = new GridBagConstraints();
+        GridBagConstraints c = new GridBagConstraints();
 
         JPanel top = new JPanel(new GridBagLayout());
         GridBagConstraints ci = new GridBagConstraints();
@@ -138,23 +138,25 @@ public class PatientLogin extends JPanel implements ActionListener {
         }
 
         // Positioning
-        ci.insets = new Insets(5, 5, 5, 5);
+        c.insets = new Insets(5, 5, 5, 5);
 
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 9; j++) {
-                ci.gridx = i;
-                ci.gridy = j;
+                c.gridx = i;
+                c.gridy = j;
 
-                top.add((i == 0 ? labels[j] : inputs[j]), ci);
+                popup.add((i == 0 ? labels[j] : inputs[j]), c);
             }
         }
 
-        co.gridy = 0;
-        popup.add(top, co);
+        // co.gridy = 0;
+        // popup.add(top, co);
 
-        co.gridy = 1;
-        co.insets = new Insets(15, 0, 0, 0);
-        popup.add(registerConfirm, co);
+        c.gridx = 0;
+        c.gridy++;
+        c.gridwidth = 2;
+        c.insets = new Insets(15, 0, 0, 0);
+        popup.add(registerConfirm, c);
 
         return popup;
     }
@@ -194,9 +196,10 @@ public class PatientLogin extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == register) {
+            // TODO fix some jdialog headers
             signup = new JDialog(null, "Signup", JDialog.ModalityType.APPLICATION_MODAL);
             signup.add(createSignup());
-            signup.setSize(new Dimension(245, 400));  // TODO bad size
+            signup.setSize(new Dimension(350, 450));  // TODO bad size
             signup.setLocationRelativeTo(null);
             signup.setResizable(false);
             signup.setVisible(true);

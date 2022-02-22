@@ -61,6 +61,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
     private JButton delete;
 
     // For appointment info popup
+    // TODO does this even need to be private
     private JDialog appInfoPopup;
     private JRadioButton[] imagingView;
     private JComboBox<String> dayView;
@@ -76,7 +77,6 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         // Initializing the elements
         JPanel top = new JPanel(new GridBagLayout());
         GridBagConstraints ci = new GridBagConstraints();
-        JPanel bottom = new JPanel();
         JSplitPane splitPane = new JSplitPane();
 
         String[] sortOptions = {"Age", "First Name", "Last Name", "Address", "Email"};
@@ -120,14 +120,14 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         sort.setPreferredSize(new Dimension(120, 30));
 
         // Positioning
-        ci.insets = new Insets(10, 5, 0, 5); // TODO more clean insets
+        ci.insets = new Insets(10, 5, 5, 5);
         top.add(sortBy, ci);
         top.add(sort, ci);
 
         co.gridy = 0;
         this.add(top, co);
 
-        co.insets = new Insets(10, 10, 10, 10);
+        co.insets = new Insets(5, 10, 10, 10);
         co.gridy = 1;
         co.weightx = 1;
         co.weighty = 1;
@@ -139,11 +139,13 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
     public JPanel createEdit(Patient patient) {
         // Initialiing the elements
         JPanel popup = new JPanel(new GridBagLayout());  // To put the stuff in
-        GridBagConstraints co = new GridBagConstraints();
+        GridBagConstraints c = new GridBagConstraints();
 
         JPanel top = new JPanel(new GridBagLayout());
-        GridBagConstraints ci = new GridBagConstraints();
+        GridBagConstraints co = new GridBagConstraints();
         inputs = new JTextField[9];
+
+        JPanel bottom = new JPanel();
 
         confirm = new JButton("Confirm Edits");
         confirm.addActionListener(this);
@@ -179,38 +181,33 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
 
         // Setting sizes and styling
         for (int i = 0; i < 9; i++) {
-            labels[i].setPreferredSize(new Dimension(75, 22));  // Default JButton size
-            inputs[i].setPreferredSize(new Dimension(140, 22));
+            labels[i].setPreferredSize(new Dimension(100, 22));  // Default JButton size
+            inputs[i].setPreferredSize(new Dimension(100, 22));
         }
 
         // Positioning
-        ci.insets = new Insets(5, 5, 5, 5);
+        c.insets = new Insets(5, 5, 5, 5);
 
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 9; j++) {
-                ci.gridx = i;
-                ci.gridy = j;
+                c.gridx = i;
+                c.gridy = j;
 
-                top.add((i == 0 ? labels[j] : inputs[j]), ci);
+                popup.add((i == 0 ? labels[j] : inputs[j]), c);
             }
         }
 
-        co.insets = new Insets(0, 5, 5, 5);
-        co.gridx = 0;
-        co.gridy = 0;
-        co.gridwidth = 2;
-        top.setBackground(Color.RED);
-        popup.add(top, co);
+        c.insets = new Insets(15, 5, 5, 5);
+        c.gridx = 0;
+        c.gridy++;
+        c.gridwidth = 2;
+        popup.add(confirm, c);
 
-        co.insets = new Insets(10, 0, 5, 0);
-        co.gridx = 0;
-        co.gridy = 1;
-        co.gridwidth = 1;
-        popup.add(confirm, co);
-
-        co.gridx = 1;
-        co.gridy = 1;
-        popup.add(delete, co);
+        c.insets = new Insets(0, 5, 5, 5);
+        c.gridx = 0;
+        c.gridy++;
+        c.gridwidth = 2;
+        popup.add(delete, c);
 
         return popup;
     }
@@ -220,6 +217,11 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         GridBagConstraints c = new GridBagConstraints();
 
         // Initializing the elements
+        JLabel dayLabel = new JLabel("Day:");
+        JLabel fromLabel = new JLabel("From:");
+        JLabel toLable = new JLabel("To:");
+        JLabel referralDoctorLabel = new JLabel("Ref. Doctor:");
+
         imagingView = new JRadioButton[7];
         String[] imagingText = {"Abdomen", "Head and Neck", "Chest", "Skeletal", "Spine and Pelvis", "Upper Extremeties", "Lower Extremeties"};
 
@@ -242,15 +244,28 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         referralDoctorView.setEnabled(false);
 
         notesView = new JTextField(appointment.getNotes());
-        notesView.setEditable(false);
-
+        notesView.setEnabled(false);
 
 
         // Setting sizes and styling
+        dayLabel.setPreferredSize(new Dimension(75, 22));
+        fromLabel.setPreferredSize(new Dimension(75, 22));
+        toLable.setPreferredSize(new Dimension(75, 22));
+        referralDoctorLabel.setPreferredSize(new Dimension(75, 22));
+
+        dayView.setPreferredSize(new Dimension(100, 22));
+        fromView.setPreferredSize(new Dimension(100, 22));
+        toView.setPreferredSize(new Dimension(100, 22));
+        referralDoctorView.setPreferredSize(new Dimension(100, 22));
+        notesView.setPreferredSize(new Dimension(100+75+10, 22));
+
+        for (int i = 0; i < 7; i++) {
+            imagingView[i].setPreferredSize(new Dimension(120, 22));
+        }
 
 
         // Positioning
-        c.insets = new Insets(5, 5, 5, 5);
+        c.insets = new Insets(5, 15, 5, 5);
         c.gridx = 2;
 
         for (int i = 0; i < 7; i++) {
@@ -258,27 +273,28 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
             panel.add(imagingView[i], c);
         }
 
+        c.insets = new Insets(5, 5, 5, 5);
         c.gridy = 0;
         c.gridx = 0;
-        panel.add(new JLabel("Day:"), c);
+        panel.add(dayLabel, c);
         c.gridx = 1;
         panel.add(dayView, c);
 
         c.gridy = 1;
         c.gridx = 0;
-        panel.add(new JLabel("From:"), c);
+        panel.add(fromLabel, c);
         c.gridx = 1;
         panel.add(fromView, c);
 
         c.gridy = 2;
         c.gridx = 0;
-        panel.add(new JLabel("To:"), c);
+        panel.add(toLable, c);
         c.gridx = 1;
         panel.add(toView, c);
 
         c.gridy = 3;
         c.gridx = 0;
-        panel.add(new JLabel("Ref. Doctor:"), c);
+        panel.add(referralDoctorLabel, c);
         c.gridx = 1;
         panel.add(referralDoctorView, c);
 
@@ -301,8 +317,6 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         patient.setEmail(inputs[7].getText());
         patient.setTelephone(inputs[8].getText());
     }
-
-    // public ArrayList<Long> getSpecificAppointment(Patient patient)
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
@@ -386,7 +400,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
                 prevEmail = patient.getEmail();
                 editPopup = new JDialog(null, "Edit Patient", Dialog.ModalityType.APPLICATION_MODAL);
                 editPopup.add(createEdit(patient));
-                editPopup.setSize(new Dimension(280, 400));  // TODO make it a better size
+                editPopup.setSize(new Dimension(350, 450));
                 editPopup.setLocationRelativeTo(null);
                 editPopup.setResizable(false);
                 editPopup.setVisible(true);
@@ -395,7 +409,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
                 Appointment appointment = App.dsm.query(appId);
                 appInfoPopup = new JDialog(null, "Signup", JDialog.ModalityType.APPLICATION_MODAL);
                 appInfoPopup.add(createApptInfo(appointment));
-                appInfoPopup.setSize(new Dimension(500, 500));  // TODO bad size
+                appInfoPopup.setSize(new Dimension(450, 350));  // TODO bad size
                 appInfoPopup.setLocationRelativeTo(null);
                 appInfoPopup.setResizable(false);
                 appInfoPopup.setVisible(true);

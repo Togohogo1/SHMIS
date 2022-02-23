@@ -14,7 +14,7 @@ public class Patient extends Person {
     public Patient(long age, String firstName, String lastName, String gender, String id, String password, String address, String email, String telephone, ArrayList<Long> appointments) {
         super(age, firstName, lastName, gender.toUpperCase(), id, password);
         this.address = address;
-        this.email = email;
+        this.email = email.toLowerCase();
         this.telephone = telephone;
         this.appointments = appointments;
     }
@@ -78,7 +78,7 @@ public class Patient extends Person {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email.toLowerCase();
     }
 
     public void setTelephone(String telephone) {

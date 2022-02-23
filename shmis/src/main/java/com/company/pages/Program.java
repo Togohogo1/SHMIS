@@ -14,7 +14,7 @@ import com.company.App;
 import com.company.pages.program.MyAppointments;
 import com.company.pages.program.PatientQueue;
 import com.company.pages.program.PatientIndex;
-import com.company.pages.program.Profile;
+import com.company.pages.program.ProfileLogout;
 import com.company.pages.program.WeeklyCalendar;
 
 public class Program extends JPanel implements ChangeListener {
@@ -24,7 +24,7 @@ public class Program extends JPanel implements ChangeListener {
     private MyAppointments myAppointments;  // TODO need to be up here?
     private PatientQueue patientCheckinQueue;
     private PatientIndex patientIndex;
-    private Profile profile, profile2;
+    private ProfileLogout profile, profile2;
     private WeeklyCalendar weeklyCalendar, weeklyCalendar2;
 
     public Program() {
@@ -38,21 +38,21 @@ public class Program extends JPanel implements ChangeListener {
 
         if (App.dsm.currUserIsPatient()) {  // Patient
             myAppointments = new MyAppointments();
-            profile = new Profile();
+            profile = new ProfileLogout();
             weeklyCalendar = new WeeklyCalendar();
             appendTab(patientTabs, myAppointments, "Appointments", 0);  // TODO or do i even need this unecessary initializtion (Unless i plan to do something with jtabbedpanes listener)
             appendTab(patientTabs, weeklyCalendar, "Calendar", 1);
-            appendTab(patientTabs, profile, "Profile", 2);
+            appendTab(patientTabs, profile, "Profile and Logout", 2);
             this.add(patientTabs);
         } else { // Employee
             patientCheckinQueue = new PatientQueue();
             patientIndex = new PatientIndex();
-            profile2 = new Profile();  // Same instance referenced by other JTabbedPane removed from the frist
+            profile2 = new ProfileLogout();  // Same instance referenced by other JTabbedPane removed from the frist
             weeklyCalendar2 = new WeeklyCalendar();
-            appendTab(employeeTabs, patientCheckinQueue, "Queue", 0);
+            appendTab(employeeTabs, patientCheckinQueue, "Patient Queue", 0);
             appendTab(employeeTabs, weeklyCalendar2, "Calendar", 1);
             appendTab(employeeTabs, patientIndex, "Patient Index", 2);
-            appendTab(employeeTabs, profile2, "Profile", 3);
+            appendTab(employeeTabs, profile2, "Profile and Logout", 3);
             this.add(employeeTabs);
         }
     }

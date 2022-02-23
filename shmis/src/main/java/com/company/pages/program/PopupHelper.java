@@ -58,14 +58,14 @@ public class PopupHelper extends JPanel {
             return false;
         }
 
-        if (emailExists(prevEmail, inputs[7].getText())) {
+        if (emailExists(prevEmail, inputs[7].getText().toLowerCase())) {
             errorMessage = "Email already exists";
             return false;
         }
 
         // Telephone regex check
-        if (!Pattern.compile("[0-9]{3}-[0-9]{3}-[0-9]{4}").matcher(inputs[8].getText()).matches()) {
-            errorMessage = "Please input a telephone number in the form ###-###-####";
+        if (!Pattern.compile("[0-9]{10}").matcher(inputs[8].getText()).matches()) {
+            errorMessage = "Please input a telephone number in the form ##########";
             return false;
         }
 

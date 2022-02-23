@@ -23,10 +23,10 @@ import com.company.classes.Patient;
 import com.company.classes.Person;
 import com.company.pages.Settings;
 
-public class Profile extends JPanel implements ActionListener {
+public class ProfileLogout extends JPanel implements ActionListener {
     private JButton logout;
 
-    public Profile() {
+    public ProfileLogout() {
         super(new GridBagLayout());
         GridBagConstraints co = new GridBagConstraints();
 

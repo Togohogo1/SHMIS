@@ -204,7 +204,7 @@ public class PatientLogin extends JPanel implements ActionListener {
             signup.setResizable(false);
             signup.setVisible(true);
         } else if (e.getSource() == login) {
-            String inputEmail = emailInput.getText();
+            String inputEmail = emailInput.getText().toLowerCase();
             String inputPassword = String.valueOf(passwordInput.getPassword());  // .getText() deprecated for JPasswordField
             Patient inputPatient = getPatient(inputEmail);
 

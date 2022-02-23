@@ -68,6 +68,26 @@ public class DoublyLinkedList {
         size--;
     }
 
+    // Precondition: all IDs in queue are unique
+    public void remove(long id) {
+        Node node = head;
+        int idx = 1;  // The 0th Node is a sentinel
+
+        while (idx++ <= size) {
+            node = node.getNext();
+
+            if (node.getAppointmentID() == id) {
+                node.getPrev().setNext(node.getNext());
+                node.getNext().setPrev(node.getPrev());
+                node.setNext(null);
+                node.setPrev(null);
+                break;
+            }
+        }
+
+        size--;
+    }
+
     public Node get(int idx) {
         Node node = head;
         idx++;  // the 0th Node is a sentinel

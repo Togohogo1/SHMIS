@@ -220,7 +220,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         referralDoctorView.setEnabled(false);
 
         notesView = new JTextField(appointment.getNotes());
-        notesView.setEnabled(false);
+        notesView.setEditable(false);
 
         // Setting sizes and styling
         dayLabel.setPreferredSize(new Dimension(75, 22));
@@ -322,7 +322,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
                     JOptionPane.showMessageDialog(null, PopupHelper.getError(), "Warning", JOptionPane.WARNING_MESSAGE);
                 else {
                     App.dsm.getAppointmentList().add(appt);
-                    App.dsm.getQueue().insertFront(new Node(appt.getId()));
+                    App.dsm.getQueue().insertBack(new Node(appt.getId()));
                     App.dsm.getInCalendar().add(appt.getId());
                     ((Patient)App.dsm.getCurrentUser()).addAppointment(appt.getId());
                     bookingPopup.setVisible(false);

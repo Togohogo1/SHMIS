@@ -244,7 +244,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         referralDoctorView.setEnabled(false);
 
         notesView = new JTextField(appointment.getNotes());
-        notesView.setEnabled(false);
+        notesView.setEditable(false);
 
 
         // Setting sizes and styling
@@ -364,6 +364,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
 
             if (JOptionPane.YES_OPTION == n) {
                 for (long i : patient.getAppointments()) {
+                    App.dsm.getQueue().remove(i);
                     App.dsm.getInCalendar().remove(i);
                 }
                 App.dsm.getPatientList().remove(selectedRow);
@@ -407,7 +408,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
             } else if (target == tableAppointments) {
                 long appId = appointmentTableModel.getAppointmentList().get(row);
                 Appointment appointment = App.dsm.query(appId);
-                appInfoPopup = new JDialog(null, "Signup", JDialog.ModalityType.APPLICATION_MODAL);
+                appInfoPopup = new JDialog(null, "Appointment Info", JDialog.ModalityType.APPLICATION_MODAL);
                 appInfoPopup.add(createApptInfo(appointment));
                 appInfoPopup.setSize(new Dimension(450, 325));
                 appInfoPopup.setLocationRelativeTo(null);

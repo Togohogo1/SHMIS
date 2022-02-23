@@ -77,6 +77,8 @@ public class Program extends JPanel implements ChangeListener {
                 weeklyCalendar.render();
             else
                 weeklyCalendar2.render();
+        } else if (idx == 0 && !App.dsm.currUserIsPatient()) {
+            // patientCheckinQueue.getTableModel().fireTableDataChanged();
         }
     }
 }

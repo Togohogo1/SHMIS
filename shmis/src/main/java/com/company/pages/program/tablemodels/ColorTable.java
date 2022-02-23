@@ -23,18 +23,25 @@ public class ColorTable extends JTable {
         boolean isQueue = (tableModelType == "queue");
         boolean isCalendar = (tableModelType == "calendar");
         String status = (String) getModel().getValueAt(row, 4);
-
-        if (isCalendar)
+        // System.out.println("render");
+        if (isCalendar) {
             status = ((CalendarTableModel)getModel()).getStatusFromEvents(row);
+            System.out.println(status + " " + row + " " + column);
+        }
 
-        if (!isRowSelected(row)) {
-            c.setBackground(getBackground());
-            c.setForeground(getForeground());
+        if (tableModelType.equals("queue")) {
+            if (!isRowSelected(row)) {
+                c.setBackground(getBackground());
+                c.setForeground(getForeground());
+            }
 
             if (row != 0 && isQueue)  // As if its deselected for queue
                 c.setForeground(Color.LIGHT_GRAY);
+        } else {
+            if (tableModelType.equals("calendar"))
+                status = ((CalendarTableModel)getModel()).getStatusFromEvents(row);
 
-            if (!isQueue) {
+            if (!isRowSelected(row) && tableModelType.equals("appointment") || tableModelType.equals("calendar")) {
                 if (status.equals("Pending")) {
                     c.setBackground(Settings.LIGHT_YELLOW_3);
                 } else if (status.equals("Approved"))

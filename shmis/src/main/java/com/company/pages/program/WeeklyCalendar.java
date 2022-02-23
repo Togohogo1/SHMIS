@@ -47,6 +47,7 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
             tableModels[i] = new CalendarTableModel(names[i], days.get(i));  // Pass by reference, only need to do this once
             calendars[i] = new ColorTable(tableModels[i], "calendar"); // TODO change to colortable later
             calendars[i].addMouseListener(this);
+            calendars[i].setCellSelectionEnabled(false);
             calendars[i].getSelectionModel().addListSelectionListener(this);
             calendarTables[i] = new JScrollPane(calendars[i]);
         }
@@ -143,7 +144,7 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
                     render();
                 }
             } else {
-                JOptionPane.showMessageDialog(null, String.format("%s's appointment (ID = %d)", appointment.getPatient(), appointment.getId()));
+                JOptionPane.showMessageDialog(null, String.format("%s's appointment (ID = %d)", appointment.getPatient(), appointment.getId()), "Event Info", JOptionPane.INFORMATION_MESSAGE);
             }
         }
 

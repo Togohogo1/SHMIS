@@ -2,11 +2,7 @@ package com.company.utilities;
 
 import java.util.ArrayList;
 
-import com.company.classes.Appointment;
-
 public class SearchSort {
-    // TODO add somewhere numbers are easy to increment
-    // appointments are removed if patients are removed -> arr[idx] != arr[idx].get(idx) -> requires bsearch
     public static <T, R> int binarySearch(ArrayList<T> arr, AttributeFetcher<T, R> fetcher, R val) {
         int l = 0, r = arr.size() - 1;
 
@@ -22,6 +18,7 @@ public class SearchSort {
                 return mid;
         }
 
+        // Not found
         return -1;
     }
 
@@ -31,6 +28,7 @@ public class SearchSort {
             ArrayList<T> left = new ArrayList<>(arr.subList(0, arr.size()/2));
             ArrayList<T> right = new ArrayList<>(arr.subList(arr.size()/2, arr.size()));
 
+            // Recursing left and right
             mergeSort(left, fetcher);
             mergeSort(right, fetcher);
             merge(arr, left, right, fetcher);

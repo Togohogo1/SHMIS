@@ -6,15 +6,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Appointment {
-    // X-Ray
-    public static final int ABDOMEN = 0;
-    public static final int HEAD_AND_NECK = 1;
-    public static final int CHEST = 2;
-    public static final int SKELETAL = 3;
-    public static final int SPINE_AND_PELVIS = 4;
-    public static final int UPPER_EXTREMETIES = 5;
-    public static final int LOWER_EXTREMETIES = 6;
-
     private long start;
     private long span;
     private long id;

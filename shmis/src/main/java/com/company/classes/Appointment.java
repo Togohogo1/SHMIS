@@ -62,12 +62,12 @@ public class Appointment {
         JSONObject obj = new JSONObject();
         JSONArray imaging = new JSONArray();
 
-        // convert from JSONArray to ArrayList
+        // Convert from JSONArray to ArrayList
         imaging.addAll(this.imaging);
 
         obj.put("start", start);
         obj.put("span", span);
-        obj.put("id", id);  // Key
+        obj.put("id", id);  // Key for JSONObject
         obj.put("date", date);
         obj.put("status", status);
         obj.put("patient", patient);

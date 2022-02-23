@@ -2,7 +2,20 @@ package com.company.utilities;
 
 import java.util.ArrayList;
 
+/**
+ * Utility class containing methods for searching and sorting
+ */
 public class SearchSort {
+    /**
+     * Binary searches an ArrayList to get the index of <code>val</code>
+     *
+     * @param <T> Generic type parameter
+     * @param <R> Generic return type
+     * @param arr The ArrayList to be searched
+     * @param fetcher Functional interface denoting the attribute to search by
+     * @param val The value to be looked for
+     * @return the index of <code>val</code>
+     */
     public static <T, R> int binarySearch(ArrayList<T> arr, AttributeFetcher<T, R> fetcher, R val) {
         int l = 0, r = arr.size() - 1;
 
@@ -22,6 +35,14 @@ public class SearchSort {
         return -1;
     }
 
+    /**
+     * Sorts an ArrayList using merge sort based on an attribute specified by <code>fetcher</code>
+     *
+     * @param <T> Generic type parameter
+     * @param <R> Generic return type
+     * @param arr The ArrayList to be sorted
+     * @param fetcher Functional interface denoting the attribute to sort by
+     */
     public static <T, R> void mergeSort(ArrayList<T> arr, AttributeFetcher<T, R> fetcher) {
         // Keep dividing the array in half until the size of the array >= 2
         if (arr.size() >= 2) {
@@ -35,6 +56,16 @@ public class SearchSort {
         }
     }
 
+    /**
+     * Helper method for the <code>mergeSort</code> method to merge two sorted arrays
+     * 
+     * @param <T> Generic type parameter
+     * @param <R> Generic return type
+     * @param result Resultant ArrayList
+     * @param left Left ArrayList
+     * @param right Right ArrayList
+     * @param fetcher Functional interface denoting the attribute to sort by
+     */
     private static <T, R> void merge(ArrayList<T> result, ArrayList<T> left, ArrayList<T> right, AttributeFetcher<T, R> fetcher) {
         int i = 0, j = 0;
 

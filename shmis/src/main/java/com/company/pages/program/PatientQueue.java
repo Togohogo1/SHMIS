@@ -89,14 +89,12 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
                     App.dsm.getQueue().removeFront();
                     System.out.println("Approved");
                     appointment.setStatus("Approved");
-                    // TODO and more db stuff
                     tableModel.fireTableDataChanged();
                 } else if (JOptionPane.NO_OPTION == n) {
                     App.dsm.getQueue().removeFront();
                     App.dsm.getInCalendar().remove(appId);
                     appointment.setStatus("Unapproved");
                     System.out.println("Unapproved");
-                    // TODO and more db stuff
                 }
             }
         }

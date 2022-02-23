@@ -348,7 +348,6 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
             appInfoPopup.setResizable(false);
             appInfoPopup.setVisible(true);
         }
-
     }
 
     @Override

@@ -26,7 +26,7 @@ public class Appointment {
     private String notes;
 
     private ArrayList<Boolean> imaging;
-
+    // TODO rename imaging to concerns
     public Appointment(JSONObject obj) {
         ArrayList<Boolean> imaging = new ArrayList<>();
         JSONArray imagingJSON = (JSONArray) obj.get("imaging");

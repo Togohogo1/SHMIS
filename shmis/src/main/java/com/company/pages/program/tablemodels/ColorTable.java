@@ -34,10 +34,8 @@ public class ColorTable extends JTable {
         boolean isQueue = (tableModelType == "queue");
         boolean isCalendar = (tableModelType == "calendar");
         String status = (String) getModel().getValueAt(row, 4);
-        // System.out.println("render");
         if (isCalendar) {
             status = ((CalendarTableModel)getModel()).getStatusFromEvents(row);
-            System.out.println(status + " " + row + " " + column);
         }
 
         if (tableModelType.equals("queue")) {

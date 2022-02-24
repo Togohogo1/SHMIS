@@ -129,7 +129,6 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
         int row = target.getSelectedRow(); // select a row
         int day = dayToInt(((CalendarTableModel)target.getModel()).getDay());
         Appointment appointment = days.get(day).get(row);
-        System.out.println(row + " " + day + appointment.getId());
 
         if (e.getClickCount() == 2) {
             if (appointment.getStatus().equals("Approved")) {
@@ -149,9 +148,6 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        // ListSelectionModel lsm = (ListSelectionModel) e.getSource();
-        // System.out.println(lsm.getMinSelectionIndex());
-        // lsm.clearSelection();
     }
 
     @Override

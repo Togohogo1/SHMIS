@@ -75,7 +75,6 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
     @Override
     public void valueChanged(ListSelectionEvent e) {
         ListSelectionModel lsm = (ListSelectionModel) e.getSource();
-        System.out.println(lsm.getMinSelectionIndex());
 
         if (lsm.getMinSelectionIndex() >= 1)
             lsm.clearSelection();
@@ -96,14 +95,12 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
 
                 if (JOptionPane.YES_OPTION == n) {
                     App.dsm.getQueue().removeFront();
-                    System.out.println("Approved");
                     appointment.setStatus("Approved");
                     tableModel.fireTableDataChanged();
                 } else if (JOptionPane.NO_OPTION == n) {
                     App.dsm.getQueue().removeFront();
                     App.dsm.getInCalendar().remove(appId);
                     appointment.setStatus("Unapproved");
-                    System.out.println("Unapproved");
                 }
             }
         }

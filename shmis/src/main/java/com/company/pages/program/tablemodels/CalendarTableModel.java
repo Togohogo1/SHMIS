@@ -2,13 +2,15 @@ package com.company.pages.program.tablemodels;
 
 import java.util.ArrayList;
 
-import javax.lang.model.util.ElementScanner14;
 import javax.swing.table.AbstractTableModel;
 
 import com.company.App;
 import com.company.classes.Appointment;
 import com.company.classes.Person;
 
+/**
+ * Customized table model for displaying calendar events.
+ */
 public class CalendarTableModel extends AbstractTableModel {
     private String day;
     private ArrayList<Appointment> events;

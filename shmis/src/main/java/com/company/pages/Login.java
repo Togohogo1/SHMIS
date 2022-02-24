@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 
-import com.company.App;
 import com.company.pages.login.EmployeeLogin;
 import com.company.pages.login.PatientLogin;
 

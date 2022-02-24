@@ -4,20 +4,16 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -26,7 +22,6 @@ import com.company.classes.Appointment;
 import com.company.pages.FontColor;
 import com.company.pages.program.tablemodels.ColorTable;
 import com.company.pages.program.tablemodels.QueueTableModel;
-import com.company.utilities.SearchSort;
 
 /**
  * Page for the patient queue.
@@ -34,7 +29,6 @@ import com.company.utilities.SearchSort;
 public class PatientQueue extends JPanel implements ActionListener, MouseListener, ListSelectionListener {
     private JTable table;
     private JScrollPane queueTable;
-    private JDialog approvePopup;
     private QueueTableModel tableModel;
 
     public PatientQueue() {
@@ -79,8 +73,6 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
     @Override
     public void mouseClicked(MouseEvent e) {
         JTable target = (JTable) e.getSource();
-        int row = target.getSelectedRow(); // select a row
-        int column = target.getSelectedColumn(); // select a column
 
         if (target.getSelectedRow() == 0) {  // Only allow the first row to be selected
             if (e.getClickCount() == 2) {

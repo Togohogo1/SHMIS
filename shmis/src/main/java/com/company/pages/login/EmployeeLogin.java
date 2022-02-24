@@ -18,6 +18,9 @@ import com.company.App;
 import com.company.classes.Employee;
 import com.company.pages.FontColor;
 
+/**
+ * Page for employee login.
+ */
 public class EmployeeLogin extends JPanel implements ActionListener {
     private JLabel key;
     private JLabel password;

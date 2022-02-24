@@ -6,10 +6,12 @@ import javax.swing.table.AbstractTableModel;
 
 import com.company.classes.Patient;
 
+/**
+ * Customized table model for displaying patients.
+ */
 public class PatientTableModel extends AbstractTableModel {
     private String[] columnNames = {"Age", "First Name", "Last Name", "Gender", "Id", "Password", "Address", "Email", "Telephone"};
     private ArrayList<Patient> patients;
-    private ArrayList<Patient> tmpPatients;
 
     public PatientTableModel(ArrayList<Patient> patients) {
         this.patients = patients;

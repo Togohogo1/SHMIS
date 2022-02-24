@@ -1,17 +1,14 @@
 package com.company.pages.login;
 
 import java.awt.GridBagLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,9 +19,11 @@ import javax.swing.JTextField;
 import com.company.App;
 import com.company.classes.Patient;
 import com.company.pages.FontColor;
-// import com.company.pages.program.SignupHelper;
 import com.company.pages.program.PopupHelper;
 
+/**
+ * Page for patient login.
+ */
 public class PatientLogin extends JPanel implements ActionListener {
     private JLabel email;  // TODO doesn't need to be at this scope
     private JLabel password;  // TODO doesn't need to be at this scope
@@ -108,8 +107,6 @@ public class PatientLogin extends JPanel implements ActionListener {
         JPanel popup = new JPanel(new GridBagLayout());  // To put the stuff in
         GridBagConstraints c = new GridBagConstraints();
 
-        JPanel top = new JPanel(new GridBagLayout());
-        GridBagConstraints ci = new GridBagConstraints();
         inputs = new JTextField[9];
 
         registerConfirm = new JButton("Register");

@@ -6,6 +6,9 @@ import com.company.App;
 import com.company.classes.Appointment;
 import com.company.utilities.Queue;
 
+/**
+ * Customized table model for displaying queued appointments.
+ */
 public class QueueTableModel extends AbstractTableModel {
     private String[] columnNames = {"ID", "Patient", "Date", "From", "To"};
     private Queue queue;

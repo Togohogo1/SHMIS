@@ -28,7 +28,6 @@ import com.company.utilities.SearchSort;
  * Page for the weekly calendar
  */
 public class WeeklyCalendar extends JPanel implements MouseListener, ListSelectionListener {
-    private int presize;
     private String[] names = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
     private ArrayList<ArrayList<Appointment>> days = new ArrayList<>();
     private CalendarTableModel[] tableModels = new CalendarTableModel[5];
@@ -55,12 +54,10 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
         }
 
         render();
-        presize = App.dsm.getInCalendar().size();
 
         // Setting sizes and styling
         for (int i = 0; i < 5; i++) {
             calendars[i].setRowHeight(25);
-            calendars[i].setFont(FontColor.H3);
             calendars[i].setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             calendars[i].getTableHeader().setFont(FontColor.H3_BOLD);
             calendars[i].getTableHeader().setPreferredSize(new Dimension(0, 30));  // Will auto resize
@@ -95,8 +92,6 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
             int day = dayToInt(appointment.getDate());  // Get day of each appointment in calendar list
             days.get(day).add(appointment);  // Unsorted, but distributed appointments from calendar list
         }
-
-        presize = App.dsm.getInCalendar().size();
 
         // Ordering by start time
         for (ArrayList<Appointment> arr : days) {

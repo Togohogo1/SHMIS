@@ -1,12 +1,9 @@
 package com.company.pages.program;
 
-import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.GridBagLayout;
-import java.net.SocketTimeoutException;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -20,16 +17,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.AbstractTableModel;
 
 import com.company.App;
 import com.company.classes.Appointment;
@@ -144,11 +138,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         JPanel popup = new JPanel(new GridBagLayout());  // To put the stuff in
         GridBagConstraints c = new GridBagConstraints();
 
-        JPanel top = new JPanel(new GridBagLayout());
-        GridBagConstraints co = new GridBagConstraints();
         inputs = new JTextField[9];
-
-        JPanel bottom = new JPanel();
 
         confirm = new JButton("Confirm Edits");
         confirm.addActionListener(this);
@@ -326,7 +316,6 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         ListSelectionModel lsm = (ListSelectionModel)e.getSource();
 
         int firstIndex = lsm.getMinSelectionIndex();
-        int lastIndex = lsm.getMaxSelectionIndex();
 
         if (firstIndex >= 0) {
             selectedRow = firstIndex;
@@ -396,7 +385,6 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
     public void mouseClicked(MouseEvent e) {
         JTable target = (JTable)e.getSource();
         int row = target.getSelectedRow(); // select a row
-        int column = target.getSelectedColumn(); // select a column
 
         if (e.getClickCount() == 2) {
             if (target == tablePatients) {

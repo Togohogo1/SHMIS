@@ -9,6 +9,9 @@ import javax.swing.table.TableModel;
 
 import com.company.pages.FontColor;
 
+/**
+ * Custom table to display colours. Different for the patient queue, weekly calendar, and appointment list.
+ */
 public class ColorTable extends JTable {
     private String tableModelType;
 
@@ -19,7 +22,6 @@ public class ColorTable extends JTable {
 
     public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
         Component c = super.prepareRenderer(renderer, row, column);
-        int modelRow = convertRowIndexToModel(row);
         boolean isQueue = (tableModelType == "queue");
         boolean isCalendar = (tableModelType == "calendar");
         String status = (String) getModel().getValueAt(row, 4);

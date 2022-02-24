@@ -30,6 +30,9 @@ import com.company.pages.program.tablemodels.AppointmentTableModel;
 import com.company.pages.program.tablemodels.ColorTable;
 import com.company.utilities.Node;
 
+/**
+ * Page for a patient's appointments.
+ */
 public class MyAppointments extends JPanel implements ActionListener, MouseListener {
     private JButton book;
     private JTable table;

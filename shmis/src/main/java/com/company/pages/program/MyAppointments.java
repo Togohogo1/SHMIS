@@ -107,7 +107,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
     /**
      * Creates a popup for patients to book appointments.
      *
-     * @return a popup
+     * @return a popup for patients to book appointments
      */
     public JPanel createBooking() {
         JPanel panel = new JPanel(new GridBagLayout());
@@ -201,6 +201,12 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         return panel;
     }
 
+    /**
+     * Creates a popup to display patient appointment information.
+     *
+     * @param appointment The appointment of interest
+     * @return a popup to display patient appointment information
+     */
     public JPanel createApptInfo(Appointment appointment) {
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -289,6 +295,11 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         return panel;
     }
 
+    /**
+     * Creates an appointment based on information entered in the booking popup.
+     *
+     * @return an appointment based on information entered in the booking popup
+     */
     public Appointment createAppointment() {
         ArrayList<Boolean> imagingArr = new ArrayList<>();
 
@@ -312,6 +323,9 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         return appointment;
     }
 
+    /**
+     * Performing actions when clicked on the book and confirm booking buttons.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == book) {
@@ -340,6 +354,9 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         }
     }
 
+    /**
+     * Showing appointment information popup when double clicking on an appointment.
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         JTable target = (JTable) e.getSource();
@@ -348,7 +365,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         if (e.getClickCount() == 2) {
             long appId = ((Patient)App.dsm.getCurrentUser()).getAppointments().get(row);
             Appointment appointment = App.dsm.query(appId);
-            appInfoPopup = new JDialog(null, "Appointment Info", JDialog.ModalityType.APPLICATION_MODAL);
+            appInfoPopup = new JDialog(null, "Appointment Information", JDialog.ModalityType.APPLICATION_MODAL);
             appInfoPopup.add(createApptInfo(appointment));
             appInfoPopup.setSize(new Dimension(450, 325));
             appInfoPopup.setLocationRelativeTo(null);

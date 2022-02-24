@@ -67,6 +67,9 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
     private JComboBox<String> referralDoctorView;
     private JTextField notesView;
 
+    /**
+     * Initializles the patient index page.
+     */
     public PatientIndex() {
         super(new GridBagLayout());
         GridBagConstraints co = new GridBagConstraints();
@@ -133,6 +136,12 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         this.add(splitPane, co);
     }
 
+    /**
+     * Creates a popup for employees to edit patient information.
+     *
+     * @param patient The patient whose information is edited.
+     * @return a popup for employees to edit patient information
+     */
     public JPanel createEdit(Patient patient) {
         // Initialiing the elements
         JPanel popup = new JPanel(new GridBagLayout());  // To put the stuff in
@@ -205,6 +214,12 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         return popup;
     }
 
+    /**
+     * Creates a popup to display patient appointment information.
+     *
+     * @param appointment The appointment of interest
+     * @return a popup to display patient appointment information
+     */
     public JPanel createApptInfo(Appointment appointment) {
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -299,6 +314,11 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         return panel;
     }
 
+    /**
+     * Changes patient information based on edits in the patient edit popup.
+     *
+     * @param patient The patient whose information is changed
+     */
     public void changePatient(Patient patient) {
         patient.setAge(Long.valueOf(inputs[0].getText()));
         patient.setFirstName(inputs[1].getText());
@@ -311,21 +331,11 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         patient.setTelephone(inputs[8].getText());
     }
 
-    @Override
-    public void valueChanged(ListSelectionEvent e) {
-        ListSelectionModel lsm = (ListSelectionModel)e.getSource();
-
-        int firstIndex = lsm.getMinSelectionIndex();
-
-        if (firstIndex >= 0) {
-            selectedRow = firstIndex;
-            System.out.println("changes");  // DEBUG
-            System.out.println(App.dsm.getPatientList().get(firstIndex).getAppointments());
-            appointmentTableModel.setAppointmentList(App.dsm.getPatientList().get(firstIndex).getAppointments());
-            appointmentTableModel.fireTableDataChanged();
-        }
-    }
-
+    /**
+     * Change the patient's full name for all appointments that they are a reference to.
+     *
+     * @param patient The patient of interest
+     */
     public void changeAppointmentRefs(Patient patient) {
         for (long appId : patient.getAppointments()) {
             Appointment appointment = App.dsm.query(appId);
@@ -333,6 +343,24 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         }
     }
 
+    /**
+     * Displaying corresponding appointments when selecting a patient.
+     */
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        ListSelectionModel lsm = (ListSelectionModel)e.getSource();
+        int firstIndex = lsm.getMinSelectionIndex();
+
+        if (firstIndex >= 0) {
+            selectedRow = firstIndex;
+            appointmentTableModel.setAppointmentList(App.dsm.getPatientList().get(firstIndex).getAppointments());
+            appointmentTableModel.fireTableDataChanged();
+        }
+    }
+
+    /**
+     * Performing actions when pressing the confirm, delete patient, and sort buttons.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (App.dsm.getPatientList().isEmpty())
@@ -381,6 +409,9 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         }
     }
 
+    /**
+     * Displaying popups when double clicking on a a patient or appointment.
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         JTable target = (JTable)e.getSource();
@@ -399,7 +430,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
             } else if (target == tableAppointments) {
                 long appId = appointmentTableModel.getAppointmentList().get(row);
                 Appointment appointment = App.dsm.query(appId);
-                appInfoPopup = new JDialog(null, "Appointment Info", JDialog.ModalityType.APPLICATION_MODAL);
+                appInfoPopup = new JDialog(null, "Appointment Information", JDialog.ModalityType.APPLICATION_MODAL);
                 appInfoPopup.add(createApptInfo(appointment));
                 appInfoPopup.setSize(new Dimension(450, 325));
                 appInfoPopup.setLocationRelativeTo(null);

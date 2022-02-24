@@ -17,6 +17,13 @@ import com.company.classes.Patient;
 public class PopupHelper extends JPanel {
     private static String errorMessage;
 
+    /**
+     * Checks if the patient in the create patient popup is valid.
+     *
+     * @param inputs The inputted information
+     * @param prevEmail The previous email of the patient
+     * @return
+     */
     public static boolean validPatient(JTextField[] inputs, String prevEmail) {
         // Trim whitespace
         for (int i = 0; i < 9; i++) {
@@ -75,6 +82,14 @@ public class PopupHelper extends JPanel {
         return true;
     }
 
+    /**
+     * Checks if the appointment in the book appointment popup is valid.
+     *
+     * @param imaging The appointment's body areas
+     * @param from The appointment's start time
+     * @param to The appointment's end time
+     * @return
+     */
     public static boolean validAppointment(JRadioButton[] imaging, JComboBox<String> from, JComboBox<String> to) {
         // Checking that no JRadioButtons are left empty
         boolean atLeastOne = false;
@@ -96,10 +111,24 @@ public class PopupHelper extends JPanel {
         return true;
     }
 
+    /**
+     * Check if a newly booked appointment conflicts with a current one.
+     *
+     * @param day The new appointment's day
+     * @param from The new appointment's start time
+     * @param to The new appointment's end time
+     * @return
+     */
     public static boolean conflictExists(JComboBox<String> day, JComboBox<String> from, JComboBox<String> to) {
         return true;
     }
 
+    /**
+     * Converts the time formatted in HH:MM to a long.
+     *
+     * @param time The time as a String
+     * @return
+     */
     public static long stringToStart(String time) {
         String[] arr = time.split(":");
         long min = Long.valueOf(arr[0])*60 + Long.valueOf(arr[1]);
@@ -107,6 +136,13 @@ public class PopupHelper extends JPanel {
         return numMin;
     }
 
+    /**
+     * Checks if an email exists or not. Ignores the case when an employee does not change a patient's email in the edit patient information popup.
+     *
+     * @param prevEmail The previous email
+     * @param email The new email
+     * @return <code>True</code> if there is an email conflict
+     */
     public static boolean emailExists(String prevEmail, String email) {
         if (prevEmail.equals(email)) {
             return false;
@@ -120,6 +156,12 @@ public class PopupHelper extends JPanel {
         return false;
     }
 
+    /**
+     * Checks if an appointment conflicts with a booked appointment.
+     *
+     * @param booked New appointment to be checked
+     * @return <code>True</code> if there is a conflict
+     */
     public static boolean existsTimeConflict(Appointment booked) {
         for (long appId: App.dsm.getInCalendar()) {
             Appointment appointment = App.dsm.query(appId);
@@ -135,6 +177,11 @@ public class PopupHelper extends JPanel {
         return false;
     }
 
+    /**
+     * Returns an error message based on invalid input.
+     *
+     * @return an error message based on invalid input
+     */
     public static String getError() {
         return errorMessage;
     }

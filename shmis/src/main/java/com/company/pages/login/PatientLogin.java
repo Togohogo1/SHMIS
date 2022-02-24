@@ -190,7 +190,7 @@ public class PatientLogin extends JPanel implements ActionListener {
     }
 
     /**
-     * Get patient from patient list after successful login or register.
+     * Get patient from patient list after successful login or register
      *
      * @param email Valid email of patient
      * @return the corresponding patient

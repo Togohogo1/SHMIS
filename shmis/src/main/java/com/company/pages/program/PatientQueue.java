@@ -31,6 +31,9 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
     private JScrollPane queueTable;
     private QueueTableModel tableModel;
 
+    /**
+     * Initializes the patient queue.
+     */
     public PatientQueue() {
         super(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -57,10 +60,18 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
         this.add(queueTable, c);
     }
 
+    /**
+     * Returns the table model.
+     *
+     * @return the table model
+     */
     public QueueTableModel getTableModel() {
         return tableModel;
     }
 
+    /**
+     * Don't allow the employee to select appointments that are not the first (priority)
+     */
     @Override
     public void valueChanged(ListSelectionEvent e) {
         ListSelectionModel lsm = (ListSelectionModel) e.getSource();
@@ -70,6 +81,9 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
             lsm.clearSelection();
     }
 
+    /**
+     * Displays a popup to approve or disapprove an appointment in the queue after double clicking on it.
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         JTable target = (JTable) e.getSource();

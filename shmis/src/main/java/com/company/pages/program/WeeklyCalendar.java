@@ -141,7 +141,7 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
                     render();
                 }
             } else {
-                JOptionPane.showMessageDialog(null, String.format("%s's appointment (ID = %d)", appointment.getPatient(), appointment.getId()), "Event Info", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, String.format("%s's appointment (ID = %d)", appointment.getPatient(), appointment.getId()), "Event Information", JOptionPane.INFORMATION_MESSAGE);
             }
         }
 

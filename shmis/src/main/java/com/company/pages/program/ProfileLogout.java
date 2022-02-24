@@ -24,6 +24,9 @@ import com.company.pages.FontColor;
 public class ProfileLogout extends JPanel implements ActionListener {
     private JButton logout;
 
+    /**
+     * Initializes a page for logging out and profile information.
+     */
     public ProfileLogout() {
         super(new GridBagLayout());
         GridBagConstraints co = new GridBagConstraints();
@@ -102,6 +105,9 @@ public class ProfileLogout extends JPanel implements ActionListener {
         this.add(logout, co);
     }
 
+    /**
+     * Confirm logout when clicking on the logout button.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         int confirm = JOptionPane.showConfirmDialog(null, "Confirm Logout?", "Confirm", JOptionPane.YES_NO_OPTION);

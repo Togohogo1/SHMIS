@@ -11,6 +11,9 @@ import com.company.App;
 import com.company.classes.Appointment;
 import com.company.classes.Patient;
 
+/**
+ * Helper class with methods for popup operations
+ */
 public class PopupHelper extends JPanel {
     private static String errorMessage;
 

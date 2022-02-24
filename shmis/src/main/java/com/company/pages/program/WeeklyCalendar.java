@@ -9,7 +9,6 @@ import java.awt.GridBagConstraints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.print.PrintService;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -25,6 +24,9 @@ import com.company.pages.program.tablemodels.CalendarTableModel;
 import com.company.pages.program.tablemodels.ColorTable;
 import com.company.utilities.SearchSort;
 
+/**
+ * Page for the weekly calendar
+ */
 public class WeeklyCalendar extends JPanel implements MouseListener, ListSelectionListener {
     private int presize;
     private String[] names = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};

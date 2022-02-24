@@ -28,6 +28,9 @@ import com.company.pages.program.tablemodels.ColorTable;
 import com.company.pages.program.tablemodels.QueueTableModel;
 import com.company.utilities.SearchSort;
 
+/**
+ * Page for the patient queue.
+ */
 public class PatientQueue extends JPanel implements ActionListener, MouseListener, ListSelectionListener {
     private JTable table;
     private JScrollPane queueTable;

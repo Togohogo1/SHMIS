@@ -40,6 +40,9 @@ import com.company.pages.program.tablemodels.ColorTable;
 import com.company.pages.program.tablemodels.PatientTableModel;
 import com.company.utilities.SearchSort;
 
+/**
+ * Page for the patient index.
+ */
 public class PatientIndex extends JPanel implements ListSelectionListener, ActionListener, MouseListener {
     private int selectedRow;
     private String prevEmail;

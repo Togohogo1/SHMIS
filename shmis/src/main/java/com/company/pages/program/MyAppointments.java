@@ -8,10 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.time.Period;
 import java.util.ArrayList;
 
-import javax.crypto.CipherSpi;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -27,7 +25,6 @@ import javax.swing.ListSelectionModel;
 import com.company.App;
 import com.company.classes.Appointment;
 import com.company.classes.Patient;
-import com.company.classes.Person;
 import com.company.pages.FontColor;
 import com.company.pages.program.tablemodels.AppointmentTableModel;
 import com.company.pages.program.tablemodels.ColorTable;
@@ -336,7 +333,6 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
     public void mouseClicked(MouseEvent e) {
         JTable target = (JTable) e.getSource();
         int row = target.getSelectedRow(); // select a row
-        int column = target.getSelectedColumn(); // select a column
 
         if (e.getClickCount() == 2) {
             long appId = ((Patient)App.dsm.getCurrentUser()).getAppointments().get(row);

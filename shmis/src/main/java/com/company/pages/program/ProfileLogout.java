@@ -1,8 +1,6 @@
 package com.company.pages.program;
 
 import java.awt.GridBagLayout;
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -10,19 +8,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.company.App;
-import com.company.classes.Employee;
 import com.company.classes.Patient;
 import com.company.classes.Person;
 import com.company.pages.FontColor;
 
+/**
+ * Page for logging out and profile information.
+ */
 public class ProfileLogout extends JPanel implements ActionListener {
     private JButton logout;
 

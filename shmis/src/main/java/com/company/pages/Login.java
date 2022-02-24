@@ -12,11 +12,17 @@ import com.company.App;
 import com.company.pages.login.EmployeeLogin;
 import com.company.pages.login.PatientLogin;
 
+/**
+ * The login page for patients and employees.
+ */
 public class Login extends JPanel {
     private JTabbedPane tabs;
     private PatientLogin patientLogin;
     private EmployeeLogin employeeLogin;
 
+    /**
+     * Initizlies the login page, which functions through tabbed panes.
+     */
     public Login() {
         tabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
         patientLogin = new PatientLogin();
@@ -29,6 +35,13 @@ public class Login extends JPanel {
         this.add(tabs);
     }
 
+    /**
+     * Appends a new tab to the login <code>JTabbedPane</code>.
+     *
+     * @param panel The panel to be added
+     * @param name The name of the tab
+     * @param idx The index of the tab
+     */
     public void appendTab(JPanel panel, String name, int idx) {
         JLabel label = new JLabel(name);
         label.setFont(FontColor.H1_BOLD);

@@ -17,6 +17,9 @@ import com.company.pages.program.PatientIndex;
 import com.company.pages.program.ProfileLogout;
 import com.company.pages.program.WeeklyCalendar;
 
+/**
+ * The main program pages for patients and employees.
+ */
 public class Program extends JPanel implements ChangeListener {
     private JTabbedPane patientTabs;
     private JTabbedPane employeeTabs;
@@ -27,6 +30,9 @@ public class Program extends JPanel implements ChangeListener {
     private ProfileLogout profile, profile2;
     private WeeklyCalendar weeklyCalendar, weeklyCalendar2;
 
+    /**
+     * Initializes the program page, which functions through tabbed panes. Different tabs will be shown depending on the current user type.
+     */
     public Program() {
         // Initialize components
         patientTabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
@@ -34,6 +40,7 @@ public class Program extends JPanel implements ChangeListener {
         employeeTabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
         employeeTabs.addChangeListener(this);
 
+        // Easy way to ensure the whole frame gets filled
         this.setLayout(new GridLayout(1, 1));
 
         if (App.dsm.currUserIsPatient()) {  // Patient
@@ -57,6 +64,14 @@ public class Program extends JPanel implements ChangeListener {
         }
     }
 
+    /**
+     * Appends a new tab to a specified tabbed pane.
+     *
+     * @param tabs The specified tabbed pane
+     * @param panel The panel to be added
+     * @param name The name of the tab
+     * @param idx The index of the tab
+     */
     public void appendTab(JTabbedPane tabs, JPanel panel, String name, int idx) {
         JLabel label = new JLabel(name);
         label.setFont(FontColor.H1_BOLD);
@@ -67,6 +82,9 @@ public class Program extends JPanel implements ChangeListener {
         tabs.setTabComponentAt(idx, label);
     }
 
+    /**
+     * Detects tab changes. Updates the calendar tab every time the user selects it.
+     */
     @Override
     public void stateChanged(ChangeEvent e) {
         JTabbedPane target = (JTabbedPane) e.getSource();

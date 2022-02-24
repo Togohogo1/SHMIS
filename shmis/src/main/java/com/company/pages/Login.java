@@ -31,7 +31,7 @@ public class Login extends JPanel {
 
     public void appendTab(JPanel panel, String name, int idx) {
         JLabel label = new JLabel(name);
-        label.setFont(Settings.H1_BOLD);
+        label.setFont(FontColor.H1_BOLD);
         label.setHorizontalAlignment(SwingConstants.LEFT);
         label.setPreferredSize(new Dimension(256, 50));
 

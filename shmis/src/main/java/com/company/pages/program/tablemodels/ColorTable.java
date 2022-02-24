@@ -7,7 +7,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 
-import com.company.pages.Settings;
+import com.company.pages.FontColor;
 
 public class ColorTable extends JTable {
     private String tableModelType;
@@ -43,11 +43,11 @@ public class ColorTable extends JTable {
 
             if (!isRowSelected(row) && tableModelType.equals("appointment") || tableModelType.equals("calendar")) {
                 if (status.equals("Pending")) {
-                    c.setBackground(Settings.LIGHT_YELLOW_3);
+                    c.setBackground(FontColor.LIGHT_YELLOW_3);
                 } else if (status.equals("Approved"))
-                    c.setBackground(Settings.LIGHT_GREEN_3);
+                    c.setBackground(FontColor.LIGHT_GREEN_3);
                 else if (status.equals("Unapproved"))
-                    c.setBackground(Settings.LIGHT_RED_3);
+                    c.setBackground(FontColor.LIGHT_RED_3);
             }
         }
 

@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 
 import com.company.App;
 import com.company.classes.Employee;
-import com.company.pages.Settings;
+import com.company.pages.FontColor;
 
 public class EmployeeLogin extends JPanel implements ActionListener {
     private JLabel key;
@@ -43,19 +43,19 @@ public class EmployeeLogin extends JPanel implements ActionListener {
         login.addActionListener(this);
 
         // Setting sizes and styling
-        key.setFont(Settings.H2_BOLD);
+        key.setFont(FontColor.H2_BOLD);
         key.setPreferredSize(new Dimension(120, 30));
 
-        password.setFont(Settings.H2_BOLD);
+        password.setFont(FontColor.H2_BOLD);
         password.setPreferredSize(new Dimension(120, 30));
 
-        keyInput.setFont(Settings.H2);
+        keyInput.setFont(FontColor.H2);
         keyInput.setPreferredSize(new Dimension(120, 30));
 
-        passwordInput.setFont(Settings.H2);
+        passwordInput.setFont(FontColor.H2);
         passwordInput.setPreferredSize(new Dimension(120, 30));
 
-        login.setFont(Settings.H2);
+        login.setFont(FontColor.H2);
         login.setPreferredSize(new Dimension(120+120+10, 30));
 
         // Positioning

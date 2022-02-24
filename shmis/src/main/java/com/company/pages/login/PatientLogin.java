@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 
 import com.company.App;
 import com.company.classes.Patient;
-import com.company.pages.Settings;
+import com.company.pages.FontColor;
 // import com.company.pages.program.SignupHelper;
 import com.company.pages.program.PopupHelper;
 
@@ -58,22 +58,22 @@ public class PatientLogin extends JPanel implements ActionListener {
         login.addActionListener(this);
 
         // Setting sizes and styling
-        email.setFont(Settings.H2_BOLD);
+        email.setFont(FontColor.H2_BOLD);
         email.setPreferredSize(new Dimension(120, 30));
 
-        password.setFont(Settings.H2_BOLD);
+        password.setFont(FontColor.H2_BOLD);
         password.setPreferredSize(new Dimension(120, 30));
 
-        emailInput.setFont(Settings.H2);
+        emailInput.setFont(FontColor.H2);
         emailInput.setPreferredSize(new Dimension(120, 30));
 
-        passwordInput.setFont(Settings.H2);
+        passwordInput.setFont(FontColor.H2);
         passwordInput.setPreferredSize(new Dimension(120, 30));
 
-        register.setFont(Settings.H2);
+        register.setFont(FontColor.H2);
         register.setPreferredSize(new Dimension(120, 30));
 
-        login.setFont(Settings.H2);
+        login.setFont(FontColor.H2);
         login.setPreferredSize(new Dimension(120, 30));
 
         // Positioning

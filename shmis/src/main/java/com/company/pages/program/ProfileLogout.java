@@ -21,7 +21,7 @@ import com.company.App;
 import com.company.classes.Employee;
 import com.company.classes.Patient;
 import com.company.classes.Person;
-import com.company.pages.Settings;
+import com.company.pages.FontColor;
 
 public class ProfileLogout extends JPanel implements ActionListener {
     private JButton logout;
@@ -71,14 +71,14 @@ public class ProfileLogout extends JPanel implements ActionListener {
 
         // Setting sizes and styling
         for (int i = 0; i < 8; i++) {
-            patientlabels[i].setFont(Settings.H2_BOLD);  // Reference set to array index, employeeDetails should update as well
-            patientDetails[i].setFont(Settings.H2);
+            patientlabels[i].setFont(FontColor.H2_BOLD);  // Reference set to array index, employeeDetails should update as well
+            patientDetails[i].setFont(FontColor.H2);
             patientlabels[i].setPreferredSize(new Dimension(90, 30));
             patientDetails[i].setPreferredSize(new Dimension(120, 30));
             patientDetails[i].setEditable(false);
         }
 
-        logout.setFont(Settings.H2);
+        logout.setFont(FontColor.H2);
         logout.setPreferredSize(new Dimension(90+120+10, 30));
 
         // Positioning

@@ -23,7 +23,7 @@ import javax.swing.event.ListSelectionListener;
 
 import com.company.App;
 import com.company.classes.Appointment;
-import com.company.pages.Settings;
+import com.company.pages.FontColor;
 import com.company.pages.program.tablemodels.ColorTable;
 import com.company.pages.program.tablemodels.QueueTableModel;
 import com.company.utilities.SearchSort;
@@ -48,7 +48,7 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
         // Setting sizes and styling
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setRowHeight(25);
-        table.getTableHeader().setFont(Settings.H3_BOLD);
+        table.getTableHeader().setFont(FontColor.H3_BOLD);
         table.getTableHeader().setPreferredSize(new Dimension(0, 30));  // Will auto resize
         table.getTableHeader().setReorderingAllowed(false);
 

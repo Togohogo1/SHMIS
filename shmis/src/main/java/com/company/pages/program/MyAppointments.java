@@ -28,7 +28,7 @@ import com.company.App;
 import com.company.classes.Appointment;
 import com.company.classes.Patient;
 import com.company.classes.Person;
-import com.company.pages.Settings;
+import com.company.pages.FontColor;
 import com.company.pages.program.tablemodels.AppointmentTableModel;
 import com.company.pages.program.tablemodels.ColorTable;
 import com.company.utilities.Node;
@@ -83,9 +83,9 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         table.setRowHeight(25);
         table.getTableHeader().setReorderingAllowed(false);
         table.getTableHeader().setPreferredSize(new Dimension(0, 30));
-        table.getTableHeader().setFont(Settings.H3_BOLD);
+        table.getTableHeader().setFont(FontColor.H3_BOLD);
 
-        book.setFont(Settings.H2);
+        book.setFont(FontColor.H2);
         book.setPreferredSize(new Dimension(150, 30));
 
         // Positioning

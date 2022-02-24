@@ -34,7 +34,7 @@ import javax.swing.table.AbstractTableModel;
 import com.company.App;
 import com.company.classes.Appointment;
 import com.company.classes.Patient;
-import com.company.pages.Settings;
+import com.company.pages.FontColor;
 import com.company.pages.program.tablemodels.AppointmentTableModel;
 import com.company.pages.program.tablemodels.ColorTable;
 import com.company.pages.program.tablemodels.PatientTableModel;
@@ -106,17 +106,17 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         tablePatients.setRowHeight(25);
         tablePatients.getTableHeader().setReorderingAllowed(false);
         tablePatients.getTableHeader().setPreferredSize(new Dimension(0, 30));
-        tablePatients.getTableHeader().setFont(Settings.H3_BOLD);;
+        tablePatients.getTableHeader().setFont(FontColor.H3_BOLD);;
 
         tableAppointments.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tableAppointments.setRowHeight(25);
         tableAppointments.getTableHeader().setReorderingAllowed(false);
         tableAppointments.getTableHeader().setPreferredSize(new Dimension(0, 30));  // Will auto resize
-        tableAppointments.getTableHeader().setFont(Settings.H3_BOLD);;
+        tableAppointments.getTableHeader().setFont(FontColor.H3_BOLD);;
 
-        sortBy.setFont(Settings.H2);
+        sortBy.setFont(FontColor.H2);
         sortBy.setPreferredSize(new Dimension(150, 30));
-        sort.setFont(Settings.H2);
+        sort.setFont(FontColor.H2);
         sort.setPreferredSize(new Dimension(120, 30));
 
         // Positioning

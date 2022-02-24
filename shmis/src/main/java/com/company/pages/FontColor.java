@@ -3,7 +3,10 @@ package com.company.pages;
 import java.awt.Color;
 import java.awt.Font;
 
-public class Settings {
+/**
+ * Class for some fonts and colours used in the program.
+ */
+public class FontColor {
     // Fonts
     public static final Font H1 = new Font("Segoe", Font.PLAIN, 20);
     public static final Font H2 = new Font("Segoe", Font.PLAIN, 14);

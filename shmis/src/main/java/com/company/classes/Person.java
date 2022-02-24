@@ -22,12 +22,12 @@ public abstract class Person {
     /**
      * Initialized a person from constructor parameters.
      *
-     * @param age
-     * @param firstName
-     * @param lastName
-     * @param gender
-     * @param id
-     * @param password
+     * @param age The person's age
+     * @param firstName The person's first name
+     * @param lastName The person's last name
+     * @param gender The person's gender
+     * @param id The person's ID
+     * @param password The person's password
      */
     public Person(long age, String firstName, String lastName, String gender, String id, String password) {
         this.age = age;

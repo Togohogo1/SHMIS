@@ -21,7 +21,7 @@ public class HealthcareApp extends JFrame implements WindowListener {
      * Initializes the main frame as the main container and adds the login panel. The frame's size, location, and some other settings are predetermined.
      */
     public HealthcareApp() {
-        super("Simple Healthcare Management Interface for Specialists");
+        super("Healthcare Management Interface for Specialists");
 
         login = new Login();
         this.add(login);  // Default

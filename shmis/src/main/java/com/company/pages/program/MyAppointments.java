@@ -319,6 +319,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
             imagingArr
         );
 
+        App.dsm.incrAppointmentID();
         return appointment;
     }
 

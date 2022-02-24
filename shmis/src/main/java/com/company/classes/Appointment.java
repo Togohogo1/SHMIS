@@ -20,19 +20,20 @@ public class Appointment {
     private String notes;
 
     private ArrayList<Boolean> imaging;
+    // TODO rename imaging to concerns
 
     /**
      * Initializes an appointment from constructor parameters.
      *
-     * @param start The appointment's start time
-     * @param span The appointment's duration
-     * @param id The appointment's ID
-     * @param date The appointment's date
-     * @param status The appointment's status
-     * @param patient The appointment's patient's full name
-     * @param referralDoctor The appointment's referral doctor
-     * @param notes The appointment's notes
-     * @param imaging The appointment's imaging
+     * @param start Appointment start time
+     * @param span Appointment duration
+     * @param id Appointment ID
+     * @param date Appointment date
+     * @param status Appointment status
+     * @param patient Appointment's patient's full name
+     * @param referralDoctor Appointment referral doctor
+     * @param notes Appointment notes
+     * @param imaging Appointment concerns
      */
     public Appointment(long start, long span, long id, String date, String status, String patient, String referralDoctor, String notes, ArrayList<Boolean> imaging) {
         this.start = start;

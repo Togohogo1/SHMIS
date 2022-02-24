@@ -324,7 +324,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
     }
 
     /**
-     * Performing actions when clicked on the book and confirm booking buttons.
+     * Creating a patient after clicking on the book and confirm booking buttons.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -346,6 +346,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
                     App.dsm.getAppointmentList().add(appt);
                     App.dsm.getQueue().insertBack(new Node(appt.getId()));
                     App.dsm.getInCalendar().add(appt.getId());
+                    App.dsm.incrAppointmentID();
                     ((Patient)App.dsm.getCurrentUser()).addAppointment(appt.getId());
                     bookingPopup.setVisible(false);
                     appointmentTableModel.fireTableDataChanged();

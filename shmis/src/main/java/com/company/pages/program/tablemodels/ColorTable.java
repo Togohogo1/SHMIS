@@ -57,6 +57,8 @@ public class ColorTable extends JTable {
                     c.setBackground(FontColor.LIGHT_GREEN_3);
                 else if (status.equals("Unapproved"))
                     c.setBackground(FontColor.LIGHT_RED_3);
+                else
+                    c.setBackground(getBackground());
             }
         }
 

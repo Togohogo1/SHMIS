@@ -120,6 +120,10 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
         return -1;
     }
     // TODO types of selection
+
+    /**
+     * Only allow employees to mark calendar events as complete when double clicking.
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         if (App.dsm.currUserIsPatient())

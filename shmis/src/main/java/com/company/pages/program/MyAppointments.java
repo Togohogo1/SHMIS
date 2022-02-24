@@ -64,6 +64,9 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
     JLabel toLable = new JLabel("To:");
     JLabel referralDoctorLabel = new JLabel("Ref. Doctor:");
 
+    /**
+     * Initializes the patient appointment page.
+     */
     public MyAppointments() {
         super(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -101,6 +104,11 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         this.add(myAppointments, c);
     }
 
+    /**
+     * Creates a popup for patients to book appointments.
+     *
+     * @return a popup
+     */
     public JPanel createBooking() {
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();

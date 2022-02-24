@@ -13,20 +13,34 @@ public class QueueTableModel extends AbstractTableModel {
     private String[] columnNames = {"ID", "Patient", "Date", "From", "To"};
     private Queue queue;
 
+    /**
+     * Initializes a queue table model with a queue of appointments.
+     *
+     * @param queue The queue of appointments
+     */
     public QueueTableModel(Queue queue) {
         this.queue = queue;
     }
 
+    /**
+     * Returns the row count.
+     */
     @Override
     public int getRowCount() {
         return queue.getSize();
     }
 
+    /**
+     * Returns the column count.
+     */
     @Override
     public int getColumnCount() {
         return columnNames.length;
     }
 
+    /**
+     * Returns the value at a specified row and column.
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         long appId = queue.get(rowIndex).getAppointmentID();
@@ -47,11 +61,17 @@ public class QueueTableModel extends AbstractTableModel {
         return null;
     }
 
+    /**
+     * Returns the name of a column.
+     */
     @Override
     public String getColumnName(int col) {
         return columnNames[col];
     }
 
+    /**
+     * Makes a cell uneditable.
+     */
     public boolean isCellEditable(int row, int col) {
         return false;
     }

@@ -30,6 +30,9 @@ public class EmployeeLogin extends JPanel implements ActionListener {
 
     private JButton login;
 
+    /**
+     * Initializes the employee login page.
+     */
     public EmployeeLogin() {
         super(new GridBagLayout());
 
@@ -85,6 +88,9 @@ public class EmployeeLogin extends JPanel implements ActionListener {
         this.add(login, c);
     }
 
+    /**
+     * Performing actions when clicked on the login button.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String inputKey = keyInput.getText();

@@ -39,6 +39,9 @@ public class PatientLogin extends JPanel implements ActionListener {
     private JButton registerConfirm;
     private JTextField[] inputs;
 
+    /**
+     * Initializes the patient login page.
+     */
     public PatientLogin() {
         super(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -102,6 +105,11 @@ public class PatientLogin extends JPanel implements ActionListener {
         this.add(register, c);
     }
 
+    /**
+     * Creates the patient register popup.
+     *
+     * @return The patient register popup
+     */
     public JPanel createSignup() {
         // Initialiing the elements
         JPanel popup = new JPanel(new GridBagLayout());  // To put the stuff in
@@ -158,6 +166,11 @@ public class PatientLogin extends JPanel implements ActionListener {
         return popup;
     }
 
+    /**
+     * Creates a patient based on register information.
+     *
+     * @return a patient based on register information
+     */
     public Patient createPatient() {
         ArrayList<Long> appointments = new ArrayList<>();
         Patient patient = new Patient(
@@ -174,9 +187,14 @@ public class PatientLogin extends JPanel implements ActionListener {
         );
 
         return patient;
-
     }
 
+    /**
+     * Get patient from patient list after successful login or register.
+     *
+     * @param email Valid email of patient
+     * @return the corresponding patient
+     */
     public Patient getPatient(String email) {
         for (Patient p : App.dsm.getPatientList()) {
             if (p.getEmail().equals(email))  // All emails are unique
@@ -186,14 +204,23 @@ public class PatientLogin extends JPanel implements ActionListener {
         return null;
     }
 
+    /**
+     * Checks if the patient's password is corrent or not when logging in.
+     *
+     * @param patient The patient when logging in
+     * @param password The inputted passwords in the input box
+     * @return <code>True</code> if the patient's password is correct
+     */
     public boolean passwordCorrect(Patient patient, String password) { // TODO think of some encryption system
         return patient.getPassword().equals(password);
     }
 
+    /**
+     * Performing actions when clicked on the register, login, or confirm register buttons.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == register) {
-            // TODO fix some jdialog headers
             signup = new JDialog(null, "Register", JDialog.ModalityType.APPLICATION_MODAL);
             signup.add(createSignup());
             signup.setSize(new Dimension(350, 450));

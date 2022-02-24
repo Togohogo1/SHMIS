@@ -15,11 +15,20 @@ import com.company.pages.FontColor;
 public class ColorTable extends JTable {
     private String tableModelType;
 
+    /**
+     * Initializes a <code>JTable</code> that allows colours to be displayed.
+     *
+     * @param tableModel The table model of the table
+     * @param tableModelType The type of table
+     */
     public ColorTable(TableModel tableModel, String tableModelType) {
         this.tableModelType = tableModelType;
         setModel(tableModel);
     }
 
+    /**
+     * Returns a <code>JTable</code> component that renders the table with colour.
+     */
     public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
         Component c = super.prepareRenderer(renderer, row, column);
         boolean isQueue = (tableModelType == "queue");

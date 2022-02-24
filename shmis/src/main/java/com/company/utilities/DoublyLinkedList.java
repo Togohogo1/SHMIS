@@ -133,7 +133,7 @@ public class DoublyLinkedList {
     }
 
     /**
-     * Gets the size of the doubly linked list.
+     * Returns the size of the doubly linked list.
      *
      * @return Size of the doubly linked list
      */

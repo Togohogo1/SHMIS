@@ -1,4 +1,7 @@
 package com.company.utilities;
 
-// todo super.
-public class Queue extends DoublyLinkedList {}
+/**
+ * My own implementation of a Queue.
+ */
+public class Queue extends DoublyLinkedList {
+}

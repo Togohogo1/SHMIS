@@ -3,17 +3,17 @@ package com.company.utilities;
 import java.util.ArrayList;
 
 /**
- * Utility class containing methods for searching and sorting
+ * Utility class containing methods for searching and sorting.
  */
 public class SearchSort {
     /**
-     * Binary searches an ArrayList to get the index of <code>val</code>
+     * Binary searches an <code>ArrayList</code> to get the index of <code>val</code>.
      *
-     * @param <T> Generic type parameter
-     * @param <R> Generic return type
-     * @param arr The ArrayList to be searched
+     * @param <T>     Generic type parameter
+     * @param <R>     Generic return type
+     * @param arr     The <code>ArrayList</code> to be searched
      * @param fetcher Functional interface denoting the attribute to search by
-     * @param val The value to be looked for
+     * @param val     The value to be searched for
      * @return the index of <code>val</code>
      */
     public static <T, R> int binarySearch(ArrayList<T> arr, AttributeFetcher<T, R> fetcher, R val) {
@@ -36,11 +36,12 @@ public class SearchSort {
     }
 
     /**
-     * Sorts an ArrayList using merge sort based on an attribute specified by <code>fetcher</code>
+     * Sorts an <code>ArrayList</code> using merge sort based on an attribute specified by
+     * <code>fetcher</code>.
      *
-     * @param <T> Generic type parameter
-     * @param <R> Generic return type
-     * @param arr The ArrayList to be sorted
+     * @param <T>     Generic type parameter
+     * @param <R>     Generic return type
+     * @param arr     The <code>ArrayList</code> to be sorted
      * @param fetcher Functional interface denoting the attribute to sort by
      */
     public static <T, R> void mergeSort(ArrayList<T> arr, AttributeFetcher<T, R> fetcher) {
@@ -57,13 +58,14 @@ public class SearchSort {
     }
 
     /**
-     * Helper method for the <code>mergeSort</code> method to merge two sorted arrays
-     * 
-     * @param <T> Generic type parameter
-     * @param <R> Generic return type
-     * @param result Resultant ArrayList
-     * @param left Left ArrayList
-     * @param right Right ArrayList
+     * Helper method for the <code>mergeSort</code> method to merge two sorted
+     * arrays
+     *
+     * @param <T>     Generic type parameter
+     * @param <R>     Generic return type
+     * @param result  Resultant <code>ArrayList</code>
+     * @param left    Left <code>ArrayList</code>
+     * @param right   Right <code>ArrayList</code>
      * @param fetcher Functional interface denoting the attribute to sort by
      */
     private static <T, R> void merge(ArrayList<T> result, ArrayList<T> left, ArrayList<T> right, AttributeFetcher<T, R> fetcher) {

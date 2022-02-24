@@ -23,6 +23,7 @@
 hs_err_pid*
 
 # other
+/doc/
 /shmis/src/test/
 /shmis/target/
 *.json

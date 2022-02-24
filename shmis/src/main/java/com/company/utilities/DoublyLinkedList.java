@@ -108,11 +108,11 @@ public class DoublyLinkedList {
                 node.getNext().setPrev(node.getPrev());
                 node.setNext(null);
                 node.setPrev(null);
+                size--;
                 break;
             }
         }
 
-        size--;
     }
 
     /**

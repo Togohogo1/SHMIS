@@ -12,7 +12,7 @@ public class App {
     public static DSManager dsm;
 
     /**
-     * The man method initializes a theme, the data structure manager and creates
+     * The main method initializes a theme, the data structure manager and creates
      * the program.
      */
     public static void main(String[] args) {

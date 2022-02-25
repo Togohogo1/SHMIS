@@ -90,7 +90,7 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
         if (target.getSelectedRow() == 0) {  // Only allow the first row to be selected
             if (e.getClickCount() == 2) {
                 int n = JOptionPane.showConfirmDialog(null, "Approve the first appointment in queue?", "Approve Appointment", JOptionPane.YES_NO_OPTION);
-                long appId = App.dsm.getQueue().get(0).getAppointmentID();  // TODO new method?
+                long appId = App.dsm.getQueue().get(0).getAppointmentID();
                 Appointment appointment = App.dsm.query(appId);
 
                 if (JOptionPane.YES_OPTION == n) {

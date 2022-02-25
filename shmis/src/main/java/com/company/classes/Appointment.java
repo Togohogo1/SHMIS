@@ -20,7 +20,6 @@ public class Appointment {
     private String notes;
 
     private ArrayList<Boolean> imaging;
-    // TODO rename imaging to concerns
 
     /**
      * Initializes an appointment from constructor parameters.

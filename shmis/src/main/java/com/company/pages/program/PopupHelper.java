@@ -62,7 +62,6 @@ public class PopupHelper extends JPanel {
 
 
         // Email regex check
-        // TODO improve regex range
         if (!Pattern.compile("[A-Za-z0-9.]+@[A-Za-z0-9]+\\.[A-Za-z0-9]+").matcher(inputs[7].getText()).matches()) {
             errorMessage = "Please input a proper email";
             return false;

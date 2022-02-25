@@ -11,7 +11,7 @@ import com.company.classes.Appointment;
  * Customized table model for displaying appointments.
  */
 public class AppointmentTableModel extends AbstractTableModel {
-    private String[] columnNames = {"ID", "Date", "From", "To", "Status"};  // TODO change to arraylist to get rid of the switch?
+    private String[] columnNames = {"ID", "Date", "From", "To", "Status"};
     private ArrayList<Long> appiontmentIDs;
 
     /**

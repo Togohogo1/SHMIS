@@ -46,7 +46,7 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
         for (int i = 0; i < 5; i++) {
             days.add(new ArrayList<>());
             tableModels[i] = new CalendarTableModel(names[i], days.get(i));  // Pass by reference, only need to do this once
-            calendars[i] = new ColorTable(tableModels[i], "calendar"); // TODO change to colortable later
+            calendars[i] = new ColorTable(tableModels[i], "calendar");
             calendars[i].addMouseListener(this);
             calendars[i].setCellSelectionEnabled(false);
             calendars[i].getSelectionModel().addListSelectionListener(this);
@@ -63,7 +63,7 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
             calendars[i].getTableHeader().setPreferredSize(new Dimension(0, 30));  // Will auto resize
             calendars[i].getTableHeader().setReorderingAllowed(false);
         }
-        // TODO sizes depending on time
+
         // Positioning
         for (int i = 0; i < 5; i++) {
             ci.gridx = i;
@@ -104,7 +104,7 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
     }
 
     public int dayToInt(String day) {
-        switch (day) {  // TODO think about using array indicies instead
+        switch (day) {
             case "Monday":
                 return 0;
             case "Tuesday":
@@ -119,7 +119,6 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
 
         return -1;
     }
-    // TODO types of selection
 
     /**
      * Only allow employees to mark calendar events as complete when double clicking.

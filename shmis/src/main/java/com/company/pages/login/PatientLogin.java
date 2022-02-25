@@ -25,9 +25,6 @@ import com.company.pages.program.PopupHelper;
  * Page for patient login.
  */
 public class PatientLogin extends JPanel implements ActionListener {
-    private JLabel email;  // TODO doesn't need to be at this scope
-    private JLabel password;  // TODO doesn't need to be at this scope
-
     private JTextField emailInput;
     private JPasswordField passwordInput;
 
@@ -45,6 +42,9 @@ public class PatientLogin extends JPanel implements ActionListener {
     public PatientLogin() {
         super(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
+
+        JLabel email;
+        JLabel password;
 
         // Initializing the elements
         email = new JLabel("Enter email:");
@@ -211,7 +211,7 @@ public class PatientLogin extends JPanel implements ActionListener {
      * @param password The inputted passwords in the input box
      * @return <code>True</code> if the patient's password is correct
      */
-    public boolean passwordCorrect(Patient patient, String password) { // TODO think of some encryption system
+    public boolean passwordCorrect(Patient patient, String password) {
         return patient.getPassword().equals(password);
     }
 
@@ -249,7 +249,6 @@ public class PatientLogin extends JPanel implements ActionListener {
             emailInput.setText("");
             passwordInput.setText("");
         } else if (e.getSource() == registerConfirm) {
-            // TODO if valid patient
             if (PopupHelper.validPatient(inputs, "")) {
                 Patient registerPatient = createPatient();
                 App.dsm.getPatientList().add(registerPatient);

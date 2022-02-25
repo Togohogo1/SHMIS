@@ -61,7 +61,6 @@ public class CalendarTableModel extends AbstractTableModel {
             else
                 return fromTo;
         }
-            // TODO diff if patient
     }
 
     /**

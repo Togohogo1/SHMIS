@@ -58,7 +58,6 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
     private JButton delete;
 
     // For appointment info popup
-    // TODO does this even need to be private
     private JDialog appInfoPopup;
     private JRadioButton[] imagingView;
     private JComboBox<String> dayView;

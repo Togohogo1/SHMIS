@@ -1,11 +1,11 @@
 package com.company.pages.login;
 
-import java.awt.GridBagLayout;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -25,7 +25,10 @@ import com.company.utilities.FontColor;
  * Page for patient login.
  */
 public class PatientLogin extends JPanel implements ActionListener {
+    private JLabel email;
     private JTextField emailInput;
+
+    private JLabel password;
     private JPasswordField passwordInput;
 
     private JButton register;
@@ -33,8 +36,8 @@ public class PatientLogin extends JPanel implements ActionListener {
 
     // For signup popup
     private JDialog signup;
-    private JButton registerConfirm;
     private JTextField[] inputs;
+    private JButton registerConfirm;
 
     /**
      * Initializes the patient login page.
@@ -43,38 +46,31 @@ public class PatientLogin extends JPanel implements ActionListener {
         super(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
-        JLabel email;
-        JLabel password;
-
         // Initializing the elements
         email = new JLabel("Enter email:");
-        password = new JLabel("Enter password:");
-
         emailInput = new JTextField();
+
+        password = new JLabel("Enter password:");
         passwordInput = new JPasswordField();
 
         register = new JButton("Register");
         register.addActionListener(this);
-
         login = new JButton("Login");
         login.addActionListener(this);
 
         // Setting sizes and styling
         email.setFont(FontColor.H2_BOLD);
         email.setPreferredSize(new Dimension(120, 30));
-
-        password.setFont(FontColor.H2_BOLD);
-        password.setPreferredSize(new Dimension(120, 30));
-
         emailInput.setFont(FontColor.H2);
         emailInput.setPreferredSize(new Dimension(120, 30));
 
+        password.setFont(FontColor.H2_BOLD);
+        password.setPreferredSize(new Dimension(120, 30));
         passwordInput.setFont(FontColor.H2);
         passwordInput.setPreferredSize(new Dimension(120, 30));
 
         register.setFont(FontColor.H2);
         register.setPreferredSize(new Dimension(120, 30));
-
         login.setFont(FontColor.H2);
         login.setPreferredSize(new Dimension(120, 30));
 
@@ -115,11 +111,6 @@ public class PatientLogin extends JPanel implements ActionListener {
         JPanel popup = new JPanel(new GridBagLayout());  // To put the stuff in
         GridBagConstraints c = new GridBagConstraints();
 
-        inputs = new JTextField[9];
-
-        registerConfirm = new JButton("Register");
-        registerConfirm.addActionListener(this);
-
         JLabel[] labels = {
             new JLabel("Age:"),
             new JLabel("First Name:"),
@@ -131,14 +122,14 @@ public class PatientLogin extends JPanel implements ActionListener {
             new JLabel("Email:"),
             new JLabel("Telephone:"),
         };
-
-        for (int i = 0; i < 9; i++) {
-            inputs[i] = new JTextField();
-        }
+        inputs = new JTextField[9];
+        registerConfirm = new JButton("Register");
+        registerConfirm.addActionListener(this);
 
         // Setting sizes and styling
         for (int i = 0; i < 9; i++) {
             labels[i].setPreferredSize(new Dimension(75, 22));  // Default JButton size
+            inputs[i] = new JTextField();
             inputs[i].setPreferredSize(new Dimension(100, 22));
         }
 
@@ -149,13 +140,9 @@ public class PatientLogin extends JPanel implements ActionListener {
             for (int j = 0; j < 9; j++) {
                 c.gridx = i;
                 c.gridy = j;
-
                 popup.add((i == 0 ? labels[j] : inputs[j]), c);
             }
         }
-
-        // co.gridy = 0;
-        // popup.add(top, co);
 
         c.gridx = 0;
         c.gridy++;
@@ -227,6 +214,7 @@ public class PatientLogin extends JPanel implements ActionListener {
             signup.setLocationRelativeTo(null);
             signup.setResizable(false);
             signup.setVisible(true);
+
         } else if (e.getSource() == login) {
             String inputEmail = emailInput.getText().toLowerCase();
             String inputPassword = String.valueOf(passwordInput.getPassword());  // .getText() deprecated for JPasswordField
@@ -248,16 +236,20 @@ public class PatientLogin extends JPanel implements ActionListener {
             // Clearning text so it won't appear when logged out
             emailInput.setText("");
             passwordInput.setText("");
+
         } else if (e.getSource() == registerConfirm) {
             if (PopupHelper.validPatient(inputs, "")) {
                 Patient registerPatient = createPatient();
+
+                // Database functions
                 App.dsm.getPatientList().add(registerPatient);
                 App.dsm.setCurrentUser(registerPatient);
-                signup.setVisible(false);
                 App.shmis.LoggedIn();
-            } else {
+
+                signup.setVisible(false);
+
+            } else
                 JOptionPane.showMessageDialog(null, PopupHelper.getError(), "Warning", JOptionPane.WARNING_MESSAGE);
-            }
         }
     }
 }

@@ -1,11 +1,11 @@
 package com.company.pages.login;
 
-import java.awt.GridBagLayout;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -23,9 +23,9 @@ import com.company.utilities.FontColor;
  */
 public class EmployeeLogin extends JPanel implements ActionListener {
     private JLabel key;
-    private JLabel password;
-
     private JTextField keyInput;
+
+    private JLabel password;
     private JPasswordField passwordInput;
 
     private JButton login;
@@ -35,14 +35,13 @@ public class EmployeeLogin extends JPanel implements ActionListener {
      */
     public EmployeeLogin() {
         super(new GridBagLayout());
-
         GridBagConstraints c = new GridBagConstraints();
 
         // Initializing the elements
         key = new JLabel("Enter key:");
-        password = new JLabel("Enter password:");
-
         keyInput = new JTextField();
+
+        password = new JLabel("Enter password:");
         passwordInput = new JPasswordField();
 
         login = new JButton("Login");
@@ -51,13 +50,11 @@ public class EmployeeLogin extends JPanel implements ActionListener {
         // Setting sizes and styling
         key.setFont(FontColor.H2_BOLD);
         key.setPreferredSize(new Dimension(120, 30));
-
-        password.setFont(FontColor.H2_BOLD);
-        password.setPreferredSize(new Dimension(120, 30));
-
         keyInput.setFont(FontColor.H2);
         keyInput.setPreferredSize(new Dimension(120, 30));
 
+        password.setFont(FontColor.H2_BOLD);
+        password.setPreferredSize(new Dimension(120, 30));
         passwordInput.setFont(FontColor.H2);
         passwordInput.setPreferredSize(new Dimension(120, 30));
 
@@ -106,11 +103,11 @@ public class EmployeeLogin extends JPanel implements ActionListener {
             return;
         }
 
-        App.dsm.setCurrentUser(new Employee());
-        App.shmis.LoggedIn();
-
         // Clearning text so it won't appear when logged out
         keyInput.setText("");
         passwordInput.setText("");
+
+        App.dsm.setCurrentUser(new Employee());
+        App.shmis.LoggedIn();
     };
 }

@@ -12,13 +12,11 @@ public class Appointment {
     private long start;
     private long span;
     private long id;
-
     private String date;
     private String status;
     private String patient;
     private String referralDoctor;
     private String notes;
-
     private ArrayList<Boolean> imaging;
 
     /**
@@ -54,9 +52,7 @@ public class Appointment {
     public Appointment(JSONObject obj) {
         ArrayList<Boolean> imaging = new ArrayList<>();
         JSONArray imagingJSON = (JSONArray) obj.get("imaging");
-
-        // convert from JSONArray to ArrayList
-        imaging = (ArrayList<Boolean>) imagingJSON;
+        imaging = (ArrayList<Boolean>) imagingJSON;  // convert from JSONArray to ArrayList
 
         this.start = (long) obj.get("start");
         this.span = (long) obj.get("span");
@@ -77,9 +73,7 @@ public class Appointment {
     public JSONObject toJSONObject() {
         JSONObject obj = new JSONObject();
         JSONArray imaging = new JSONArray();
-
-        // Convert from JSONArray to ArrayList
-        imaging.addAll(this.imaging);
+        imaging.addAll(this.imaging);  // Convert from JSONArray to ArrayList
 
         obj.put("start", start);
         obj.put("span", span);

@@ -8,7 +8,7 @@ public class Employee extends Person {
      * Initializes an employee. Values are hardcoded since all employees serve the same purpose in terms of my application.
      */
     public Employee() {
-        super(-1, "Admin", "Admin", "M/F/O", "0", "password");
+        super(-1, "admin", "admin", "N/A", "0", "admin");
     }
 
     /**

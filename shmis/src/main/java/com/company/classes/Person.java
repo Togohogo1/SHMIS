@@ -36,6 +36,15 @@ public abstract class Person {
     }
 
     /**
+     * Returns the person's password.
+     *
+     * @return the person's password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
      * Returns the person's age.
      *
      * @return the person's age
@@ -81,12 +90,12 @@ public abstract class Person {
     }
 
     /**
-     * Returns the person's password.
+     * Sets the person's passwords to a new password.
      *
-     * @return the person's password
+     * @param password the new password
      */
-    public String getPassword() {
-        return password;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**
@@ -132,15 +141,6 @@ public abstract class Person {
      */
     public void setId(String id) {
         this.id = id;
-    }
-
-    /**
-     * Sets the person's passwords to a new password.
-     *
-     * @param password the new password
-     */
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     /**

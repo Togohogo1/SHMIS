@@ -62,9 +62,7 @@ public class Patient extends Person {
     public JSONObject toJSONObject() {
         JSONObject obj = new JSONObject();
         JSONArray appointments = new JSONArray();
-
-        // convert from ArrayList to JSONArray
-        appointments.addAll(this.appointments);
+        appointments.addAll(this.appointments);  // convert from ArrayList to JSONArray
 
         // From Person class
         obj.put("age", age);

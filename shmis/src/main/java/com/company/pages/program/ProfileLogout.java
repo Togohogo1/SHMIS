@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import com.company.App;
 import com.company.classes.Patient;
 import com.company.classes.Person;
-import com.company.pages.FontColor;
+import com.company.utilities.FontColor;
 
 /**
  * Page for logging out and profile information.

@@ -1,4 +1,4 @@
-package com.company.pages;
+package com.company.utilities;
 
 import java.awt.Color;
 import java.awt.Font;

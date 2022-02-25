@@ -7,7 +7,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 
-import com.company.pages.FontColor;
+import com.company.utilities.FontColor;
 
 /**
  * Custom table to display colours. Different for the patient queue, weekly calendar, and appointment list.

@@ -19,9 +19,9 @@ import javax.swing.event.ListSelectionListener;
 
 import com.company.App;
 import com.company.classes.Appointment;
-import com.company.pages.FontColor;
 import com.company.pages.program.tablemodels.CalendarTableModel;
 import com.company.pages.program.tablemodels.ColorTable;
+import com.company.utilities.FontColor;
 import com.company.utilities.SearchSort;
 
 /**

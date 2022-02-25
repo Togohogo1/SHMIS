@@ -16,6 +16,7 @@ import com.company.pages.program.PatientQueue;
 import com.company.pages.program.PatientIndex;
 import com.company.pages.program.ProfileLogout;
 import com.company.pages.program.WeeklyCalendar;
+import com.company.utilities.FontColor;
 
 /**
  * The main program pages for patients and employees.

@@ -18,8 +18,8 @@ import javax.swing.JTextField;
 
 import com.company.App;
 import com.company.classes.Patient;
-import com.company.pages.FontColor;
 import com.company.pages.program.PopupHelper;
+import com.company.utilities.FontColor;
 
 /**
  * Page for patient login.

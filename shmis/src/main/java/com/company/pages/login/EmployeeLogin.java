@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 
 import com.company.App;
 import com.company.classes.Employee;
-import com.company.pages.FontColor;
+import com.company.utilities.FontColor;
 
 /**
  * Page for employee login.

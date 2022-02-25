@@ -19,9 +19,9 @@ import javax.swing.event.ListSelectionListener;
 
 import com.company.App;
 import com.company.classes.Appointment;
-import com.company.pages.FontColor;
 import com.company.pages.program.tablemodels.ColorTable;
 import com.company.pages.program.tablemodels.QueueTableModel;
+import com.company.utilities.FontColor;
 
 /**
  * Page for the patient queue.

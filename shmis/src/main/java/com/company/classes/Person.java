@@ -1,8 +1,5 @@
 package com.company.classes;
 
-
-// TODO regarrange getters
-
 /**
  * General template class to create other types of people.
  */

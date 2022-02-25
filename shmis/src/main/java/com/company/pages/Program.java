@@ -24,7 +24,7 @@ public class Program extends JPanel implements ChangeListener {
     private JTabbedPane patientTabs;
     private JTabbedPane employeeTabs;
 
-    private MyAppointments myAppointments;  // TODO need to be up here?
+    private MyAppointments myAppointments;
     private PatientQueue patientCheckinQueue;
     private PatientIndex patientIndex;
     private ProfileLogout profile, profile2;
@@ -47,7 +47,7 @@ public class Program extends JPanel implements ChangeListener {
             myAppointments = new MyAppointments();
             profile = new ProfileLogout();
             weeklyCalendar = new WeeklyCalendar();
-            appendTab(patientTabs, myAppointments, "Appointments", 0);  // TODO or do i even need this unecessary initializtion (Unless i plan to do something with jtabbedpanes listener)
+            appendTab(patientTabs, myAppointments, "Appointments", 0);
             appendTab(patientTabs, weeklyCalendar, "Calendar", 1);
             appendTab(patientTabs, profile, "Profile and Logout", 2);
             this.add(patientTabs);

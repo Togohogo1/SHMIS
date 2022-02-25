@@ -2,20 +2,20 @@ package com.company.pages.program;
 
 import java.util.ArrayList;
 
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 import com.company.App;
 import com.company.classes.Appointment;
@@ -25,7 +25,7 @@ import com.company.utilities.FontColor;
 import com.company.utilities.SearchSort;
 
 /**
- * Page for the weekly calendar
+ * Page for the weekly calendar.
  */
 public class WeeklyCalendar extends JPanel implements MouseListener, ListSelectionListener {
     private String[] names = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};

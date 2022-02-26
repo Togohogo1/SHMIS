@@ -25,7 +25,6 @@ public class HealthcareApp extends JFrame implements WindowListener {
 
         login = new Login();
         this.add(login);  // Default
-
         this.addWindowListener(this);
         this.setSize(1024, 576);
         this.setLocationRelativeTo(null);  // Center of the screen when opened
@@ -48,7 +47,7 @@ public class HealthcareApp extends JFrame implements WindowListener {
     /**
      * Method to swap the program page with the login page. Assumes that the program page is the current page.
      */
-    public void LogOut() {
+    public void LoggedOut() {
         this.remove(program);
         this.add(login);
         this.revalidate();

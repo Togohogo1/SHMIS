@@ -113,6 +113,6 @@ public class ProfileLogout extends JPanel implements ActionListener {
         int confirm = JOptionPane.showConfirmDialog(null, "Confirm Logout?", "Confirm", JOptionPane.YES_NO_OPTION);
 
         if (JOptionPane.YES_OPTION == confirm)
-            App.shmis.LogOut();
+            App.shmis.LoggedOut();
     }
 }

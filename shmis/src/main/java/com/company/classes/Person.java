@@ -14,7 +14,8 @@ public abstract class Person {
     /**
      * Default constructor
      */
-    public Person() {}
+    public Person() {
+    }
 
     /**
      * Initialized a person from constructor parameters.

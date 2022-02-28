@@ -11,6 +11,9 @@ public class App {
     public static HealthcareApp shmis;
     public static DSManager dsm;
 
+    // TODO fix color bug
+    // TODO login as a separate panel
+
     /**
      * The main method initializes a theme, the data structure manager and creates
      * the program.

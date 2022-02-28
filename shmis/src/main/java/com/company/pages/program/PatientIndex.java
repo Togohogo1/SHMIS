@@ -387,7 +387,9 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
                     App.dsm.getInCalendar().remove(i);
                 }
                 App.dsm.getPatientList().remove(selectedRow);
-                patientTableModel.fireTableDataChanged();  // maybe change to another firexxx method
+                appointmentTableModel.getAppointmentList().clear();  // Patient's appointments still refernced by the table model
+                appointmentTableModel.fireTableDataChanged();
+                patientTableModel.fireTableDataChanged();
                 editPopup.setVisible(false);
             }
         } else if (e.getSource() == sort) {

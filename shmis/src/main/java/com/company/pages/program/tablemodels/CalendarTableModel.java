@@ -65,6 +65,7 @@ public class CalendarTableModel extends AbstractTableModel {
     /**
      * Returns the name of a column.
      */
+    @Override
     public String getColumnName(int col) {
         return day;
     }
@@ -72,12 +73,13 @@ public class CalendarTableModel extends AbstractTableModel {
     /**
      * Makes a cell uneditable.
      */
+    @Override
     public boolean isCellEditable(int row, int col) {
         return false;
     }
 
     /**
-     * Returns an appointment's stauts when the status page is not a column of this table model.
+     * Returns an appointment's status when the status page is not a column of this table model.
      *
      * @param row The row in the table
      * @return A calendar event's appointment's status

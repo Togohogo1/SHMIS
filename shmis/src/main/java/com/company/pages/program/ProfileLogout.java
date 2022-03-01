@@ -85,7 +85,7 @@ public class ProfileLogout extends JPanel implements ActionListener {
         // Positioning
         ci.insets = new Insets(5, 5, 5, 5);
 
-        for (int i = 0; i < 2; i++) {  // TODO take advantage of more ternary statements?
+        for (int i = 0; i < 2; i++) {
             for (int j = 0; j < (isPatient ? 8 : 5); j++) {
                 ci.gridx = i;
                 ci.gridy = j;

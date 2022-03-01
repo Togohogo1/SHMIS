@@ -5,7 +5,7 @@ package com.company.classes;
  */
 public class Employee extends Person {
     /**
-     * Initializes an employee. Values are hardcoded since all employees serve the same purpose in terms of my application.
+     * Initializes an employee. Values are hard coded since all employees serve the same purpose in terms of my application.
      */
     public Employee() {
         super(-1, "admin", "admin", "N/A", "0", "admin");

@@ -65,6 +65,7 @@ public class AppointmentTableModel extends AbstractTableModel {
     /**
      * Makes a cell uneditable.
      */
+    @Override
     public boolean isCellEditable(int row, int col) {
         return false;
     }

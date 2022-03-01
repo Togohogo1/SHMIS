@@ -107,7 +107,7 @@ public class PatientLogin extends JPanel implements ActionListener {
      * @return The patient register popup
      */
     public JPanel createSignup() {
-        // Initialiing the elements
+        // Initializing the elements
         JPanel popup = new JPanel(new GridBagLayout());  // To put the stuff in
         GridBagConstraints c = new GridBagConstraints();
 

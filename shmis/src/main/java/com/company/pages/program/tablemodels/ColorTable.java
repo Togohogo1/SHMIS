@@ -29,6 +29,7 @@ public class ColorTable extends JTable {
     /**
      * Returns a <code>JTable</code> component that renders the table with color.
      */
+    @Override
     public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
         Component c = super.prepareRenderer(renderer, row, column);
         String status = (String) getModel().getValueAt(row, 4);

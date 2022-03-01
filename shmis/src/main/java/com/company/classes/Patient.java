@@ -15,7 +15,7 @@ public class Patient extends Person {
     protected ArrayList<Long> appointments;
 
     /**
-     * Initiazlies a patient from constructor parameters.
+     * Initializes a patient from constructor parameters.
      *
      * @param age Patient age
      * @param firstName Patient first name

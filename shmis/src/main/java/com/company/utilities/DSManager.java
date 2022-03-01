@@ -123,6 +123,40 @@ public class DSManager {
     }
 
     /**
+     * Initializes <code>patientList</code> from a JSONObject.
+     *
+     * @param obj the JSONObject containing all patients
+     */
+    public void initPatients(JSONObject obj) {
+        for (Object value : obj.values()) {
+            patientList.add(new Patient((JSONObject)value));
+        }
+    }
+
+    /**
+     *
+     * @param obj the JSONObject containing all appointments
+     */
+    public void initAppointments(JSONObject obj) {
+        for (Object value : obj.values()) {
+            appointmentList.add(new Appointment((JSONObject)value));
+        }
+    }
+
+    /**
+     * Initializes <code>queue</code>, <code>inCalendar</code>, and the appointment ID from a JSONObject.
+     *
+     * @param obj the JSONObject containing containing <code>queue</code>, <code>inCalendar</code>, and the appointment ID information
+     */
+    public void initOtherdata(JSONObject obj) {
+        if (!obj.isEmpty()) {  // Otherwise `otherdata.json` file isn't created
+            queue.fromJSONArray((JSONArray) obj.get("queue"));
+            inCalendar = (ArrayList<Long>) obj.get("calendar");
+            appointmentID = (long) obj.get("appointmentID");
+        }
+    }
+
+    /**
      * Converts the ArrayList of patients to a JSONObject.
      *
      * @return the converted JSONObject
@@ -160,7 +194,6 @@ public class DSManager {
     public JSONObject packOtherdata() {
         JSONObject obj = new JSONObject();
         JSONArray calendarJSON = new JSONArray();
-
         calendarJSON.addAll(inCalendar);
 
         obj.put("queue", queue.toJSONArray());
@@ -168,39 +201,5 @@ public class DSManager {
         obj.put("appointmentID", appointmentID);  // long
 
         return obj;
-    }
-
-    /**
-     * Initializes <code>patientList</code> from a JSONObject.
-     *
-     * @param obj the JSONObject containing all patients
-     */
-    public void initPatients(JSONObject obj) {
-        for (Object value : obj.values()) {
-            patientList.add(new Patient((JSONObject)value));
-        }
-    }
-
-    /**
-     *
-     * @param obj the JSONObject containing all appointments
-     */
-    public void initAppointments(JSONObject obj) {
-        for (Object value : obj.values()) {
-            appointmentList.add(new Appointment((JSONObject)value));
-        }
-    }
-
-    /**
-     * Initializes <code>queue</code>, <code>inCalendar</code>, and the appointment ID from a JSONObject.
-     *
-     * @param obj the JSONObject containing containing <code>queue</code>, <code>inCalendar</code>, and the appointment ID information
-     */
-    public void initOtherdata(JSONObject obj) {
-        if (!obj.isEmpty()) {  // Otherwise `otherdata.json` file isn't created
-            queue.fromJSONArray((JSONArray) obj.get("queue"));
-            inCalendar = (ArrayList<Long>) obj.get("calendar");
-            appointmentID = (long) obj.get("appointmentID");
-        }
     }
 }

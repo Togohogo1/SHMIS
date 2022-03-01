@@ -36,6 +36,7 @@ public class ReadWrite {
 
             String input = bufferRead.readLine();
             obj = (JSONObject) parser.parse(input);
+
         } catch (Exception e) {
             // Will throw an error when program first initializes, but files will still be created
             System.out.println(e);
@@ -44,7 +45,6 @@ public class ReadWrite {
         return obj;
     }
 
-    // Writes whole patient or appointment json file
     /**
      * Writes a JSONObject to <code>fileName.java</code>.
      *
@@ -58,6 +58,7 @@ public class ReadWrite {
 
             bufferWrite.write(obj.toJSONString());
             bufferWrite.close();
+
         } catch (Exception e) {
             System.out.println(e);
         }

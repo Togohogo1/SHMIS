@@ -26,19 +26,6 @@ public class Node {
     }
 
     /**
-     * Initializes a node pointing to the next and previous node.
-     *
-     * @param appointmentID the appointment ID
-     * @param next The next node
-     * @param prev The previous node
-     */
-    public Node(long appointmentID, Node next, Node prev) {
-        this.appointmentID = appointmentID;
-        this.next = next;
-        this.prev = prev;
-    }
-
-    /**
      * Returns the next node.
      *
      * @return the next node

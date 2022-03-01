@@ -15,9 +15,9 @@ public class DoublyLinkedList {
      * tail.
      */
     public DoublyLinkedList() {
+        size = 0;
         head = new Node();
         tail = new Node();
-        size = 0;
 
         head.setNext(tail);
         tail.setPrev(head);
@@ -108,6 +108,7 @@ public class DoublyLinkedList {
                 node.getNext().setPrev(node.getPrev());
                 node.setNext(null);
                 node.setPrev(null);
+
                 size--;
                 break;
             }

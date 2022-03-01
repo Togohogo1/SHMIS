@@ -1,15 +1,17 @@
 package com.company.pages.program;
 
 import java.awt.Dialog;
-import java.awt.GridBagLayout;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -22,8 +24,6 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 import com.company.App;
 import com.company.classes.Appointment;
@@ -84,22 +84,25 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         sort.addActionListener(this);
 
         patientTableModel = new PatientTableModel(App.dsm.getPatientList());
-        appointmentTableModel = new AppointmentTableModel();
-
         tablePatients = new JTable(patientTableModel);
         tablePatients.addMouseListener(this);
         tablePatients.getSelectionModel().addListSelectionListener(this);
+        patientTable = new JScrollPane(tablePatients, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
+        appointmentTableModel = new AppointmentTableModel();
         tableAppointments = new ColorTable(appointmentTableModel, "appointment");
         tableAppointments.addMouseListener(this);
-        // tableAppointments.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
-        patientTable = new JScrollPane(tablePatients, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         correspondingAppts = new JScrollPane(tableAppointments, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, patientTable, correspondingAppts);
         splitPane.setDividerLocation(450);  // Weird dividing behaviour (maybe its just a consequence of gridbaglayout)
 
         // Setting sizes and styling
+        sortBy.setFont(FontColor.H2);
+        sortBy.setPreferredSize(new Dimension(150, 30));
+        sort.setFont(FontColor.H2);
+        sort.setPreferredSize(new Dimension(120, 30));
+
         tablePatients.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tablePatients.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tablePatients.setRowHeight(25);
@@ -113,11 +116,6 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         tableAppointments.getTableHeader().setPreferredSize(new Dimension(0, 30));  // Will auto resize
         tableAppointments.getTableHeader().setFont(FontColor.H3_BOLD);;
 
-        sortBy.setFont(FontColor.H2);
-        sortBy.setPreferredSize(new Dimension(150, 30));
-        sort.setFont(FontColor.H2);
-        sort.setPreferredSize(new Dimension(120, 30));
-
         // Positioning
         ci.insets = new Insets(10, 5, 5, 5);
         top.add(sortBy, ci);
@@ -126,12 +124,11 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         co.gridy = 0;
         this.add(top, co);
 
-        co.insets = new Insets(5, 10, 10, 10);
         co.gridy = 1;
         co.weightx = 1;
         co.weighty = 1;
         co.fill = GridBagConstraints.BOTH;
-        // splitPane.setPreferredSize(new Dimension(400, 400));
+        co.insets = new Insets(5, 10, 10, 10);
         this.add(splitPane, co);
     }
 
@@ -146,14 +143,6 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         JPanel popup = new JPanel(new GridBagLayout());  // To put the stuff in
         GridBagConstraints c = new GridBagConstraints();
 
-        inputs = new JTextField[9];
-
-        confirm = new JButton("Confirm Edits");
-        confirm.addActionListener(this);
-
-        delete = new JButton("Delete Patient");
-        delete.addActionListener(this);
-
         JLabel[] labels = {
             new JLabel("Age:"),
             new JLabel("First Name:"),
@@ -165,6 +154,11 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
             new JLabel("Email:"),
             new JLabel("Telephone:"),
         };
+        inputs = new JTextField[9];
+        confirm = new JButton("Confirm Edits");
+        confirm.addActionListener(this);
+        delete = new JButton("Delete Patient");
+        delete.addActionListener(this);
 
         for (int i = 0; i < 9; i++) {
             inputs[i] = new JTextField();
@@ -193,21 +187,20 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
             for (int j = 0; j < 9; j++) {
                 c.gridx = i;
                 c.gridy = j;
-
                 popup.add((i == 0 ? labels[j] : inputs[j]), c);
             }
         }
 
-        c.insets = new Insets(15, 5, 5, 5);
         c.gridx = 0;
         c.gridy++;
         c.gridwidth = 2;
+        c.insets = new Insets(15, 5, 5, 5);
         popup.add(confirm, c);
 
-        c.insets = new Insets(0, 5, 5, 5);
         c.gridx = 0;
         c.gridy++;
         c.gridwidth = 2;
+        c.insets = new Insets(0, 5, 5, 5);
         popup.add(delete, c);
 
         return popup;
@@ -228,10 +221,9 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         JLabel fromLabel = new JLabel("From:");
         JLabel toLable = new JLabel("To:");
         JLabel referralDoctorLabel = new JLabel("Ref. Doctor:");
-
         imagingView = new JRadioButton[7];
-        String[] imagingText = {"Abdomen", "Head and Neck", "Chest", "Skeletal", "Spine and Pelvis", "Upper Extremeties", "Lower Extremeties"};
 
+        String[] imagingText = {"Abdomen", "Head and Neck", "Chest", "Skeletal", "Spine and Pelvis", "Upper Extremeties", "Lower Extremeties"};
         for (int i = 0; i < 7; i++) {
             imagingView[i] = new JRadioButton(imagingText[i]);
             imagingView[i].setSelected(appointment.getImaging().get(i));
@@ -253,7 +245,6 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         notesView = new JTextField(appointment.getNotes());
         notesView.setEditable(false);
 
-
         // Setting sizes and styling
         dayLabel.setPreferredSize(new Dimension(75, 22));
         fromLabel.setPreferredSize(new Dimension(75, 22));
@@ -270,19 +261,18 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
             imagingView[i].setPreferredSize(new Dimension(120, 22));
         }
 
-
         // Positioning
-        c.insets = new Insets(5, 15, 5, 5);
         c.gridx = 2;
+        c.insets = new Insets(5, 15, 5, 5);
 
         for (int i = 0; i < 7; i++) {
             c.gridy = i;
             panel.add(imagingView[i], c);
         }
 
-        c.insets = new Insets(5, 5, 5, 5);
         c.gridy = 0;
         c.gridx = 0;
+        c.insets = new Insets(5, 5, 5, 5);
         panel.add(dayLabel, c);
         c.gridx = 1;
         panel.add(dayView, c);
@@ -368,16 +358,15 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         Patient patient = App.dsm.getPatientList().get(selectedRow);
 
         if (e.getSource() == confirm) {
-
             // Confirm that the new input is valid
             if (PopupHelper.validPatient(inputs, prevEmail)) {
                 changePatient(patient);
                 changeAppointmentRefs(patient);
                 patientTableModel.fireTableDataChanged();
                 editPopup.setVisible(false);
-            } else {
+            } else
                 JOptionPane.showMessageDialog(null, PopupHelper.getError(), "Warning", JOptionPane.WARNING_MESSAGE);
-            }
+
         } else if (e.getSource() == delete) {
             int n = JOptionPane.showConfirmDialog(null, "Confirm deletion of patient?", "Delete Patient", JOptionPane.YES_NO_OPTION);
 
@@ -386,12 +375,14 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
                     App.dsm.getQueue().remove(i);
                     App.dsm.getInCalendar().remove(i);
                 }
+
                 App.dsm.getPatientList().remove(selectedRow);
                 appointmentTableModel.getAppointmentList().clear();  // Patient's appointments still refernced by the table model
                 appointmentTableModel.fireTableDataChanged();
                 patientTableModel.fireTableDataChanged();
                 editPopup.setVisible(false);
             }
+
         } else if (e.getSource() == sort) {
             String sortOption = (String) sortBy.getSelectedItem();
 
@@ -422,15 +413,18 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
             if (target == tablePatients) {
                 Patient patient = App.dsm.getPatientList().get(row);
                 prevEmail = patient.getEmail();
+
                 editPopup = new JDialog(null, "Edit Patient", Dialog.ModalityType.APPLICATION_MODAL);
                 editPopup.add(createEdit(patient));
                 editPopup.setSize(new Dimension(350, 450));
                 editPopup.setLocationRelativeTo(null);
                 editPopup.setResizable(false);
                 editPopup.setVisible(true);
+
             } else if (target == tableAppointments) {
                 long appId = appointmentTableModel.getAppointmentList().get(row);
                 Appointment appointment = App.dsm.query(appId);
+
                 appInfoPopup = new JDialog(null, "Appointment Information", JDialog.ModalityType.APPLICATION_MODAL);
                 appInfoPopup.add(createApptInfo(appointment));
                 appInfoPopup.setSize(new Dimension(450, 325));

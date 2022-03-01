@@ -1,21 +1,21 @@
 package com.company.pages.program;
 
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 import com.company.App;
 import com.company.classes.Appointment;
@@ -53,10 +53,10 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
         table.getTableHeader().setReorderingAllowed(false);
 
         // Positioning
-        c.insets = new Insets(10, 10, 10, 10);
-        c.fill = GridBagConstraints.BOTH;
         c.weightx = 1;
         c.weighty = 1;
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(10, 10, 10, 10);
         this.add(queueTable, c);
     }
 

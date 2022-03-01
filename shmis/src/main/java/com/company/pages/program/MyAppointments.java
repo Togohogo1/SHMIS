@@ -82,25 +82,25 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         myAppointments = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         // Setting sizes and styling
+        book.setFont(FontColor.H2);
+        book.setPreferredSize(new Dimension(150, 30));
+
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setRowHeight(25);
         table.getTableHeader().setReorderingAllowed(false);
         table.getTableHeader().setPreferredSize(new Dimension(0, 30));
         table.getTableHeader().setFont(FontColor.H3_BOLD);
 
-        book.setFont(FontColor.H2);
-        book.setPreferredSize(new Dimension(150, 30));
-
         // Positioning
         c.gridy = 0;
         c.insets = new Insets(10, 10, 5, 10);
         this.add(book, c);
 
-        c.insets = new Insets(5, 10, 10, 10);
         c.gridy = 1;
         c.weightx = 1;
         c.weighty = 1;
         c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(5, 10, 10, 10);
         this.add(myAppointments, c);
     }
 
@@ -154,17 +154,17 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         }
 
         // Positioning
-        c.insets = new Insets(5, 15, 5, 5);
         c.gridx = 2;
+        c.insets = new Insets(5, 15, 5, 5);
 
         for (int i = 0; i < 7; i++) {
             c.gridy = i;
             panel.add(imaging[i], c);
         }
 
-        c.insets = new Insets(5, 5, 5, 5);
         c.gridy = 0;
         c.gridx = 0;
+        c.insets = new Insets(5, 5, 5, 5);
         panel.add(dayLabel, c);
         c.gridx = 1;
         panel.add(day, c);
@@ -213,8 +213,8 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
 
         // Initializing the elements
         imagingView = new JRadioButton[7];
-        String[] imagingText = {"Abdomen", "Head and Neck", "Chest", "Skeletal", "Spine and Pelvis", "Upper Extremeties", "Lower Extremeties"};
 
+        String[] imagingText = {"Abdomen", "Head and Neck", "Chest", "Skeletal", "Spine and Pelvis", "Upper Extremeties", "Lower Extremeties"};
         for (int i = 0; i < 7; i++) {
             imagingView[i] = new JRadioButton(imagingText[i]);
             imagingView[i].setSelected(appointment.getImaging().get(i));
@@ -252,19 +252,18 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
             imagingView[i].setPreferredSize(new Dimension(120, 22));
         }
 
-
         // Positioning
-        c.insets = new Insets(5, 15, 5, 5);
         c.gridx = 2;
+        c.insets = new Insets(5, 15, 5, 5);
 
         for (int i = 0; i < 7; i++) {
             c.gridy = i;
             panel.add(imagingView[i], c);
         }
 
-        c.insets = new Insets(5, 5, 5, 5);
         c.gridy = 0;
         c.gridx = 0;
+        c.insets = new Insets(5, 5, 5, 5);
         panel.add(dayLabel, c);
         c.gridx = 1;
         panel.add(dayView, c);
@@ -302,7 +301,6 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
      */
     public Appointment createAppointment() {
         ArrayList<Boolean> imagingArr = new ArrayList<>();
-
         for (JRadioButton i : imaging) {
             imagingArr.add(i.isSelected());
         }
@@ -334,11 +332,14 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
             bookingPopup.setLocationRelativeTo(null);
             bookingPopup.setResizable(false);
             bookingPopup.setVisible(true);
+
         } else if (e.getSource() == bookConfirm) {
             if (!PopupHelper.validAppointment(imaging, from, to))
                 JOptionPane.showMessageDialog(null, PopupHelper.getError(), "Warning", JOptionPane.WARNING_MESSAGE);
+
             else {
                 Appointment appt = createAppointment();
+
                 if (PopupHelper.existsTimeConflict(appt))
                     JOptionPane.showMessageDialog(null, PopupHelper.getError(), "Warning", JOptionPane.WARNING_MESSAGE);
                 else {
@@ -346,6 +347,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
                     App.dsm.getQueue().insertBack(new Node(appt.getId()));
                     App.dsm.getInCalendar().add(appt.getId());
                     App.dsm.incrAppointmentID();
+
                     ((Patient)App.dsm.getCurrentUser()).addAppointment(appt.getId());
                     bookingPopup.setVisible(false);
                     appointmentTableModel.fireTableDataChanged();
@@ -365,6 +367,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         if (e.getClickCount() == 2) {
             long appId = ((Patient)App.dsm.getCurrentUser()).getAppointments().get(row);
             Appointment appointment = App.dsm.query(appId);
+
             appInfoPopup = new JDialog(null, "Appointment Information", JDialog.ModalityType.APPLICATION_MODAL);
             appInfoPopup.add(createApptInfo(appointment));
             appInfoPopup.setSize(new Dimension(450, 325));

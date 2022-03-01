@@ -28,7 +28,6 @@ import com.company.utilities.SearchSort;
  * Page for the weekly calendar.
  */
 public class WeeklyCalendar extends JPanel implements MouseListener, ListSelectionListener {
-    private String[] names = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
     private ArrayList<ArrayList<Appointment>> days = new ArrayList<>();
     private CalendarTableModel[] tableModels = new CalendarTableModel[5];
     private JTable[] calendars = new JTable[5];
@@ -39,9 +38,9 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
         GridBagConstraints co = new GridBagConstraints();
 
         // Initializing the elements
+        String[] names = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints ci = new GridBagConstraints();
-
 
         for (int i = 0; i < 5; i++) {
             days.add(new ArrayList<>());
@@ -140,11 +139,11 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
                     App.dsm.getInCalendar().remove(appointment.getId());
                     render();
                 }
+
             } else {
                 JOptionPane.showMessageDialog(null, String.format("%s's appointment (ID = %d)", appointment.getPatient(), appointment.getId()), "Event Information", JOptionPane.INFORMATION_MESSAGE);
             }
         }
-
     }
 
     @Override

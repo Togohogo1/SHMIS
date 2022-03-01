@@ -1,11 +1,11 @@
 package com.company.pages.program;
 
-import java.awt.GridBagLayout;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -31,9 +31,9 @@ public class ProfileLogout extends JPanel implements ActionListener {
         super(new GridBagLayout());
         GridBagConstraints co = new GridBagConstraints();
 
-        Person person = App.dsm.getCurrentUser();
 
         // Initializting the elements
+        Person person = App.dsm.getCurrentUser();
         JPanel top = new JPanel(new GridBagLayout());
         GridBagConstraints ci = new GridBagConstraints();
 
@@ -55,7 +55,7 @@ public class ProfileLogout extends JPanel implements ActionListener {
         patientlabels[6] = new JLabel("Email:");
         patientlabels[7] = new JLabel("Telephone:");
 
-        patientDetails[0] = employeeDetails[0] = new JTextField("" + person.getAge());
+        patientDetails[0] = employeeDetails[0] = new JTextField(person.getAge()+"");
         patientDetails[1] = employeeDetails[1] = new JTextField(person.getFirstName());
         patientDetails[2] = employeeDetails[2] = new JTextField(person.getLastName());
         patientDetails[3] = employeeDetails[3] = new JTextField(person.getGender());

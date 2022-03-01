@@ -39,7 +39,6 @@ public class ColorTable extends JTable {
         if (isCalendar)
             status = ((CalendarTableModel)getModel()).getStatusFromEvents(row);
 
-
         if (tableModelType.equals("queue")) {
             if (!isRowSelected(row)) {
                 c.setBackground(getBackground());

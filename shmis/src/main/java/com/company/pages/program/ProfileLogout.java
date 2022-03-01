@@ -31,7 +31,6 @@ public class ProfileLogout extends JPanel implements ActionListener {
         super(new GridBagLayout());
         GridBagConstraints co = new GridBagConstraints();
 
-
         // Initializting the elements
         Person person = App.dsm.getCurrentUser();
         JPanel top = new JPanel(new GridBagLayout());

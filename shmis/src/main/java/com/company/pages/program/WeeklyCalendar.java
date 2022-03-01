@@ -104,20 +104,18 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
     }
 
     public int dayToInt(String day) {
-        switch (day) {
-            case "Monday":
-                return 0;
-            case "Tuesday":
-                return 1;
-            case "Wednesday":
-                return 2;
-            case "Thursday":
-                return 3;
-            case "Friday":
-                return 4;
-        }
-
-        return -1;
+        if (day.equals("Monday"))
+            return 0;
+        else if (day.equals("Tuesday"))
+            return 1;
+        else if (day.equals("Wednesday"))
+            return 2;
+        else if (day.equals("Thursday"))
+            return 3;
+        else if (day.equals("Friday"))
+            return 4;
+        else
+            return -1;
     }
 
     /**

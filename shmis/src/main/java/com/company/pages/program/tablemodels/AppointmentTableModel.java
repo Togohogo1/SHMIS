@@ -40,7 +40,7 @@ public class AppointmentTableModel extends AbstractTableModel {
 
         switch (columnIndex) {
             case 0:
-                return ""+appointment.getId();
+                return appointment.getId()+"";
             case 1:
                 return appointment.getDate();
             case 2:

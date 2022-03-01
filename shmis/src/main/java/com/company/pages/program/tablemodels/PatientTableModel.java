@@ -44,6 +44,7 @@ public class PatientTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Patient patient = patients.get(rowIndex);
+
         switch (columnIndex) {
             case 0:
                 return patient.getAge();

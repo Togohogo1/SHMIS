@@ -1,7 +1,7 @@
 package com.company.pages.program.tablemodels;
 
-import java.awt.Component;
 import java.awt.Color;
+import java.awt.Component;
 
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
@@ -31,12 +31,13 @@ public class ColorTable extends JTable {
      */
     public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
         Component c = super.prepareRenderer(renderer, row, column);
-        boolean isQueue = (tableModelType == "queue");
-        boolean isCalendar = (tableModelType == "calendar");
         String status = (String) getModel().getValueAt(row, 4);
-        if (isCalendar) {
+        boolean isQueue = (tableModelType.equals("queue"));
+        boolean isCalendar = (tableModelType.equals("calendar"));
+
+        if (isCalendar)
             status = ((CalendarTableModel)getModel()).getStatusFromEvents(row);
-        }
+
 
         if (tableModelType.equals("queue")) {
             if (!isRowSelected(row)) {
@@ -46,14 +47,15 @@ public class ColorTable extends JTable {
 
             if (row != 0 && isQueue)  // As if its deselected for queue
                 c.setForeground(Color.LIGHT_GRAY);
+
         } else {
             if (tableModelType.equals("calendar"))
                 status = ((CalendarTableModel)getModel()).getStatusFromEvents(row);
 
             if (!isRowSelected(row) && tableModelType.equals("appointment") || tableModelType.equals("calendar")) {
-                if (status.equals("Pending")) {
+                if (status.equals("Pending"))
                     c.setBackground(FontColor.LIGHT_YELLOW_3);
-                } else if (status.equals("Approved"))
+                else if (status.equals("Approved"))
                     c.setBackground(FontColor.LIGHT_GREEN_3);
                 else if (status.equals("Unapproved"))
                     c.setBackground(FontColor.LIGHT_RED_3);

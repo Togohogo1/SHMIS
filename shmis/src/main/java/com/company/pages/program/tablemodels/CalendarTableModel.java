@@ -52,7 +52,6 @@ public class CalendarTableModel extends AbstractTableModel {
         String designation = currentUser.getDesignation();
         String fromTo = appointment.getStartTable() + " to " + appointment.getEndTable();
 
-
         if (designation.equals("Employee"))
             return fromTo  + " - " + appointment.getPatient();
         else {

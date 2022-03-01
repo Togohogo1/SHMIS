@@ -146,7 +146,7 @@ public class DSManager {
         JSONObject obj = new JSONObject();
 
         for (Appointment appointment : appointmentList) {
-            obj.put(""+appointment.getId(), appointment.toJSONObject());
+            obj.put(appointment.getId()+"", appointment.toJSONObject());
         }
 
         return obj;

@@ -1,13 +1,13 @@
 package com.company.pages.program;
 
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -59,10 +59,10 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
     private JTextField notesView;
 
     // Lables for both popups
-    JLabel dayLabel = new JLabel("Day:");
-    JLabel fromLabel = new JLabel("From:");
-    JLabel toLable = new JLabel("To:");
-    JLabel referralDoctorLabel = new JLabel("Ref. Doctor:");
+    private JLabel dayLabel = new JLabel("Day:");
+    private JLabel fromLabel = new JLabel("From:");
+    private JLabel toLable = new JLabel("To:");
+    private JLabel referralDoctorLabel = new JLabel("Ref. Doctor:");
 
     /**
      * Initializes the patient appointment page.

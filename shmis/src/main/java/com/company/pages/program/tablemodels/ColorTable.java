@@ -10,13 +10,13 @@ import javax.swing.table.TableModel;
 import com.company.utilities.FontColor;
 
 /**
- * Custom table to display colours. Different for the patient queue, weekly calendar, and appointment list.
+ * Custom table to display colors. Different for the patient queue, weekly calendar, and appointment list.
  */
 public class ColorTable extends JTable {
     private String tableModelType;
 
     /**
-     * Initializes a <code>JTable</code> that allows colours to be displayed.
+     * Initializes a <code>JTable</code> that allows colors to be displayed.
      *
      * @param tableModel The table model of the table
      * @param tableModelType The type of table
@@ -27,7 +27,7 @@ public class ColorTable extends JTable {
     }
 
     /**
-     * Returns a <code>JTable</code> component that renders the table with colour.
+     * Returns a <code>JTable</code> component that renders the table with color.
      */
     public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
         Component c = super.prepareRenderer(renderer, row, column);

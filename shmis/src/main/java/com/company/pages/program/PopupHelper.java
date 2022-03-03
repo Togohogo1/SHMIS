@@ -166,6 +166,8 @@ public class PopupHelper extends JPanel {
             long x1 = booked.getStart(), x2 = x1 + booked.getSpan();
             long y1 = appointment.getStart(), y2 = y1 + appointment.getSpan();
 
+            // Start time of the first appointment is before the end time of the second appointment and
+            // Start time of the second appointment is before the end time of the first appointment
             if (x1 < y2 && y1 < x2 && booked.getDate().equals(appointment.getDate())) {
                 errorMessage = "Your appointment conflicts with another appointment";
                 return true;

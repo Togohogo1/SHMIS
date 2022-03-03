@@ -122,6 +122,7 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
      */
     @Override
     public void mouseClicked(MouseEvent e) {
+        // Don't let patients interact with the calendar
         if (App.dsm.currUserIsPatient())
             return;
 

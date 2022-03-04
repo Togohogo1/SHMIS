@@ -43,7 +43,8 @@ public class Program extends JPanel implements ChangeListener {
 
         this.setLayout(new GridLayout(1, 1)); // Easy way to ensure the whole frame gets filled
 
-        if (App.dsm.currUserIsPatient()) {  // Patient
+        // Patient
+        if (App.dsm.currUserIsPatient()) {
             myAppointments = new MyAppointments();
             profile = new ProfileLogout();
             weeklyCalendar = new WeeklyCalendar();
@@ -54,7 +55,8 @@ public class Program extends JPanel implements ChangeListener {
 
             this.add(patientTabs);
 
-        } else { // Employee
+        // Employee
+        } else {
             patientCheckinQueue = new PatientQueue();
             patientIndex = new PatientIndex();
             profile2 = new ProfileLogout();  // Same instance referenced by other JTabbedPane removed from the first

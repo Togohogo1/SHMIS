@@ -32,6 +32,7 @@ import com.company.pages.program.tablemodels.AppointmentTableModel;
 import com.company.pages.program.tablemodels.ColorTable;
 import com.company.pages.program.tablemodels.PatientTableModel;
 import com.company.utilities.FontColor;
+import com.company.utilities.PopupHelper;
 import com.company.utilities.SearchSort;
 
 /**
@@ -370,7 +371,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         } else if (e.getSource() == delete) {
             int n = JOptionPane.showConfirmDialog(null, "Confirm deletion of patient?", "Delete Patient", JOptionPane.YES_NO_OPTION);
 
-            if (JOptionPane.YES_OPTION == n) {
+            if (n == JOptionPane.YES_OPTION) {
                 for (long i : patient.getAppointments()) {
                     App.dsm.getQueue().remove(i);
                     App.dsm.getInCalendar().remove(i);

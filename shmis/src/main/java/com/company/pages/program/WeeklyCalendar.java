@@ -47,7 +47,7 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
             tableModels[i] = new CalendarTableModel(names[i], days.get(i));  // Pass by reference, only need to do this once
             calendars[i] = new ColorTable(tableModels[i], "calendar");
             calendars[i].addMouseListener(this);
-            calendars[i].setCellSelectionEnabled(false);
+            calendars[i].setCellSelectionEnabled(false);  // Way to get around the deselect coloring issue
             calendars[i].getSelectionModel().addListSelectionListener(this);
             calendarTables[i] = new JScrollPane(calendars[i]);
         }
@@ -113,8 +113,9 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
             return 3;
         else if (day.equals("Friday"))
             return 4;
-        else
-            return -1;
+
+        // Won't be reached unless error
+        return -1;
     }
 
     /**
@@ -127,7 +128,7 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
             return;
 
         JTable target = (JTable) e.getSource();
-        int row = target.getSelectedRow(); // select a row
+        int row = target.getSelectedRow(); // Select a row
         int day = dayToInt(((CalendarTableModel)target.getModel()).getDay());
         Appointment appointment = days.get(day).get(row);
 
@@ -135,12 +136,14 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
             if (appointment.getStatus().equals("Approved")) {
                 int n = JOptionPane.showConfirmDialog(null, String.format("Mark %s's appointment (ID = %d) as complete?", appointment.getPatient(), appointment.getId()), "Complete Appointment", JOptionPane.YES_NO_OPTION);
 
-                if (JOptionPane.YES_OPTION == n) {
+                // Marking appointment as complete
+                if (n == JOptionPane.YES_OPTION) {
                     appointment.setStatus("Completed");
                     App.dsm.getInCalendar().remove(appointment.getId());
                     render();
                 }
 
+            // Double clicking on a pending appointment
             } else {
                 JOptionPane.showMessageDialog(null, String.format("%s's appointment (ID = %d)", appointment.getPatient(), appointment.getId()), "Event Information", JOptionPane.INFORMATION_MESSAGE);
             }

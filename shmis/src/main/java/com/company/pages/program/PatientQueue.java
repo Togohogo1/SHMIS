@@ -76,6 +76,7 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
     public void valueChanged(ListSelectionEvent e) {
         ListSelectionModel lsm = (ListSelectionModel) e.getSource();
 
+        // Remove selection to give impression of not being able to select
         if (lsm.getMinSelectionIndex() >= 1)
             lsm.clearSelection();
     }
@@ -87,17 +88,21 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
     public void mouseClicked(MouseEvent e) {
         JTable target = (JTable) e.getSource();
 
-        if (target.getSelectedRow() == 0) {  // Only allow the first row to be selected
+        // Only allow the first row to be selected
+        if (target.getSelectedRow() == 0) {
             if (e.getClickCount() == 2) {
                 int n = JOptionPane.showConfirmDialog(null, "Approve the first appointment in queue?", "Approve Appointment", JOptionPane.YES_NO_OPTION);
                 long appId = App.dsm.getQueue().get(0).getAppointmentID();
                 Appointment appointment = App.dsm.query(appId);
 
-                if (JOptionPane.YES_OPTION == n) {
+                // Approving appointment only requires it to be removed from the queue
+                if (n == JOptionPane.YES_OPTION) {
                     App.dsm.getQueue().removeFront();
                     appointment.setStatus("Approved");
                     tableModel.fireTableDataChanged();
-                } else if (JOptionPane.NO_OPTION == n) {
+
+                // Disapproving appointment requires it to be removed from the queue and the calendar
+                } else if (n == JOptionPane.NO_OPTION) {
                     App.dsm.getQueue().removeFront();
                     App.dsm.getInCalendar().remove(appId);
                     appointment.setStatus("Unapproved");

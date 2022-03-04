@@ -1,4 +1,4 @@
-package com.company.pages.program;
+package com.company.utilities;
 
 import java.util.regex.Pattern;
 
@@ -30,7 +30,7 @@ public class PopupHelper extends JPanel {
             inputs[i].setText(inputs[i].getText().trim());
         }
 
-        // No input check
+        // Check for empty input
         if (inputs[1].getText().equals("") ||
             inputs[2].getText().equals("") ||
             inputs[4].getText().equals("") ||
@@ -86,12 +86,13 @@ public class PopupHelper extends JPanel {
      * @param imaging The appointment's body areas
      * @param from The appointment's start time
      * @param to The appointment's end time
-     * @return
+     * @return <code>True</code> if the appointment booked is valid
      */
     public static boolean validAppointment(JRadioButton[] imaging, JComboBox<String> from, JComboBox<String> to) {
         // Checking that no JRadioButtons are left empty
         boolean atLeastOne = false;
 
+        // atLeastOne is only false if no body areas are selected
         for (JRadioButton i : imaging) {
             atLeastOne |= i.isSelected();
         }
@@ -101,6 +102,7 @@ public class PopupHelper extends JPanel {
             return false;
         }
 
+        // Comparing start long values
         if (stringToStart((String)to.getSelectedItem()) <= stringToStart((String)from.getSelectedItem())) {
             errorMessage = "Please make sure your end time is after your start time";
             return false;
@@ -128,7 +130,7 @@ public class PopupHelper extends JPanel {
      * @return
      */
     public static long stringToStart(String time) {
-        String[] arr = time.split(":");
+        String[] arr = time.split(":");  // Separating hours and mintues
         long min = Long.valueOf(arr[0])*60 + Long.valueOf(arr[1]);
         long numMin = (min-540) / 30;
         return numMin;
@@ -142,6 +144,7 @@ public class PopupHelper extends JPanel {
      * @return <code>True</code> if there is an email conflict
      */
     public static boolean emailExists(String prevEmail, String email) {
+        // If email is not changed when editing patient information
         if (prevEmail.equals(email)) {
             return false;
         }

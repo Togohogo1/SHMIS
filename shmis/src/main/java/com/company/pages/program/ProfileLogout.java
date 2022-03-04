@@ -50,7 +50,7 @@ public class ProfileLogout extends JPanel implements ActionListener {
         patientlabels[2] = employeeLabels[2] = new JLabel("Last Name:");
         patientlabels[3] = employeeLabels[3] = new JLabel("Gender:");
         patientlabels[4] = employeeLabels[4] = new JLabel("ID:");
-        patientlabels[5] = new JLabel("Address:");
+        patientlabels[5] = new JLabel("Address:");  // arr[5, 6, 7] are patient specific
         patientlabels[6] = new JLabel("Email:");
         patientlabels[7] = new JLabel("Telephone:");
 
@@ -59,7 +59,7 @@ public class ProfileLogout extends JPanel implements ActionListener {
         patientDetails[2] = employeeDetails[2] = new JTextField(person.getLastName());
         patientDetails[3] = employeeDetails[3] = new JTextField(person.getGender());
         patientDetails[4] = employeeDetails[4] = new JTextField(person.getId());
-        patientDetails[5] = new JTextField();
+        patientDetails[5] = new JTextField(); // arr[5, 6, 7] are patient specific
         patientDetails[6] = new JTextField();
         patientDetails[7] = new JTextField();
 
@@ -85,6 +85,7 @@ public class ProfileLogout extends JPanel implements ActionListener {
         ci.insets = new Insets(5, 5, 5, 5);
 
         for (int i = 0; i < 2; i++) {
+            // Only care about first 5 array values if admin
             for (int j = 0; j < (isPatient ? 8 : 5); j++) {
                 ci.gridx = i;
                 ci.gridy = j;
@@ -111,7 +112,7 @@ public class ProfileLogout extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         int confirm = JOptionPane.showConfirmDialog(null, "Confirm Logout?", "Confirm", JOptionPane.YES_NO_OPTION);
 
-        if (JOptionPane.YES_OPTION == confirm)
+        if (confirm == JOptionPane.YES_OPTION)
             App.shmis.LoggedOut();
     }
 }

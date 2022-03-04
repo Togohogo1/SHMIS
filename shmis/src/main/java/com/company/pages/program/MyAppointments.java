@@ -29,6 +29,7 @@ import com.company.pages.program.tablemodels.AppointmentTableModel;
 import com.company.pages.program.tablemodels.ColorTable;
 import com.company.utilities.FontColor;
 import com.company.utilities.Node;
+import com.company.utilities.PopupHelper;
 
 /**
  * Page for a patient's appointments.

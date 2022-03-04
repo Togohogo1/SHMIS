@@ -149,7 +149,8 @@ public class DSManager {
      * @param obj the JSONObject containing containing <code>queue</code>, <code>inCalendar</code>, and the appointment ID information
      */
     public void initOtherdata(JSONObject obj) {
-        if (!obj.isEmpty()) {  // Otherwise otherdata.json file won't be created
+        // Otherwise otherdata.json file won't be created
+        if (!obj.isEmpty()) {
             queue.fromJSONArray((JSONArray) obj.get("queue"));
             inCalendar = (ArrayList<Long>) obj.get("calendar");
             appointmentID = (long) obj.get("appointmentID");

@@ -10,7 +10,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
- * Utility class for managing every data structure behind the functionality of the program.
+ * Utility class for managing every data structure behind the functionality of
+ * the program.
  */
 public class DSManager {
     private long appointmentID;
@@ -29,7 +30,7 @@ public class DSManager {
         initPatients(ReadWrite.readFile("patients.json"));
         initAppointments(ReadWrite.readFile("appointments.json"));
         initOtherdata(ReadWrite.readFile("otherdata.json"));
-        SearchSort.mergeSort(appointmentList, appointment -> appointment.getId());  // For binary search
+        SearchSort.mergeSort(appointmentList, appointment -> appointment.getId()); // For binary search
     }
 
     /**
@@ -129,7 +130,7 @@ public class DSManager {
      */
     public void initPatients(JSONObject obj) {
         for (Object value : obj.values()) {
-            patientList.add(new Patient((JSONObject)value));
+            patientList.add(new Patient((JSONObject) value));
         }
     }
 
@@ -140,14 +141,17 @@ public class DSManager {
      */
     public void initAppointments(JSONObject obj) {
         for (Object value : obj.values()) {
-            appointmentList.add(new Appointment((JSONObject)value));
+            appointmentList.add(new Appointment((JSONObject) value));
         }
     }
 
     /**
-     * Initializes <code>queue</code>, <code>inCalendar</code>, and the appointment ID from a <code>JSONObject</code>.
+     * Initializes <code>queue</code>, <code>inCalendar</code>, and the appointment
+     * ID from a <code>JSONObject</code>.
      *
-     * @param obj The <code>JSONObject</code> containing containing <code>queue</code>, <code>inCalendar</code>, and the appointment ID information
+     * @param obj The <code>JSONObject</code> containing containing
+     *            <code>queue</code>, <code>inCalendar</code>, and the appointment
+     *            ID information
      */
     public void initOtherdata(JSONObject obj) {
         // Otherwise otherdata.json file won't be created
@@ -159,9 +163,9 @@ public class DSManager {
     }
 
     /**
-     * Converts the ArrayList of patients to a JSONObject.
+     * Converts the <code>ArrayList</code> of patients to a <code>JSONObject</code>.
      *
-     * @return the converted JSONObject
+     * @return The converted <code>JSONObject</code>
      */
     public JSONObject packPatients() {
         JSONObject obj = new JSONObject();
@@ -174,9 +178,10 @@ public class DSManager {
     }
 
     /**
-     * Converts the ArrayList of appointments to a JSONObject.
+     * Converts the <code>ArrayList</code> of appointments to a
+     * <code>JSONObject</code>.
      *
-     * @return the converted JSONObject
+     * @return The converted <code>JSONObject</code>
      */
     public JSONObject packAppointments() {
         JSONObject obj = new JSONObject();
@@ -189,9 +194,11 @@ public class DSManager {
     }
 
     /**
-     * Returns a JSONObject containing <code>queue</code>, <code>inCalendar</code>, and the appointment ID.
+     * Returns a <code>JSONObject</code> containing <code>queue</code>,
+     * <code>inCalendar</code>,
+     * and the appointment ID.
      *
-     * @return the converted JSONObject
+     * @return the converted <code>JSONObject</code>
      */
     public JSONObject packOtherdata() {
         JSONObject obj = new JSONObject();
@@ -200,7 +207,7 @@ public class DSManager {
 
         obj.put("queue", queue.toJSONArray());
         obj.put("calendar", calendarJSON);
-        obj.put("appointmentID", appointmentID);  // long
+        obj.put("appointmentID", appointmentID); // long
 
         return obj;
     }

@@ -30,7 +30,7 @@ public class ReadWrite {
 
         try {
             // Requires a later version of Java
-            fileRead = new FileReader(fileName, Charset.forName("UTF8"));  // Allows Unicode characters
+            fileRead = new FileReader(fileName, Charset.forName("UTF8")); // Allows Unicode characters
             bufferRead = new BufferedReader(fileRead);
             parser = new JSONParser();
 
@@ -49,7 +49,7 @@ public class ReadWrite {
     /**
      * Writes a <code>JSONObject</code> to <code>fileName.java</code>.
      *
-     * @param obj The <code>JSONObject</code> to be written
+     * @param obj      The <code>JSONObject</code> to be written
      * @param fileName The file name
      */
     public static void writeFile(JSONObject obj, String fileName) {

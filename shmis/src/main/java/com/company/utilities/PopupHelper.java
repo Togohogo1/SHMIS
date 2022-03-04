@@ -20,7 +20,7 @@ public class PopupHelper extends JPanel {
     /**
      * Checks if the patient in the create patient popup is valid.
      *
-     * @param inputs The inputted information
+     * @param inputs    The inputted information
      * @param prevEmail The previous email of the patient
      * @return
      */
@@ -84,8 +84,8 @@ public class PopupHelper extends JPanel {
      * Checks if the appointment in the book appointment popup is valid.
      *
      * @param imaging The appointment's body areas
-     * @param from The appointment's start time
-     * @param to The appointment's end time
+     * @param from    The appointment's start time
+     * @param to      The appointment's end time
      * @return <code>True</code> if the appointment booked is valid
      */
     public static boolean validAppointment(JRadioButton[] imaging, JComboBox<String> from, JComboBox<String> to) {
@@ -114,9 +114,9 @@ public class PopupHelper extends JPanel {
     /**
      * Check if a newly booked appointment conflicts with a current one.
      *
-     * @param day The new appointment's day
+     * @param day  The new appointment's day
      * @param from The new appointment's start time
-     * @param to The new appointment's end time
+     * @param to   The new appointment's end time
      * @return
      */
     public static boolean conflictExists(JComboBox<String> day, JComboBox<String> from, JComboBox<String> to) {
@@ -130,17 +130,18 @@ public class PopupHelper extends JPanel {
      * @return
      */
     public static long stringToStart(String time) {
-        String[] arr = time.split(":");  // Separating hours and minutes
+        String[] arr = time.split(":"); // Separating hours and minutes
         long min = Long.valueOf(arr[0])*60 + Long.valueOf(arr[1]);
         long numMin = (min-540) / 30;
         return numMin;
     }
 
     /**
-     * Checks if an email exists or not. Ignores the case when an employee does not change a patient's email in the edit patient information popup.
+     * Checks if an email exists or not. Ignores the case when an employee does not
+     * change a patient's email in the edit patient information popup.
      *
      * @param prevEmail The previous email
-     * @param email The new email
+     * @param email     The new email
      * @return <code>True</code> if there is an email conflict
      */
     public static boolean emailExists(String prevEmail, String email) {
@@ -164,7 +165,7 @@ public class PopupHelper extends JPanel {
      * @return <code>True</code> if there is a conflict
      */
     public static boolean existsTimeConflict(Appointment booked) {
-        for (long appId: App.dsm.getInCalendar()) {
+        for (long appId : App.dsm.getInCalendar()) {
             Appointment appointment = App.dsm.query(appId);
             long x1 = booked.getStart(), x2 = x1 + booked.getSpan();
             long y1 = appointment.getStart(), y2 = y1 + appointment.getSpan();

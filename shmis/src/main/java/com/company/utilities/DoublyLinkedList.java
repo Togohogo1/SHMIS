@@ -56,7 +56,8 @@ public class DoublyLinkedList {
     }
 
     /**
-     * Removes a node from the front of the doubly linked list. Returns if the size of the linked list is 0.
+     * Removes a node from the front of the doubly linked list. Returns if the size
+     * of the linked list is 0.
      */
     public void removeFront() {
         if (head.getNext().getAppointmentID() == -1)
@@ -74,7 +75,8 @@ public class DoublyLinkedList {
     }
 
     /**
-     * Removes a node from the back of the doubly linked list. Returns if the size of the linked list is 0.
+     * Removes a node from the back of the doubly linked list. Returns if the size
+     * of the linked list is 0.
      */
     public void removeBack() {
         if (tail.getPrev().getAppointmentID() == -1)
@@ -92,13 +94,14 @@ public class DoublyLinkedList {
     }
 
     /**
-     * Removes a specified value from the doubly linked list. Assumes all values in the linked list are unique.
+     * Removes a specified value from the doubly linked list. Assumes all values in
+     * the linked list are unique.
      *
      * @param id Value to be removed
      */
     public void remove(long id) {
         Node node = head;
-        int idx = 1;  // The 0th node is a sentinel
+        int idx = 1; // The 0th node is a sentinel
 
         while (idx++ <= size) {
             node = node.getNext();

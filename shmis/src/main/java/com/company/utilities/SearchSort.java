@@ -7,7 +7,8 @@ import java.util.ArrayList;
  */
 public class SearchSort {
     /**
-     * Binary searches an <code>ArrayList</code> to get the index of <code>val</code>.
+     * Binary searches an <code>ArrayList</code> to get the index of
+     * <code>val</code>.
      *
      * @param <T>     Generic type parameter
      * @param <R>     Generic return type
@@ -31,11 +32,12 @@ public class SearchSort {
                 return mid;
         }
 
-        return -1;  // Not found
+        return -1; // Not found
     }
 
     /**
-     * Sorts an <code>ArrayList</code> using merge sort based on an attribute specified by
+     * Sorts an <code>ArrayList</code> using merge sort based on an attribute
+     * specified by
      * <code>fetcher</code>.
      *
      * @param <T>     Generic type parameter

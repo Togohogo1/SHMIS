@@ -65,7 +65,7 @@ public class DoublyLinkedList {
         Node next = head.getNext();
         Node nnext = next.getNext();
 
-        next.setPrev(null);
+        next.setPrev(null); // Removing a node = setting it to hull
         next.setNext(null);
         head.setNext(nnext);
         nnext.setPrev(head);
@@ -83,7 +83,7 @@ public class DoublyLinkedList {
         Node prev = tail.getPrev();
         Node pprev = prev.getPrev();
 
-        prev.setPrev(null); // Removing it = setting it to null
+        prev.setPrev(null);
         prev.setNext(null);
         pprev.setNext(tail);
         tail.setPrev(pprev);
@@ -98,7 +98,7 @@ public class DoublyLinkedList {
      */
     public void remove(long id) {
         Node node = head;
-        int idx = 1;  // The 0th Node is a sentinel
+        int idx = 1;  // The 0th node is a sentinel
 
         while (idx++ <= size) {
             node = node.getNext();
@@ -109,11 +109,11 @@ public class DoublyLinkedList {
                 node.setNext(null);
                 node.setPrev(null);
 
+                // Found
                 size--;
                 break;
             }
         }
-
     }
 
     /**
@@ -124,7 +124,7 @@ public class DoublyLinkedList {
      */
     public Node get(int idx) {
         Node node = head;
-        idx++;  // the 0th Node is a sentinel
+        idx++;
 
         while (idx-- != 0) {
             node = node.getNext();

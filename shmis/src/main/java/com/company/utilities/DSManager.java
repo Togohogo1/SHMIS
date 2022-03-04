@@ -13,7 +13,6 @@ import org.json.simple.JSONObject;
  * The utility class for managing every data structure behind the functionality of the program.
  */
 public class DSManager {
-    // Non data structures
     private long appointmentID;
     private Person currentUser;
 
@@ -110,6 +109,7 @@ public class DSManager {
      * @return The appointment that corresponds with the ID
      */
     public Appointment query(Long appId) {
+        // SearchSort.binarySearch returns an index
         return appointmentList.get(SearchSort.binarySearch(appointmentList, appointment -> appointment.getId(), appId));
     }
 
@@ -149,7 +149,7 @@ public class DSManager {
      * @param obj the JSONObject containing containing <code>queue</code>, <code>inCalendar</code>, and the appointment ID information
      */
     public void initOtherdata(JSONObject obj) {
-        if (!obj.isEmpty()) {  // Otherwise `otherdata.json` file isn't created
+        if (!obj.isEmpty()) {  // Otherwise otherdata.json file won't be created
             queue.fromJSONArray((JSONArray) obj.get("queue"));
             inCalendar = (ArrayList<Long>) obj.get("calendar");
             appointmentID = (long) obj.get("appointmentID");

@@ -34,6 +34,7 @@ public class ReadWrite {
             bufferRead = new BufferedReader(fileRead);
             parser = new JSONParser();
 
+            // Converting to a JSONObject
             String input = bufferRead.readLine();
             obj = (JSONObject) parser.parse(input);
 
@@ -56,6 +57,7 @@ public class ReadWrite {
             fileWrite = new FileWriter(fileName, Charset.forName("UTF8"));
             bufferWrite = new BufferedWriter(fileWrite);
 
+            // Writing to file
             bufferWrite.write(obj.toJSONString());
             bufferWrite.close();
 

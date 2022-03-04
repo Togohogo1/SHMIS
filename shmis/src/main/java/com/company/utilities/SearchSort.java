@@ -31,8 +31,7 @@ public class SearchSort {
                 return mid;
         }
 
-        // Not found
-        return -1;
+        return -1;  // Not found
     }
 
     /**

@@ -154,7 +154,7 @@ public class DoublyLinkedList {
     }
 
     /**
-     * Convertes the doubly linked list to a <code>JSONArray</code>.
+     * Converts the doubly linked list to a <code>JSONArray</code>.
      *
      * @return The converted <code>JSONArray</code>
      */

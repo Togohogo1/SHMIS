@@ -68,7 +68,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
     private JTextField notesView;
 
     /**
-     * Initializles the patient index page.
+     * Initializes the patient index page.
      */
     public PatientIndex() {
         super(new GridBagLayout());
@@ -144,7 +144,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         JPanel popup = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
-        // Initialiing the elements
+        // Initializing the elements
         JLabel[] labels = {
             new JLabel("Age:"),
             new JLabel("First Name:"),
@@ -222,7 +222,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         // Initializing the elements
         JLabel dayLabel = new JLabel("Day:");
         JLabel fromLabel = new JLabel("From:");
-        JLabel toLable = new JLabel("To:");
+        JLabel toLabel = new JLabel("To:");
         JLabel referralDoctorLabel = new JLabel("Ref. Doctor:");
         imagingView = new JRadioButton[7];
 
@@ -251,7 +251,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         // Setting sizes and styling
         dayLabel.setPreferredSize(new Dimension(75, 22));
         fromLabel.setPreferredSize(new Dimension(75, 22));
-        toLable.setPreferredSize(new Dimension(75, 22));
+        toLabel.setPreferredSize(new Dimension(75, 22));
         referralDoctorLabel.setPreferredSize(new Dimension(75, 22));
 
         dayView.setPreferredSize(new Dimension(100, 22));
@@ -288,7 +288,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
 
         c.gridy = 2;
         c.gridx = 0;
-        panel.add(toLable, c);
+        panel.add(toLabel, c);
         c.gridx = 1;
         panel.add(toView, c);
 
@@ -383,7 +383,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
                 }
 
                 App.dsm.getPatientList().remove(selectedRow);
-                appointmentTableModel.getAppointmentList().clear();  // Patient's appointments still refernced by the table model
+                appointmentTableModel.getAppointmentList().clear();  // Patient's appointments still referenced by the table model
                 appointmentTableModel.fireTableDataChanged();
                 patientTableModel.fireTableDataChanged();
                 editPopup.setVisible(false);

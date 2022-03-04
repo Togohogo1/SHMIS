@@ -193,7 +193,7 @@ public class PatientLogin extends JPanel implements ActionListener {
     }
 
     /**
-     * Checks if the patient's password is corrent or not when logging in.
+     * Checks if the patient's password is correct or not when logging in.
      *
      * @param patient The patient when logging in
      * @param password The inputted passwords in the input box
@@ -234,7 +234,7 @@ public class PatientLogin extends JPanel implements ActionListener {
             App.dsm.setCurrentUser(inputPatient);
             App.shmis.LoggedIn();
 
-            // Clearning text so it won't appear when logged out
+            // Clearing text so it won't appear when logged out
             emailInput.setText("");
             passwordInput.setText("");
 

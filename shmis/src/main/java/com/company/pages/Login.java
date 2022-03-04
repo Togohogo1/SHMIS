@@ -21,7 +21,7 @@ public class Login extends JPanel {
     private EmployeeLogin employeeLogin;
 
     /**
-     * Initizlies the login page, which functions through tabbed panes.
+     * Initializes the login page, which functions through tabbed panes.
      */
     public Login() {
         tabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);

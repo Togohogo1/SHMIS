@@ -31,7 +31,7 @@ public class ProfileLogout extends JPanel implements ActionListener {
         super(new GridBagLayout());
         GridBagConstraints co = new GridBagConstraints();
 
-        // Initializting the elements
+        // Initializing the elements
         Person person = App.dsm.getCurrentUser();
         JPanel top = new JPanel(new GridBagLayout());
         GridBagConstraints ci = new GridBagConstraints();
@@ -40,19 +40,19 @@ public class ProfileLogout extends JPanel implements ActionListener {
         logout.addActionListener(this);
 
         boolean isPatient = person.getDesignation().equals("Patient");
-        JLabel[] patientlabels = new JLabel[8];
+        JLabel[] patientLabels = new JLabel[8];
         JLabel[] employeeLabels = new JLabel[5];
         JTextField[] patientDetails = new JTextField[8];
         JTextField[] employeeDetails = new JTextField[5];
 
-        patientlabels[0] = employeeLabels[0] = new JLabel("Age:");
-        patientlabels[1] = employeeLabels[1] = new JLabel("First Name:");
-        patientlabels[2] = employeeLabels[2] = new JLabel("Last Name:");
-        patientlabels[3] = employeeLabels[3] = new JLabel("Gender:");
-        patientlabels[4] = employeeLabels[4] = new JLabel("ID:");
-        patientlabels[5] = new JLabel("Address:");  // arr[5, 6, 7] are patient specific
-        patientlabels[6] = new JLabel("Email:");
-        patientlabels[7] = new JLabel("Telephone:");
+        patientLabels[0] = employeeLabels[0] = new JLabel("Age:");
+        patientLabels[1] = employeeLabels[1] = new JLabel("First Name:");
+        patientLabels[2] = employeeLabels[2] = new JLabel("Last Name:");
+        patientLabels[3] = employeeLabels[3] = new JLabel("Gender:");
+        patientLabels[4] = employeeLabels[4] = new JLabel("ID:");
+        patientLabels[5] = new JLabel("Address:");  // arr[5, 6, 7] are patient specific
+        patientLabels[6] = new JLabel("Email:");
+        patientLabels[7] = new JLabel("Telephone:");
 
         patientDetails[0] = employeeDetails[0] = new JTextField(person.getAge()+"");
         patientDetails[1] = employeeDetails[1] = new JTextField(person.getFirstName());
@@ -71,9 +71,9 @@ public class ProfileLogout extends JPanel implements ActionListener {
 
         // Setting sizes and styling
         for (int i = 0; i < 8; i++) {
-            patientlabels[i].setFont(FontColor.H2_BOLD);  // Reference set to array index, employeeDetails should update as well
+            patientLabels[i].setFont(FontColor.H2_BOLD);  // Reference set to array index, employeeDetails should update as well
             patientDetails[i].setFont(FontColor.H2);
-            patientlabels[i].setPreferredSize(new Dimension(90, 30));
+            patientLabels[i].setPreferredSize(new Dimension(90, 30));
             patientDetails[i].setPreferredSize(new Dimension(120, 30));
             patientDetails[i].setEditable(false);
         }
@@ -91,7 +91,7 @@ public class ProfileLogout extends JPanel implements ActionListener {
                 ci.gridy = j;
 
                 if (i == 0)
-                    top.add((isPatient ? patientlabels[j] : employeeLabels[j]), ci);
+                    top.add((isPatient ? patientLabels[j] : employeeLabels[j]), ci);
                 else
                     top.add((isPatient ? patientDetails[j] : employeeDetails[j]), ci);
             }

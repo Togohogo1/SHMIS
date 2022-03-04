@@ -130,7 +130,7 @@ public class PopupHelper extends JPanel {
      * @return
      */
     public static long stringToStart(String time) {
-        String[] arr = time.split(":");  // Separating hours and mintues
+        String[] arr = time.split(":");  // Separating hours and minutes
         long min = Long.valueOf(arr[0])*60 + Long.valueOf(arr[1]);
         long numMin = (min-540) / 30;
         return numMin;

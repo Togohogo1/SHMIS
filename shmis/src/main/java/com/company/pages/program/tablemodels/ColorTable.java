@@ -34,7 +34,7 @@ public class ColorTable extends JTable {
         Component c = super.prepareRenderer(renderer, row, column);
         String status = (String) getModel().getValueAt(row, 4);  // Status in the 4th column
         boolean isQueue = (tableModelType.equals("queue"));
-        boolean isCalendar = (tableModelType.equals("calendar"));  // Redudant but kept for consistency
+        boolean isCalendar = (tableModelType.equals("calendar"));  // Redundant but kept for consistency
 
         if (isCalendar)
             status = ((CalendarTableModel)getModel()).getStatusFromEvents(row);

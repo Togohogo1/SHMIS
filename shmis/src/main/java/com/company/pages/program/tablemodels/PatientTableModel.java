@@ -10,7 +10,7 @@ import com.company.classes.Patient;
  * Customized table model for displaying patients.
  */
 public class PatientTableModel extends AbstractTableModel {
-    // Don't want the last column (appointment indicies)
+    // Don't want the last column (appointment indices)
     private String[] columnNames = {"Age", "First Name", "Last Name", "Gender", "Id", "Password", "Address", "Email", "Telephone"};
 
     private ArrayList<Patient> patients;

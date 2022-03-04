@@ -114,7 +114,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
-        // Initilizing the elements
+        // Initializing the elements
         imaging = new JRadioButton[7];
         String[] imagingText = {"Abdomen", "Head and Neck", "Chest", "Skeletal", "Spine and Pelvis", "Upper Extremities", "Lower Extremities"};
 

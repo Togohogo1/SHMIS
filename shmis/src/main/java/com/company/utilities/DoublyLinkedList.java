@@ -24,7 +24,7 @@ public class DoublyLinkedList {
     }
 
     /**
-     * Inserts a node at the front of the doubly linked list
+     * Inserts a node at the front of the doubly linked list.
      *
      * @param node Node to be inserted
      */
@@ -92,7 +92,7 @@ public class DoublyLinkedList {
     }
 
     /**
-     * Removes a specified value from the doubly linked list. Precondition is that all values in the linked list are unique.
+     * Removes a specified value from the doubly linked list. Assumes all values in the linked list are unique.
      *
      * @param id Value to be removed
      */

@@ -20,10 +20,10 @@ public class ReadWrite {
     private static JSONParser parser;
 
     /**
-     * Returns the JSONObject read from <code>fileName.json</code>.
+     * Returns the <code>JSONObject</code> read from <code>fileName.json</code>.
      *
      * @param fileName The file name
-     * @return The JSONObject read from the file
+     * @return The <code>JSONObject</code> read from the file
      */
     public static JSONObject readFile(String fileName) {
         JSONObject obj = new JSONObject();
@@ -47,9 +47,9 @@ public class ReadWrite {
     }
 
     /**
-     * Writes a JSONObject to <code>fileName.java</code>.
+     * Writes a <code>JSONObject</code> to <code>fileName.java</code>.
      *
-     * @param obj The JSONObject to be written
+     * @param obj The <code>JSONObject</code> to be written
      * @param fileName The file name
      */
     public static void writeFile(JSONObject obj, String fileName) {

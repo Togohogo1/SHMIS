@@ -12,7 +12,7 @@ import com.company.classes.Appointment;
 import com.company.classes.Patient;
 
 /**
- * Helper class with methods for popup operations
+ * Helper class with methods for popup operations.
  */
 public class PopupHelper extends JPanel {
     private static String errorMessage;
@@ -124,9 +124,9 @@ public class PopupHelper extends JPanel {
     }
 
     /**
-     * Converts the time formatted in HH:MM to a long.
+     * Converts the time formatted in HH:MM to a <code>long</code>.
      *
-     * @param time The time as a String
+     * @param time The time as a <code>String</code>
      * @return
      */
     public static long stringToStart(String time) {

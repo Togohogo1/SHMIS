@@ -14,7 +14,7 @@ public class SearchSort {
      * @param arr     The <code>ArrayList</code> to be searched
      * @param fetcher Functional interface denoting the attribute to search by
      * @param val     The value to be searched for
-     * @return the index of <code>val</code>
+     * @return The index of <code>val</code>
      */
     public static <T, R> int binarySearch(ArrayList<T> arr, AttributeFetcher<T, R> fetcher, R val) {
         int l = 0, r = arr.size() - 1;
@@ -57,8 +57,8 @@ public class SearchSort {
     }
 
     /**
-     * Helper method for the <code>mergeSort</code> method to merge two sorted
-     * arrays
+     * Helper method for the <code>mergeSort()</code> method to merge two sorted
+     * arrays.
      *
      * @param <T>     Generic type parameter
      * @param <R>     Generic return type

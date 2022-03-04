@@ -10,7 +10,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
- * The utility class for managing every data structure behind the functionality of the program.
+ * Utility class for managing every data structure behind the functionality of the program.
  */
 public class DSManager {
     private long appointmentID;
@@ -35,7 +35,7 @@ public class DSManager {
     /**
      * Returns the current appointment ID.
      *
-     * @return the current appointment ID
+     * @return The current appointment ID
      */
     public long getAppointmentID() {
         return appointmentID;
@@ -51,7 +51,7 @@ public class DSManager {
     /**
      * Returns the current user.
      *
-     * @return the current user
+     * @return The current user
      */
     public Person getCurrentUser() {
         return currentUser;
@@ -60,34 +60,34 @@ public class DSManager {
     /**
      * Sets the current user to a specified user.
      *
-     * @param currentUser the user to be set to
+     * @param currentUser The user to be set to
      */
     public void setCurrentUser(Person currentUser) {
         this.currentUser = currentUser;
     }
 
     /**
-     * Returns the ArrayList of patients.
+     * Returns the <code>ArrayList</code> of patients.
      *
-     * @return the ArrayList of patients
+     * @return The <code>ArrayList</code> of patients
      */
     public ArrayList<Patient> getPatientList() {
         return patientList;
     }
 
     /**
-     * Returns the ArrayList of appointments.
+     * Returns the <code>ArrayList</code> of appointments.
      *
-     * @return the ArrayList of appointments
+     * @return The <code>ArrayList</code> of appointments
      */
     public ArrayList<Appointment> getAppointmentList() {
         return appointmentList;
     }
 
     /**
-     * Returns the ArrayList of appointment IDs in the calendar.
+     * Returns the <code>ArrayList</code> of appointment IDs in the calendar.
      *
-     * @return the ArrayList of appointment IDs in the calendar
+     * @return The <code>ArrayList</code> of appointment IDs in the calendar
      */
     public ArrayList<Long> getInCalendar() {
         return inCalendar;
@@ -96,7 +96,7 @@ public class DSManager {
     /**
      * Returns the queue of appointment IDs.
      *
-     * @return the queue of appointment IDs
+     * @return The queue of appointment IDs
      */
     public Queue getQueue() {
         return queue;
@@ -123,9 +123,9 @@ public class DSManager {
     }
 
     /**
-     * Initializes <code>patientList</code> from a JSONObject.
+     * Initializes <code>patientList</code> from a <code>JSONObject</code>.
      *
-     * @param obj the JSONObject containing all patients
+     * @param obj The <code>JSONObject</code> containing all patients
      */
     public void initPatients(JSONObject obj) {
         for (Object value : obj.values()) {
@@ -134,8 +134,9 @@ public class DSManager {
     }
 
     /**
+     * Initializes <code>appointmentList</code> from a <code>JSONObject</code>.
      *
-     * @param obj the JSONObject containing all appointments
+     * @param obj The <code>JSONObject</code> containing all appointments
      */
     public void initAppointments(JSONObject obj) {
         for (Object value : obj.values()) {
@@ -144,9 +145,9 @@ public class DSManager {
     }
 
     /**
-     * Initializes <code>queue</code>, <code>inCalendar</code>, and the appointment ID from a JSONObject.
+     * Initializes <code>queue</code>, <code>inCalendar</code>, and the appointment ID from a <code>JSONObject</code>.
      *
-     * @param obj the JSONObject containing containing <code>queue</code>, <code>inCalendar</code>, and the appointment ID information
+     * @param obj The <code>JSONObject</code> containing containing <code>queue</code>, <code>inCalendar</code>, and the appointment ID information
      */
     public void initOtherdata(JSONObject obj) {
         // Otherwise otherdata.json file won't be created

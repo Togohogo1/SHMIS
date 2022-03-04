@@ -28,7 +28,7 @@ public class Node {
     /**
      * Returns the next node.
      *
-     * @return the next node
+     * @return The next node
      */
     public Node getNext() {
         return next;
@@ -46,7 +46,7 @@ public class Node {
     /**
      * Returns the previous node.
      *
-     * @return the previous node
+     * @return The previous node
      */
     public Node getPrev() {
         return prev;
@@ -55,7 +55,7 @@ public class Node {
     /**
      * Sets the previous node to a new node.
      *
-     * @param prev the previous node
+     * @param prev The previous node
      */
     public void setPrev(Node prev) {
         this.prev = prev;

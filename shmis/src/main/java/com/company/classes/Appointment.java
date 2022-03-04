@@ -73,7 +73,7 @@ public class Appointment {
     public JSONObject toJSONObject() {
         JSONObject obj = new JSONObject();
         JSONArray imaging = new JSONArray();
-        imaging.addAll(this.imaging);  // Convert from JSONArray to ArrayList
+        imaging.addAll(this.imaging);
 
         obj.put("start", start);
         obj.put("span", span);
@@ -103,7 +103,7 @@ public class Appointment {
      * @return the start time formatted as HH:MM.
      */
     public String getStartTable() {
-        long min = start*30 + 540;
+        long min = start*30 + 540;  // 540 is number of minutes from 00:00 to 9:00
         return String.format("%02d:%02d", min/60, min%60);
     }
 

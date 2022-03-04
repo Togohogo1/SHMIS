@@ -96,7 +96,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         correspondingAppts = new JScrollPane(tableAppointments, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, patientTable, correspondingAppts);
-        splitPane.setDividerLocation(450);  // Weird dividing behaviour (maybe its just a consequence of gridbaglayout)
+        splitPane.setDividerLocation(450);  // Weird dividing behaviour, could be consequence of GridBagLayout
 
         // Setting sizes and styling
         sortBy.setFont(FontColor.H2);
@@ -105,7 +105,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         sort.setPreferredSize(new Dimension(120, 30));
 
         tablePatients.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        tablePatients.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tablePatients.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);  // Allow horizontal scrolling
         tablePatients.setRowHeight(25);
         tablePatients.getTableHeader().setReorderingAllowed(false);
         tablePatients.getTableHeader().setPreferredSize(new Dimension(0, 30));
@@ -140,10 +140,11 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
      * @return a popup for employees to edit patient information
      */
     public JPanel createEdit(Patient patient) {
-        // Initialiing the elements
-        JPanel popup = new JPanel(new GridBagLayout());  // To put the stuff in
+        // Initializing the JPanel to be returned
+        JPanel popup = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
+        // Initialiing the elements
         JLabel[] labels = {
             new JLabel("Age:"),
             new JLabel("First Name:"),
@@ -177,7 +178,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
 
         // Setting sizes and styling
         for (int i = 0; i < 9; i++) {
-            labels[i].setPreferredSize(new Dimension(100, 22));  // Default JButton size
+            labels[i].setPreferredSize(new Dimension(100, 22));  // Default JButton height
             inputs[i].setPreferredSize(new Dimension(100, 22));
         }
 
@@ -214,6 +215,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
      * @return a popup to display patient appointment information
      */
     public JPanel createApptInfo(Appointment appointment) {
+        // Initializing the JPanel to be returned
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
@@ -224,7 +226,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         JLabel referralDoctorLabel = new JLabel("Ref. Doctor:");
         imagingView = new JRadioButton[7];
 
-        String[] imagingText = {"Abdomen", "Head and Neck", "Chest", "Skeletal", "Spine and Pelvis", "Upper Extremeties", "Lower Extremeties"};
+        String[] imagingText = {"Abdomen", "Head and Neck", "Chest", "Skeletal", "Spine and Pelvis", "Upper Extremities", "Lower Extremities"};
         for (int i = 0; i < 7; i++) {
             imagingView[i] = new JRadioButton(imagingText[i]);
             imagingView[i].setSelected(appointment.getImaging().get(i));
@@ -305,7 +307,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
     }
 
     /**
-     * Changes patient information based on edits in the patient edit popup.
+     * Changes patient information based on edits in the patient edit popup. Assumes patient information is valid.
      *
      * @param patient The patient whose information is changed
      */
@@ -353,6 +355,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        // Returning when no patients in the list to prevent indexing errors
         if (App.dsm.getPatientList().isEmpty())
             return;
 
@@ -362,7 +365,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
             // Confirm that the new input is valid
             if (PopupHelper.validPatient(inputs, prevEmail)) {
                 changePatient(patient);
-                changeAppointmentRefs(patient);
+                changeAppointmentRefs(patient);  // Also need to change appointments that reference the patient
                 patientTableModel.fireTableDataChanged();
                 editPopup.setVisible(false);
             } else
@@ -371,7 +374,9 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         } else if (e.getSource() == delete) {
             int n = JOptionPane.showConfirmDialog(null, "Confirm deletion of patient?", "Delete Patient", JOptionPane.YES_NO_OPTION);
 
+            // Confirm deletion
             if (n == JOptionPane.YES_OPTION) {
+                // Removing patients from queue and calendar
                 for (long i : patient.getAppointments()) {
                     App.dsm.getQueue().remove(i);
                     App.dsm.getInCalendar().remove(i);
@@ -395,7 +400,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
                 SearchSort.mergeSort(App.dsm.getPatientList(), pat -> pat.getLastName());
             else if (sortOption.equals("Address"))
                 SearchSort.mergeSort(App.dsm.getPatientList(), pat -> pat.getAddress());
-            else if (sortOption.equals("Email")) // Else
+            else if (sortOption.equals("Email"))
                 SearchSort.mergeSort(App.dsm.getPatientList(), pat -> pat.getEmail());
 
             patientTableModel.fireTableDataChanged();

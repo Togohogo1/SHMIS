@@ -59,10 +59,10 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
     private JComboBox<String> referralDoctorView;
     private JTextField notesView;
 
-    // Lables for both popups
+    // Labels for both popups
     private JLabel dayLabel = new JLabel("Day:");
     private JLabel fromLabel = new JLabel("From:");
-    private JLabel toLable = new JLabel("To:");
+    private JLabel toLabel = new JLabel("To:");
     private JLabel referralDoctorLabel = new JLabel("Ref. Doctor:");
 
     /**
@@ -116,7 +116,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
 
         // Initilizing the elements
         imaging = new JRadioButton[7];
-        String[] imagingText = {"Abdomen", "Head and Neck", "Chest", "Skeletal", "Spine and Pelvis", "Upper Extremeties", "Lower Extremeties"};
+        String[] imagingText = {"Abdomen", "Head and Neck", "Chest", "Skeletal", "Spine and Pelvis", "Upper Extremities", "Lower Extremities"};
 
         for (int i = 0; i < 7; i++) {
             imaging[i] = new JRadioButton(imagingText[i]);
@@ -141,7 +141,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         // Setting sizes and styling
         dayLabel.setPreferredSize(new Dimension(75, 22));
         fromLabel.setPreferredSize(new Dimension(75, 22));
-        toLable.setPreferredSize(new Dimension(75, 22));
+        toLabel.setPreferredSize(new Dimension(75, 22));
         referralDoctorLabel.setPreferredSize(new Dimension(75, 22));
 
         day.setPreferredSize(new Dimension(100, 22));
@@ -178,7 +178,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
 
         c.gridy = 2;
         c.gridx = 0;
-        panel.add(toLable, c);
+        panel.add(toLabel, c);
         c.gridx = 1;
         panel.add(to, c);
 
@@ -209,19 +209,21 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
      * @return a popup to display patient appointment information
      */
     public JPanel createApptInfo(Appointment appointment) {
+        // Initializing the JPanel to be returned
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
         // Initializing the elements
         imagingView = new JRadioButton[7];
 
-        String[] imagingText = {"Abdomen", "Head and Neck", "Chest", "Skeletal", "Spine and Pelvis", "Upper Extremeties", "Lower Extremeties"};
+        String[] imagingText = {"Abdomen", "Head and Neck", "Chest", "Skeletal", "Spine and Pelvis", "Upper Extremities", "Lower Extremities"};
         for (int i = 0; i < 7; i++) {
             imagingView[i] = new JRadioButton(imagingText[i]);
             imagingView[i].setSelected(appointment.getImaging().get(i));
             imagingView[i].setEnabled(false);
         }
 
+        // Initializing JComboBoxes with only 1 value
         dayView = new JComboBox<>(new String[]{appointment.getDate()});
         dayView.setEnabled(false);
 
@@ -240,7 +242,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
         // Setting sizes and styling
         dayLabel.setPreferredSize(new Dimension(75, 22));
         fromLabel.setPreferredSize(new Dimension(75, 22));
-        toLable.setPreferredSize(new Dimension(75, 22));
+        toLabel.setPreferredSize(new Dimension(75, 22));
         referralDoctorLabel.setPreferredSize(new Dimension(75, 22));
 
         dayView.setPreferredSize(new Dimension(100, 22));
@@ -277,7 +279,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
 
         c.gridy = 2;
         c.gridx = 0;
-        panel.add(toLable, c);
+        panel.add(toLabel, c);
         c.gridx = 1;
         panel.add(toView, c);
 
@@ -306,6 +308,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
             imagingArr.add(i.isSelected());
         }
 
+        // Creating a new appointment
         Appointment appointment = new Appointment(
             PopupHelper.stringToStart((String)from.getSelectedItem()),
             PopupHelper.stringToStart((String)to.getSelectedItem()) - PopupHelper.stringToStart((String)from.getSelectedItem()),
@@ -339,17 +342,20 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
                 JOptionPane.showMessageDialog(null, PopupHelper.getError(), "Warning", JOptionPane.WARNING_MESSAGE);
 
             else {
-                Appointment appt = createAppointment();
+                Appointment appointment = createAppointment();
 
-                if (PopupHelper.existsTimeConflict(appt))
+                // Checking time conflict separate from checking for valid appointment
+                if (PopupHelper.existsTimeConflict(appointment))
                     JOptionPane.showMessageDialog(null, PopupHelper.getError(), "Warning", JOptionPane.WARNING_MESSAGE);
-                else {
-                    App.dsm.getAppointmentList().add(appt);
-                    App.dsm.getQueue().insertBack(new Node(appt.getId()));
-                    App.dsm.getInCalendar().add(appt.getId());
-                    App.dsm.incrAppointmentID();
 
-                    ((Patient)App.dsm.getCurrentUser()).addAppointment(appt.getId());
+                // Booking an appointment causes the most database changes
+                else {
+                    App.dsm.getAppointmentList().add(appointment);
+                    App.dsm.getQueue().insertBack(new Node(appointment.getId()));
+                    App.dsm.getInCalendar().add(appointment.getId());
+                    App.dsm.incrAppointmentID();
+                    ((Patient)App.dsm.getCurrentUser()).addAppointment(appointment.getId());
+
                     bookingPopup.setVisible(false);
                     appointmentTableModel.fireTableDataChanged();
                 }

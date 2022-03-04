@@ -41,8 +41,7 @@ public class Program extends JPanel implements ChangeListener {
         employeeTabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
         employeeTabs.addChangeListener(this);
 
-        // Easy way to ensure the whole frame gets filled
-        this.setLayout(new GridLayout(1, 1));
+        this.setLayout(new GridLayout(1, 1)); // Easy way to ensure the whole frame gets filled
 
         if (App.dsm.currUserIsPatient()) {  // Patient
             myAppointments = new MyAppointments();
@@ -58,7 +57,7 @@ public class Program extends JPanel implements ChangeListener {
         } else { // Employee
             patientCheckinQueue = new PatientQueue();
             patientIndex = new PatientIndex();
-            profile2 = new ProfileLogout();  // Same instance referenced by other JTabbedPane removed from the frist
+            profile2 = new ProfileLogout();  // Same instance referenced by other JTabbedPane removed from the first
             weeklyCalendar2 = new WeeklyCalendar();
 
             appendTab(employeeTabs, patientCheckinQueue, "Patient Queue", 0);
@@ -96,6 +95,7 @@ public class Program extends JPanel implements ChangeListener {
         JTabbedPane target = (JTabbedPane) e.getSource();
         int idx = target.getSelectedIndex();
 
+        // If current tab is the weekly calendar
         if (idx == 1) {
             if (App.dsm.currUserIsPatient())
                 weeklyCalendar.render();

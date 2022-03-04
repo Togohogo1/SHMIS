@@ -31,7 +31,7 @@ public class Login extends JPanel {
         appendTab(patientLogin, "Patient", 0);
         appendTab(employeeLogin, "Employee", 1);
 
-        this.setLayout(new GridLayout(1, 1));
+        this.setLayout(new GridLayout(1, 1));  // Easy way to ensure the whole frame gets filled
         this.add(tabs);
     }
 

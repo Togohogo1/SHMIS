@@ -44,7 +44,7 @@ public class QueueTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         long appId = queue.get(rowIndex).getAppointmentID();
-        Appointment appointment = App.dsm.query(appId);  // Bsearch appointment
+        Appointment appointment = App.dsm.query(appId);
 
         switch (columnIndex) {
             case 0:
@@ -59,6 +59,7 @@ public class QueueTableModel extends AbstractTableModel {
                 return appointment.getEndTable();
         }
 
+        // Won't be reached unless error
         return null;
     }
 

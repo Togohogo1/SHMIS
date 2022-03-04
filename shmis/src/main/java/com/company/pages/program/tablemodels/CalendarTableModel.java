@@ -39,7 +39,7 @@ public class CalendarTableModel extends AbstractTableModel {
      */
     @Override
     public int getColumnCount() {
-        return 1;
+        return 1;  // Only requires 1 column
     }
 
     /**
@@ -49,7 +49,7 @@ public class CalendarTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         Appointment appointment = events.get(rowIndex);
         Person currentUser = App.dsm.getCurrentUser();
-        String designation = currentUser.getDesignation();
+        String designation = currentUser.getDesignation();  // Not App.dsm.currUserIsPatient() since appointment is needed
         String fromTo = appointment.getStartTable() + " to " + appointment.getEndTable();
 
         if (designation.equals("Employee"))

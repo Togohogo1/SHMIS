@@ -32,9 +32,9 @@ public class ColorTable extends JTable {
     @Override
     public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
         Component c = super.prepareRenderer(renderer, row, column);
-        String status = (String) getModel().getValueAt(row, 4);
+        String status = (String) getModel().getValueAt(row, 4);  // Status in the 4th column
         boolean isQueue = (tableModelType.equals("queue"));
-        boolean isCalendar = (tableModelType.equals("calendar"));
+        boolean isCalendar = (tableModelType.equals("calendar"));  // Redudant but kept for consistency
 
         if (isCalendar)
             status = ((CalendarTableModel)getModel()).getStatusFromEvents(row);
@@ -45,13 +45,15 @@ public class ColorTable extends JTable {
                 c.setForeground(getForeground());
             }
 
-            if (row != 0 && isQueue)  // As if its deselected for queue
+            // As if its deselected for queue
+            if (row != 0 && isQueue)
                 c.setForeground(Color.LIGHT_GRAY);
 
         } else {
             if (tableModelType.equals("calendar"))
                 status = ((CalendarTableModel)getModel()).getStatusFromEvents(row);
 
+            // Same colour scheme for my appointments and calendar pages
             if (!isRowSelected(row) && tableModelType.equals("appointment") || tableModelType.equals("calendar")) {
                 if (status.equals("Pending"))
                     c.setBackground(FontColor.LIGHT_YELLOW_3);

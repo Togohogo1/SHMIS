@@ -34,7 +34,7 @@ public class PatientLogin extends JPanel implements ActionListener {
     private JButton register;
     private JButton login;
 
-    // For signup popup
+    // For Register popup
     private JDialog signup;
     private JTextField[] inputs;
     private JButton registerConfirm;
@@ -107,10 +107,11 @@ public class PatientLogin extends JPanel implements ActionListener {
      * @return The patient register popup
      */
     public JPanel createSignup() {
-        // Initializing the elements
+        // Initializing the JPanel to be returned
         JPanel popup = new JPanel(new GridBagLayout());  // To put the stuff in
         GridBagConstraints c = new GridBagConstraints();
 
+        // Initializing the elements
         JLabel[] labels = {
             new JLabel("Age:"),
             new JLabel("First Name:"),

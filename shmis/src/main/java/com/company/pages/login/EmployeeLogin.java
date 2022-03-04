@@ -103,7 +103,7 @@ public class EmployeeLogin extends JPanel implements ActionListener {
             return;
         }
 
-        // Clearning text so it won't appear when logged out
+        // Clearning text so it won't appear when logging back in after logout
         keyInput.setText("");
         passwordInput.setText("");
 

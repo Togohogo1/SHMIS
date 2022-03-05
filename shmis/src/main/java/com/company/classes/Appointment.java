@@ -6,7 +6,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
- * Appointments are the objects that tie patient and employee functionality together.
+ * Appointments are the objects that tie patient and employee functionality
+ * together.
  */
 public class Appointment {
     private long start;
@@ -20,19 +21,20 @@ public class Appointment {
     private ArrayList<Boolean> imaging;
 
     /**
-     * Initializes an appointment from constructor parameters.
+     * Initializes an appointment from multiple constructor parameters.
      *
-     * @param start Appointment start time
-     * @param span Appointment duration
-     * @param id Appointment ID
-     * @param date Appointment date
-     * @param status Appointment status
-     * @param patient Appointment's patient's full name
-     * @param referralDoctor Appointment referral doctor
-     * @param notes Appointment notes
-     * @param imaging Appointment concerns
+     * @param start          The appointment's start time
+     * @param span           The appointment's duration
+     * @param id             The appointment's ID
+     * @param date           The appointment's date
+     * @param status         The appointment's status
+     * @param patient        The appointment's patient's full name
+     * @param referralDoctor The appointment's referral doctor
+     * @param notes          The appointment's notes
+     * @param imaging        The appointment's imaging details
      */
-    public Appointment(long start, long span, long id, String date, String status, String patient, String referralDoctor, String notes, ArrayList<Boolean> imaging) {
+    public Appointment(long start, long span, long id, String date, String status, String patient,
+            String referralDoctor, String notes, ArrayList<Boolean> imaging) {
         this.start = start;
         this.span = span;
         this.id = id;
@@ -52,7 +54,7 @@ public class Appointment {
     public Appointment(JSONObject obj) {
         ArrayList<Boolean> imaging = new ArrayList<>();
         JSONArray imagingJSON = (JSONArray) obj.get("imaging");
-        imaging = (ArrayList<Boolean>) imagingJSON;  // convert from JSONArray to ArrayList
+        imaging = (ArrayList<Boolean>) imagingJSON; // convert from JSONArray to ArrayList
 
         this.start = (long) obj.get("start");
         this.span = (long) obj.get("span");
@@ -68,7 +70,7 @@ public class Appointment {
     /**
      * Converts an appointment to a <code>JSONObject</code>.
      *
-     * @return the appointment converted to a <code>JSONObject</code>
+     * @return The appointment converted to a <code>JSONObject</code>
      */
     public JSONObject toJSONObject() {
         JSONObject obj = new JSONObject();
@@ -77,7 +79,7 @@ public class Appointment {
 
         obj.put("start", start);
         obj.put("span", span);
-        obj.put("id", id);  // Key for JSONObject
+        obj.put("id", id); // Key for JSONObject
         obj.put("date", date);
         obj.put("status", status);
         obj.put("patient", patient);
@@ -91,7 +93,7 @@ public class Appointment {
     /**
      * Returns the appointment's start time as a long.
      *
-     * @return the start time as a long
+     * @return The start time as a long
      */
     public long getStart() {
         return start;
@@ -100,17 +102,17 @@ public class Appointment {
     /**
      * Returns the start time formatted as HH:MM.
      *
-     * @return the start time formatted as HH:MM.
+     * @return The start time formatted as HH:MM
      */
     public String getStartTable() {
-        long min = start*30 + 540;  // 540 is number of minutes from 00:00 to 9:00
-        return String.format("%02d:%02d", min/60, min%60);
+        long min = start * 30 + 540; // 540 is number of minutes from 00:00 to 9:00
+        return String.format("%02d:%02d", min / 60, min % 60);
     }
 
     /**
      * Returns the appointment's duration as a long.
      *
-     * @return the appointment's duration as a long.
+     * @return The appointment's duration as a long
      */
     public long getSpan() {
         return span;
@@ -119,17 +121,17 @@ public class Appointment {
     /**
      * Returns the appointment's end time formatted as HH:MM.
      *
-     * @return the appointment's end time formatted as HH:MM
+     * @return The appointment's end time formatted as HH:MM
      */
     public String getEndTable() {
-        long min = (start+span)*30 + 540;
-        return String.format("%02d:%02d", min/60, min%60);
+        long min = (start + span) * 30 + 540;
+        return String.format("%02d:%02d", min / 60, min % 60);
     }
 
     /**
      * Returns the appointment's ID.
      *
-     * @return the appointment's ID
+     * @return The appointment's ID
      */
     public Long getId() {
         return id;
@@ -138,7 +140,7 @@ public class Appointment {
     /**
      * Returns the appointment's date.
      *
-     * @return the appointment's date
+     * @return The appointment's date
      */
     public String getDate() {
         return date;
@@ -147,7 +149,7 @@ public class Appointment {
     /**
      * Returns the appointment's status.
      *
-     * @return the appointment's status
+     * @return The appointment's status
      */
     public String getStatus() {
         return status;
@@ -156,7 +158,7 @@ public class Appointment {
     /**
      * Returns the appointment's patient's full name.
      *
-     * @return the appointment's patient's full name
+     * @return The appointment's patient's full name
      */
     public String getPatient() {
         return patient;
@@ -165,7 +167,7 @@ public class Appointment {
     /**
      * Returns the appointment's referral doctor.
      *
-     * @return the appointment's referral doctor.
+     * @return The appointment's referral doctor
      */
     public String getReferralDoctor() {
         return referralDoctor;
@@ -174,16 +176,16 @@ public class Appointment {
     /**
      * Returns the appointment's notes.
      *
-     * @return the appointment's notes
+     * @return The appointment's notes
      */
     public String getNotes() {
         return notes;
     }
 
     /**
-     * Returns the appointment's concerns.
+     * Returns the appointment's imaging details.
      *
-     * @return the appointment's concerns
+     * @return The appointment's imaging details
      */
     public ArrayList<Boolean> getImaging() {
         return imaging;

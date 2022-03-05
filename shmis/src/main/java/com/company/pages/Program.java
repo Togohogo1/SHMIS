@@ -32,7 +32,9 @@ public class Program extends JPanel implements ChangeListener {
     private WeeklyCalendar weeklyCalendar, weeklyCalendar2;
 
     /**
-     * Initializes the program page, which functions through tabbed panes. Different tabs will be shown depending on the current user type.
+     * Initializes the program page, which functions through
+     * <code>JTabbedPanes</code>. Different tabs will be shown depending on the
+     * current user type.
      */
     public Program() {
         // Initialize components
@@ -59,7 +61,7 @@ public class Program extends JPanel implements ChangeListener {
         } else {
             patientCheckinQueue = new PatientQueue();
             patientIndex = new PatientIndex();
-            profile2 = new ProfileLogout();  // Same instance referenced by other JTabbedPane removed from the first
+            profile2 = new ProfileLogout(); // Same instance referenced by other JTabbedPane removed from the first
             weeklyCalendar2 = new WeeklyCalendar();
 
             appendTab(employeeTabs, patientCheckinQueue, "Patient Queue", 0);
@@ -72,12 +74,12 @@ public class Program extends JPanel implements ChangeListener {
     }
 
     /**
-     * Appends a new tab to a specified tabbed pane.
+     * Appends a new tab to a specified <code>JTabbedPane</code>.
      *
-     * @param tabs The specified tabbed pane
+     * @param tabs  The specified tabbed pane
      * @param panel The panel to be added
-     * @param name The name of the tab
-     * @param idx The index of the tab
+     * @param name  The name of the tab
+     * @param idx   The index of the tab
      */
     public void appendTab(JTabbedPane tabs, JPanel panel, String name, int idx) {
         JLabel label = new JLabel(name);
@@ -90,7 +92,8 @@ public class Program extends JPanel implements ChangeListener {
     }
 
     /**
-     * Detects tab changes. Updates the calendar tab every time the user selects it.
+     * Detects tab changes. Only updates the calendar tab every time the user
+     * selects it.
      */
     @Override
     public void stateChanged(ChangeEvent e) {

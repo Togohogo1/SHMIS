@@ -50,7 +50,7 @@ public class ProfileLogout extends JPanel implements ActionListener {
         patientLabels[2] = employeeLabels[2] = new JLabel("Last Name:");
         patientLabels[3] = employeeLabels[3] = new JLabel("Gender:");
         patientLabels[4] = employeeLabels[4] = new JLabel("ID:");
-        patientLabels[5] = new JLabel("Address:");  // arr[5, 6, 7] are patient specific
+        patientLabels[5] = new JLabel("Address:"); // arr[5, 6, 7] are patient specific
         patientLabels[6] = new JLabel("Email:");
         patientLabels[7] = new JLabel("Telephone:");
 
@@ -71,7 +71,8 @@ public class ProfileLogout extends JPanel implements ActionListener {
 
         // Setting sizes and styling
         for (int i = 0; i < 8; i++) {
-            patientLabels[i].setFont(FontColor.H2_BOLD);  // Reference set to array index, employeeDetails should update as well
+            patientLabels[i].setFont(FontColor.H2_BOLD); // Reference set to array index, employeeDetails should update
+                                                         // as well
             patientDetails[i].setFont(FontColor.H2);
             patientLabels[i].setPreferredSize(new Dimension(90, 30));
             patientDetails[i].setPreferredSize(new Dimension(120, 30));

@@ -33,6 +33,9 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
     private JTable[] calendars = new JTable[5];
     private JScrollPane[] calendarTables = new JScrollPane[5];
 
+    /**
+     * Initializing the weekly calendar page.
+     */
     public WeeklyCalendar() {
         super(new GridBagLayout());
         GridBagConstraints co = new GridBagConstraints();
@@ -47,7 +50,7 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
             tableModels[i] = new CalendarTableModel(names[i], days.get(i));  // Pass by reference, only need to do this once
             calendars[i] = new ColorTable(tableModels[i], "calendar");
             calendars[i].addMouseListener(this);
-            calendars[i].setCellSelectionEnabled(false);  // Way to get around the deselect coloring issue
+            calendars[i].setCellSelectionEnabled(false); // Way to get around the deselect coloring issue
             calendars[i].getSelectionModel().addListSelectionListener(this);
             calendarTables[i] = new JScrollPane(calendars[i]);
         }
@@ -59,7 +62,7 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
             calendars[i].setRowHeight(25);
             calendars[i].setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             calendars[i].getTableHeader().setFont(FontColor.H3_BOLD);
-            calendars[i].getTableHeader().setPreferredSize(new Dimension(0, 30));  // Will auto resize
+            calendars[i].getTableHeader().setPreferredSize(new Dimension(0, 30)); // Will auto resize
             calendars[i].getTableHeader().setReorderingAllowed(false);
         }
 
@@ -79,7 +82,10 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
         this.add(panel, co);
     }
 
-    // Efficient enough for maximum calendar capacity, less prone to bugs
+    /**
+     * Refreshes the calendar. Efficient enough for maximum calendar capacity, less
+     * prone to bugs
+     */
     public void render() {
         for (int i = 0; i < 5; i++) {
             if (!days.get(i).isEmpty())
@@ -88,8 +94,8 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
 
         for (long idx : App.dsm.getInCalendar()) {
             Appointment appointment = App.dsm.query(idx);
-            int day = dayToInt(appointment.getDate());  // Get day of each appointment in calendar list
-            days.get(day).add(appointment);  // Unsorted, but distributed appointments from calendar list
+            int day = dayToInt(appointment.getDate()); // Get day of each appointment in calendar list
+            days.get(day).add(appointment); // Unsorted, but distributed appointments from calendar list
         }
 
         // Ordering by start time
@@ -102,6 +108,12 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
         }
     }
 
+    /**
+     * Returns a value that corresponds with the day.
+     *
+     * @param day The day of the week
+     * @return A value that corresponds with the day
+     */
     public int dayToInt(String day) {
         if (day.equals("Monday"))
             return 0;
@@ -119,7 +131,8 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
     }
 
     /**
-     * Only allow employees to mark calendar events as complete when double clicking.
+     * Only allow employees to mark calendar events as complete when double
+     * clicking.
      */
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -155,14 +168,18 @@ public class WeeklyCalendar extends JPanel implements MouseListener, ListSelecti
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+    }
 
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+    }
 
     @Override
-    public void mouseEntered(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {
+    }
 
     @Override
-    public void mouseExited(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {
+    }
 }

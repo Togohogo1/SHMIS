@@ -64,7 +64,7 @@ public class Node {
     /**
      * Get a node's appointment ID.
      *
-     * @return the node's appointment ID
+     * @return The node's appointment ID
      */
     public long getAppointmentID() {
         return appointmentID;

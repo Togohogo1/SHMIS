@@ -130,7 +130,7 @@ public class DSManager {
      */
     public void initPatients(JSONObject obj) {
         for (Object value : obj.values()) {
-            patientList.add(new Patient((JSONObject) value));
+            patientList.add(new Patient((JSONObject)value));
         }
     }
 
@@ -195,10 +195,9 @@ public class DSManager {
 
     /**
      * Returns a <code>JSONObject</code> containing <code>queue</code>,
-     * <code>inCalendar</code>,
-     * and the appointment ID.
+     * <code>inCalendar</code>, and the appointment ID.
      *
-     * @return the converted <code>JSONObject</code>
+     * @return The converted <code>JSONObject</code>
      */
     public JSONObject packOtherdata() {
         JSONObject obj = new JSONObject();

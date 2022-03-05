@@ -7,14 +7,15 @@ import com.company.classes.Appointment;
 import com.company.utilities.Queue;
 
 /**
- * Customized table model for displaying queued appointments.
+ * Customized <code>AbstractTableModel</code> for displaying queued
+ * appointments.
  */
 public class QueueTableModel extends AbstractTableModel {
     private String[] columnNames = {"ID", "Patient", "Date", "From", "To"};
     private Queue queue;
 
     /**
-     * Initializes a queue table model with a queue of appointments.
+     * Initializes a <code>QueueTableModel</code> with a queue of appointments.
      *
      * @param queue The queue of appointments
      */

@@ -10,7 +10,8 @@ import javax.swing.table.TableModel;
 import com.company.utilities.FontColor;
 
 /**
- * Custom table to display colors. Different for the patient queue, weekly calendar, and appointment list.
+ * Custom table to display colors. Different for the patient queue, weekly
+ * calendar, and appointment list.
  */
 public class ColorTable extends JTable {
     private String tableModelType;
@@ -18,7 +19,7 @@ public class ColorTable extends JTable {
     /**
      * Initializes a <code>JTable</code> that allows colors to be displayed.
      *
-     * @param tableModel The table model of the table
+     * @param tableModel     The table model of the table
      * @param tableModelType The type of table
      */
     public ColorTable(TableModel tableModel, String tableModelType) {
@@ -32,9 +33,9 @@ public class ColorTable extends JTable {
     @Override
     public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
         Component c = super.prepareRenderer(renderer, row, column);
-        String status = (String) getModel().getValueAt(row, 4);  // Status in the 4th column
+        String status = (String) getModel().getValueAt(row, 4); // Status in the 4th column
         boolean isQueue = (tableModelType.equals("queue"));
-        boolean isCalendar = (tableModelType.equals("calendar"));  // Redundant but kept for consistency
+        boolean isCalendar = (tableModelType.equals("calendar")); // Redundant but kept for consistency
 
         if (isCalendar)
             status = ((CalendarTableModel)getModel()).getStatusFromEvents(row);

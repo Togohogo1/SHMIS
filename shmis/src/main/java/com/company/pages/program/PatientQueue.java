@@ -49,7 +49,7 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setRowHeight(25);
         table.getTableHeader().setFont(FontColor.H3_BOLD);
-        table.getTableHeader().setPreferredSize(new Dimension(0, 30));  // Will auto resize
+        table.getTableHeader().setPreferredSize(new Dimension(0, 30)); // Will auto resize
         table.getTableHeader().setReorderingAllowed(false);
 
         // Positioning
@@ -61,7 +61,7 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
     }
 
     /**
-     * Returns the table model.
+     * Returns the <code>TableModel</code>.
      *
      * @return the table model
      */
@@ -70,7 +70,8 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
     }
 
     /**
-     * Don't allow the employee to select appointments that are not the first (priority)
+     * Don't allow the employee to select appointments that are not the first
+     * (priority system).
      */
     @Override
     public void valueChanged(ListSelectionEvent e) {
@@ -82,7 +83,8 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
     }
 
     /**
-     * Displays a popup to approve or disapprove an appointment in the queue after double clicking on it.
+     * Displays a popup to approve or disapprove an appointment in the queue after
+     * double clicking on it.
      */
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -112,17 +114,22 @@ public class PatientQueue extends JPanel implements ActionListener, MouseListene
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+    }
 
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+    }
 
     @Override
-    public void mouseEntered(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {
+    }
 
     @Override
-    public void mouseExited(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {
+    }
 
     @Override
-    public void actionPerformed(ActionEvent e) {}
+    public void actionPerformed(ActionEvent e) {
+    }
 }

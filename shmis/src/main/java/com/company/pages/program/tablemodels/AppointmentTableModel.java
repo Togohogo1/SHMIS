@@ -8,7 +8,7 @@ import com.company.App;
 import com.company.classes.Appointment;
 
 /**
- * Customized table model for displaying appointments.
+ * Customized <code>AbstractTableModel</code> for displaying appointments.
  */
 public class AppointmentTableModel extends AbstractTableModel {
     private String[] columnNames = {"ID", "Date", "From", "To", "Status"};
@@ -71,7 +71,8 @@ public class AppointmentTableModel extends AbstractTableModel {
     }
 
     /**
-     * Sets the <code>ArrayList</code> that this table model uses to a new <code>ArrayList</code>.
+     * Sets the <code>ArrayList</code> that this <code>TableModel</code> uses to a
+     * new <code>ArrayList</code>.
      *
      * @param appointmentIDs The new <code>ArrayList</code>
      */
@@ -80,9 +81,9 @@ public class AppointmentTableModel extends AbstractTableModel {
     }
 
     /**
-     * Returns the <code>ArrayList</code> that this table model uses.
+     * Returns the <code>ArrayList</code> that this <code>TableModel</code> uses.
      *
-     * @return the <code>ArrayList</code> that this table model uses
+     * @return the <code>ArrayList</code> that this <code>TableModel</code> uses
      */
     public ArrayList<Long> getAppointmentList() {
         return appiontmentIDs;

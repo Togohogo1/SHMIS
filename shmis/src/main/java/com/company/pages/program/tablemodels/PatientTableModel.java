@@ -7,7 +7,7 @@ import javax.swing.table.AbstractTableModel;
 import com.company.classes.Patient;
 
 /**
- * Customized table model for displaying patients.
+ * Customized <code>AbstractTableModel</code> for displaying patients.
  */
 public class PatientTableModel extends AbstractTableModel {
     // Don't want the last column (appointment indices)
@@ -16,7 +16,7 @@ public class PatientTableModel extends AbstractTableModel {
     private ArrayList<Patient> patients;
 
     /**
-     * Initializes a patient table model with a list of patients.
+     * Initializes a <code>PatientTableModel<code> with a list of patients.
      *
      * @param patients The list of patients
      */
@@ -59,7 +59,7 @@ public class PatientTableModel extends AbstractTableModel {
             case 4:
                 return patient.getId();
             case 5:
-                return "********";  // Better alternative to creating a custom renderer
+                return "********"; // Better alternative to creating a custom renderer
             case 6:
                 return patient.getAddress();
             case 7:

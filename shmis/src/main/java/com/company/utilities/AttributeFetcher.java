@@ -10,7 +10,7 @@ public interface AttributeFetcher<T, R> {
      * <code>SearchSort.java</code> for comparisons.
      *
      * @param objT The return value from the function passed as a parameter
-     * @return a <code>Comparable</code> interface
+     * @return A <code>Comparable</code> interface
      */
     public Comparable<R> fetch(T objT);
 }

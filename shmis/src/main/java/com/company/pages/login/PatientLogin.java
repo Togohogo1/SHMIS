@@ -129,7 +129,7 @@ public class PatientLogin extends JPanel implements ActionListener {
 
         // Setting sizes and styling
         for (int i = 0; i < 9; i++) {
-            labels[i].setPreferredSize(new Dimension(75, 22));  // Default JButton size
+            labels[i].setPreferredSize(new Dimension(75, 22)); // Default JButton size
             inputs[i] = new JTextField();
             inputs[i].setPreferredSize(new Dimension(100, 22));
         }
@@ -157,7 +157,7 @@ public class PatientLogin extends JPanel implements ActionListener {
     /**
      * Creates a patient based on register information.
      *
-     * @return a patient based on register information
+     * @return A patient based on register information
      */
     public Patient createPatient() {
         ArrayList<Long> appointments = new ArrayList<>();
@@ -178,14 +178,14 @@ public class PatientLogin extends JPanel implements ActionListener {
     }
 
     /**
-     * Get patient from patient list after successful login or register
+     * Get patient from patient list after successful login or register.
      *
      * @param email Valid email of patient
-     * @return the corresponding patient
+     * @return The corresponding patient
      */
     public Patient getPatient(String email) {
         for (Patient p : App.dsm.getPatientList()) {
-            if (p.getEmail().equals(email))  // All emails are unique
+            if (p.getEmail().equals(email)) // All emails are unique
                 return p;
         }
 
@@ -195,8 +195,8 @@ public class PatientLogin extends JPanel implements ActionListener {
     /**
      * Checks if the patient's password is correct or not when logging in.
      *
-     * @param patient The patient when logging in
-     * @param password The inputted passwords in the input box
+     * @param patient  The patient thats logged in
+     * @param password The inputted password in the password input box
      * @return <code>True</code> if the patient's password is correct
      */
     public boolean passwordCorrect(Patient patient, String password) {
@@ -204,7 +204,8 @@ public class PatientLogin extends JPanel implements ActionListener {
     }
 
     /**
-     * Performing actions when clicked on the register, login, or confirm register buttons.
+     * Performing actions when clicked on the register, login, or confirm register
+     * buttons.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -218,7 +219,7 @@ public class PatientLogin extends JPanel implements ActionListener {
 
         } else if (e.getSource() == login) {
             String inputEmail = emailInput.getText().toLowerCase();
-            String inputPassword = String.valueOf(passwordInput.getPassword());  // .getText() deprecated for JPasswordField
+            String inputPassword = String.valueOf(passwordInput.getPassword()); // .getText() deprecated for JPasswordField
             Patient inputPatient = getPatient(inputEmail);
 
             if (inputPatient == null) {

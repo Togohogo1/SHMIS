@@ -108,7 +108,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
     /**
      * Creates a popup for patients to book appointments.
      *
-     * @return a popup for patients to book appointments
+     * @return A popup for patients to book appointments
      */
     public JPanel createBooking() {
         JPanel panel = new JPanel(new GridBagLayout());
@@ -206,7 +206,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
      * Creates a popup to display patient appointment information.
      *
      * @param appointment The appointment of interest
-     * @return a popup to display patient appointment information
+     * @return A popup to display patient appointment information
      */
     public JPanel createApptInfo(Appointment appointment) {
         // Initializing the JPanel to be returned
@@ -300,7 +300,7 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
     /**
      * Creates an appointment based on information entered in the booking popup.
      *
-     * @return an appointment based on information entered in the booking popup
+     * @return An appointment based on information entered in the booking popup
      */
     public Appointment createAppointment() {
         ArrayList<Boolean> imagingArr = new ArrayList<>();
@@ -385,14 +385,18 @@ public class MyAppointments extends JPanel implements ActionListener, MouseListe
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+    }
 
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+    }
 
     @Override
-    public void mouseEntered(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {
+    }
 
     @Override
-    public void mouseExited(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {
+    }
 }

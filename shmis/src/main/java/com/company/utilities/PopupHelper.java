@@ -22,7 +22,7 @@ public class PopupHelper extends JPanel {
      *
      * @param inputs    The inputted information
      * @param prevEmail The previous email of the patient
-     * @return
+     * @return <code>True</code> if the patient is valid
      */
     public static boolean validPatient(JTextField[] inputs, String prevEmail) {
         // Trim whitespace
@@ -117,7 +117,7 @@ public class PopupHelper extends JPanel {
      * @param day  The new appointment's day
      * @param from The new appointment's start time
      * @param to   The new appointment's end time
-     * @return
+     * @return <code>True</code> if there is a conflict
      */
     public static boolean conflictExists(JComboBox<String> day, JComboBox<String> from, JComboBox<String> to) {
         return true;
@@ -127,7 +127,7 @@ public class PopupHelper extends JPanel {
      * Converts the time formatted in HH:MM to a <code>long</code>.
      *
      * @param time The time as a <code>String</code>
-     * @return
+     * @return The time formatted in HH:MM to a <code>long</code>.
      */
     public static long stringToStart(String time) {
         String[] arr = time.split(":"); // Separating hours and minutes
@@ -184,7 +184,7 @@ public class PopupHelper extends JPanel {
     /**
      * Returns an error message based on invalid input.
      *
-     * @return an error message based on invalid input
+     * @return An error message based on invalid input
      */
     public static String getError() {
         return errorMessage;

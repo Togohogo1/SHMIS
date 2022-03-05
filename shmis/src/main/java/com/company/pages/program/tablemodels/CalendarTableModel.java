@@ -9,16 +9,17 @@ import com.company.classes.Appointment;
 import com.company.classes.Person;
 
 /**
- * Customized table model for displaying calendar events.
+ * Customized <code>AbstractTableModel</code> for displaying calendar events.
  */
 public class CalendarTableModel extends AbstractTableModel {
     private String day;
     private ArrayList<Appointment> events;
 
     /**
-     * Initializes a calendar table model with a day and a list of appointments.
+     * Initializes a <code>CalendarTableModel</code> with a day and a list of
+     * appointments.
      *
-     * @param day The day of the week
+     * @param day    The day of the week
      * @param events The list of appointments
      */
     public CalendarTableModel(String day, ArrayList<Appointment> events) {
@@ -39,7 +40,7 @@ public class CalendarTableModel extends AbstractTableModel {
      */
     @Override
     public int getColumnCount() {
-        return 1;  // Only requires 1 column
+        return 1; // Only requires 1 column
     }
 
     /**
@@ -49,14 +50,14 @@ public class CalendarTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         Appointment appointment = events.get(rowIndex);
         Person currentUser = App.dsm.getCurrentUser();
-        String designation = currentUser.getDesignation();  // Not App.dsm.currUserIsPatient() since appointment is needed
+        String designation = currentUser.getDesignation(); // Not App.dsm.currUserIsPatient() since appointment is needed
         String fromTo = appointment.getStartTable() + " to " + appointment.getEndTable();
 
         if (designation.equals("Employee"))
-            return fromTo  + " - " + appointment.getPatient();
+            return fromTo + " - " + appointment.getPatient();
         else {
             if (appointment.getPatient().equals(currentUser.getFirstName() + " " + currentUser.getLastName()))
-                return fromTo + " - You";  // Current user's appointment
+                return fromTo + " - You"; // Current user's appointment
             else
                 return fromTo;
         }
@@ -79,7 +80,8 @@ public class CalendarTableModel extends AbstractTableModel {
     }
 
     /**
-     * Returns an appointment's status when the status page is not a column of this table model.
+     * Returns an appointment's status when the status page is not a column of this
+     * <code>TableModel</code>.
      *
      * @param row The row in the table
      * @return A calendar event's appointment's status
@@ -89,9 +91,9 @@ public class CalendarTableModel extends AbstractTableModel {
     }
 
     /**
-     * Returns the day that corresponds to the current table model.
+     * Returns the day that corresponds to the current <code>TableModel</code>.
      *
-     * @return the day that corresponds to the current table model
+     * @return The day that corresponds to the current <code>TableModel</code>
      */
     public String getDay() {
         return day;

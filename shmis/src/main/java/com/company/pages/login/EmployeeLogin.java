@@ -86,12 +86,12 @@ public class EmployeeLogin extends JPanel implements ActionListener {
     }
 
     /**
-     * Performing actions when clicked on the login button.
+     * Performing actions when the login button is clicked.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
         String inputKey = keyInput.getText();
-        String inputPassword = String.valueOf(passwordInput.getPassword());  // .getText() deprecated for JPasswordField
+        String inputPassword = String.valueOf(passwordInput.getPassword()); // .getText() deprecated for JPasswordField
 
         if (!inputKey.equals("admin")) {
             JOptionPane.showMessageDialog(null, "Invalid employee key", "Warning", JOptionPane.WARNING_MESSAGE);

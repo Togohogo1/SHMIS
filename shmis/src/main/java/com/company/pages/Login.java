@@ -21,7 +21,8 @@ public class Login extends JPanel {
     private EmployeeLogin employeeLogin;
 
     /**
-     * Initializes the login page, which functions through tabbed panes.
+     * Initializes the login page, which functions through
+     * <code>JTabbedPanes</code>.
      */
     public Login() {
         tabs = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
@@ -31,7 +32,7 @@ public class Login extends JPanel {
         appendTab(patientLogin, "Patient", 0);
         appendTab(employeeLogin, "Employee", 1);
 
-        this.setLayout(new GridLayout(1, 1));  // Easy way to ensure the whole frame gets filled
+        this.setLayout(new GridLayout(1, 1)); // Easy way to ensure the whole frame gets filled
         this.add(tabs);
     }
 
@@ -39,8 +40,8 @@ public class Login extends JPanel {
      * Appends a new tab to the login <code>JTabbedPane</code>.
      *
      * @param panel The panel to be added
-     * @param name The name of the tab
-     * @param idx The index of the tab
+     * @param name  The name of the tab
+     * @param idx   The index of the tab
      */
     public void appendTab(JPanel panel, String name, int idx) {
         JLabel label = new JLabel(name);

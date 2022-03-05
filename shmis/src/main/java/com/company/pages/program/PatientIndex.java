@@ -79,7 +79,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         GridBagConstraints ci = new GridBagConstraints();
         JSplitPane splitPane = new JSplitPane();
 
-        String[] sortOptions = {"Age", "First Name", "Last Name", "Address", "Email"};
+        String[] sortOptions = { "Age", "First Name", "Last Name", "Address", "Email" };
         sortBy = new JComboBox<>(sortOptions);
         sort = new JButton("Sort");
         sort.addActionListener(this);
@@ -96,7 +96,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         correspondingAppts = new JScrollPane(tableAppointments, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, patientTable, correspondingAppts);
-        splitPane.setDividerLocation(450);  // Weird dividing behaviour, could be consequence of GridBagLayout
+        splitPane.setDividerLocation(450); // Weird dividing behaviour, could be consequence of GridBagLayout
 
         // Setting sizes and styling
         sortBy.setFont(FontColor.H2);
@@ -105,17 +105,17 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         sort.setPreferredSize(new Dimension(120, 30));
 
         tablePatients.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        tablePatients.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);  // Allow horizontal scrolling
+        tablePatients.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // Allow horizontal scrolling
         tablePatients.setRowHeight(25);
         tablePatients.getTableHeader().setReorderingAllowed(false);
         tablePatients.getTableHeader().setPreferredSize(new Dimension(0, 30));
-        tablePatients.getTableHeader().setFont(FontColor.H3_BOLD);;
+        tablePatients.getTableHeader().setFont(FontColor.H3_BOLD);
 
         tableAppointments.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tableAppointments.setRowHeight(25);
         tableAppointments.getTableHeader().setReorderingAllowed(false);
-        tableAppointments.getTableHeader().setPreferredSize(new Dimension(0, 30));  // Will auto resize
-        tableAppointments.getTableHeader().setFont(FontColor.H3_BOLD);;
+        tableAppointments.getTableHeader().setPreferredSize(new Dimension(0, 30)); // Will auto resize
+        tableAppointments.getTableHeader().setFont(FontColor.H3_BOLD);
 
         // Positioning
         ci.insets = new Insets(10, 5, 5, 5);
@@ -136,8 +136,8 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
     /**
      * Creates a popup for employees to edit patient information.
      *
-     * @param patient The patient whose information is edited.
-     * @return a popup for employees to edit patient information
+     * @param patient The patient whose information is edited
+     * @return A popup for employees to edit patient information
      */
     public JPanel createEdit(Patient patient) {
         // Initializing the JPanel to be returned
@@ -212,7 +212,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
      * Creates a popup to display patient appointment information.
      *
      * @param appointment The appointment of interest
-     * @return a popup to display patient appointment information
+     * @return A popup to display patient appointment information
      */
     public JPanel createApptInfo(Appointment appointment) {
         // Initializing the JPanel to be returned
@@ -258,7 +258,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
         fromView.setPreferredSize(new Dimension(100, 22));
         toView.setPreferredSize(new Dimension(100, 22));
         referralDoctorView.setPreferredSize(new Dimension(100, 22));
-        notesView.setPreferredSize(new Dimension(100+75+10, 22));
+        notesView.setPreferredSize(new Dimension(100 + 75 + 10, 22));
 
         for (int i = 0; i < 7; i++) {
             imagingView[i].setPreferredSize(new Dimension(120, 22));
@@ -307,7 +307,8 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
     }
 
     /**
-     * Changes patient information based on edits in the patient edit popup. Assumes patient information is valid.
+     * Changes patient information based on edits in the patient edit popup. Assumes
+     * patient information is valid.
      *
      * @param patient The patient whose information is changed
      */
@@ -324,7 +325,8 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
     }
 
     /**
-     * Change the patient's full name for all appointments that they are a reference to.
+     * Change the patient's full name for all appointments that they are a reference
+     * to.
      *
      * @param patient The patient of interest
      */
@@ -351,7 +353,8 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
     }
 
     /**
-     * Performing actions when pressing the confirm, delete patient, and sort buttons.
+     * Performing actions when pressing the confirm, delete patient, and sort
+     * buttons.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -365,7 +368,7 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
             // Confirm that the new input is valid
             if (PopupHelper.validPatient(inputs, prevEmail)) {
                 changePatient(patient);
-                changeAppointmentRefs(patient);  // Also need to change appointments that reference the patient
+                changeAppointmentRefs(patient); // Also need to change appointments that reference the patient
                 patientTableModel.fireTableDataChanged();
                 editPopup.setVisible(false);
             } else
@@ -442,14 +445,18 @@ public class PatientIndex extends JPanel implements ListSelectionListener, Actio
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+    }
 
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+    }
 
     @Override
-    public void mouseEntered(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {
+    }
 
     @Override
-    public void mouseExited(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {
+    }
 }

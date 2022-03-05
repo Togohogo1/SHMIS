@@ -12,20 +12,20 @@ public abstract class Person {
     protected String password;
 
     /**
-     * Default constructor
+     * Default constructor.
      */
     public Person() {
     }
 
     /**
-     * Initialized a person from constructor parameters.
+     * Initialize a person from multiple constructor parameters.
      *
-     * @param age The person's age
+     * @param age       The person's age
      * @param firstName The person's first name
-     * @param lastName The person's last name
-     * @param gender The person's gender
-     * @param id The person's ID
-     * @param password The person's password
+     * @param lastName  The person's last name
+     * @param gender    The person's gender
+     * @param id        The person's ID
+     * @param password  The person's password
      */
     public Person(long age, String firstName, String lastName, String gender, String id, String password) {
         this.age = age;
@@ -39,7 +39,7 @@ public abstract class Person {
     /**
      * Returns the person's password.
      *
-     * @return the person's password
+     * @return The person's password
      */
     public String getPassword() {
         return password;
@@ -48,7 +48,7 @@ public abstract class Person {
     /**
      * Returns the person's age.
      *
-     * @return the person's age
+     * @return The person's age
      */
     public long getAge() {
         return age;
@@ -57,7 +57,7 @@ public abstract class Person {
     /**
      * Returns the person's first name.
      *
-     * @return the person's first name
+     * @return The person's first name
      */
     public String getFirstName() {
         return firstName;
@@ -66,7 +66,7 @@ public abstract class Person {
     /**
      * Returns the person's last name.
      *
-     * @return the person's last name
+     * @return The person's last name
      */
     public String getLastName() {
         return lastName;
@@ -75,7 +75,7 @@ public abstract class Person {
     /**
      * Returns the person's gender.
      *
-     * @return the person's gender
+     * @return The person's gender
      */
     public String getGender() {
         return gender;
@@ -84,7 +84,7 @@ public abstract class Person {
     /**
      * Returns the person's id.
      *
-     * @return the person's id
+     * @return The person's id
      */
     public String getId() {
         return id;
@@ -93,7 +93,7 @@ public abstract class Person {
     /**
      * Sets the person's passwords to a new password.
      *
-     * @param password the new password
+     * @param password The new password
      */
     public void setPassword(String password) {
         this.password = password;
@@ -102,7 +102,7 @@ public abstract class Person {
     /**
      * Sets the person's age to a new age.
      *
-     * @param age The new age.
+     * @param age The new age
      */
     public void setAge(long age) {
         this.age = age;
@@ -138,7 +138,7 @@ public abstract class Person {
     /**
      * Sets the person's ID to a new ID.
      *
-     * @param id the new ID
+     * @param id The new ID
      */
     public void setId(String id) {
         this.id = id;
@@ -147,7 +147,7 @@ public abstract class Person {
     /**
      * Returns the type of person.
      *
-     * @return the type of person
+     * @return The type of person
      */
     public String getDesignation() {
         return "Person";
